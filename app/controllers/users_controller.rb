@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-    
+    before_action :authenticate_request!, except: [:login]
+    before_action :admin_only, except: [:login, :profile]
+
     def index
         users = User.all
 
@@ -22,6 +24,12 @@ class UsersController < ApplicationController
         end
     end
 
+    def profile
+        user = current_user
+        
+        render json: user
+    end
+
     def update
         user = current_user
 
@@ -39,6 +47,17 @@ class UsersController < ApplicationController
             head(:ok)
         else
             head(:unprocessable_entity)
+        end
+    end
+
+    def login
+        user = User.find_by(email: params[:email].to_s.downcase)
+
+        if user&.authenticate(params[:password])
+            auth_token = JsonWebToken.encode({user_id: user.id}, user.role)
+            render json: {auth_token: auth_token}, status: :ok
+        else
+            render json: {error: 'Invalid username / password'}, status: :unauthorized
         end
     end
 
