@@ -5,7 +5,8 @@ class User < ApplicationRecord
     validates_presence_of :email
     validates_uniqueness_of :email, case_sensitive: false
     validates_format_of :email, with: /@/
-	validates_presence_of :password_confirmation, :if => :password_digest_changed?
+    validates_presence_of :password_confirmation, :if => :password_digest_changed?
+    validates :password_confirmation, length: {minimum: 6}
     before_save :downcase_email
 
     def downcase_email
