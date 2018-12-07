@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-    before_action :authenticate_request!, except: [:login]
-    before_action :admin_only, except: [:login, :profile]
+    before_action :authenticate_request!, except: [:login, :create]
+    before_action :admin_only, except: [:login, :profile, :create, :destroy]
 
     def index
         users = User.all
