@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  model: MyString
+  status: MyString
+  country: MyString
+  time_on_lane: 2018-12-07 17:54:17
+  airline: one
+
+two:
+  name: MyString
+  model: MyString
+  status: MyString
+  country: MyString
+  time_on_lane: 2018-12-07 17:54:17
+  airline: two
