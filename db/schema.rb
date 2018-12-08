@@ -10,19 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_07_074948) do
-
-  create_table "flights", force: :cascade do |t|
-    t.string "from"
-    t.string "to"
-    t.datetime "flight_start"
-    t.time "flight_time"
-    t.integer "lane_id"
-    t.integer "airplane_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["airplane_id"], name: "index_flights_on_airplane_id"
-    t.index ["lane_id"], name: "index_flights_on_lane_id"
 ActiveRecord::Schema.define(version: 2018_12_08_123204) do
 
   create_table "airlines", force: :cascade do |t|
@@ -43,18 +30,29 @@ ActiveRecord::Schema.define(version: 2018_12_08_123204) do
     t.index ["airline_id"], name: "index_airplanes_on_airline_id"
   end
 
+  create_table "flights", force: :cascade do |t|
+    t.string "from"
+    t.string "to"
+    t.datetime "flight_start"
+    t.time "flight_time"
+    t.integer "lane_id"
+    t.integer "airplane_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["airplane_id"], name: "index_flights_on_airplane_id"
+    t.index ["lane_id"], name: "index_flights_on_lane_id"
+  end
+
   create_table "lane_max_counts", force: :cascade do |t|
-    t.integer "value"
+    t.integer "max_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "lanes", force: :cascade do |t|
     t.integer "capacity", null: false
-    t.integer "lane_max_count_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["lane_max_count_id"], name: "index_lanes_on_lane_max_count_id"
   end
 
   create_table "users", force: :cascade do |t|
