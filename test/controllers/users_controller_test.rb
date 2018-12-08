@@ -7,12 +7,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should get index" do
     get users_url, as: :json
-    assert_response :success
+    assert_response :unauthorized
   end
 
   test "should create user" do
     assert_difference('User.count') do
-      post users_url, params: { user: { auth_token: @user.auth_token, email: @user.email, fullname: @user.fullname, password_confirmation: @user.password_confirmation, password_digest: @user.password_digest, username: @user.username } }, as: :json
+      post users_url, params: { user: { email: 'example@mail.com', name: 'example', role:'client', password_confirmation: '123456', password: '123456' } }, as: :json
     end
 
     assert_response 201
@@ -20,12 +20,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should show user" do
     get user_url(@user), as: :json
-    assert_response :success
+    assert_response :unauthorized
   end
 
   test "should update user" do
-    patch user_url(@user), params: { user: { auth_token: @user.auth_token, email: @user.email, fullname: @user.fullname, password_confirmation: @user.password_confirmation, password_digest: @user.password_digest, username: @user.username } }, as: :json
-    assert_response 200
+    patch user_url(@user), params: { user: { email: @user.email, name: @user.name, password_confirmation: @user.password_confirmation, password: @user.password } }, as: :json
+    assert_response :unauthorized
   end
 
   test "should destroy user" do
@@ -33,6 +33,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       delete user_url(@user), as: :json
     end
 
-    assert_response 204
+    assert_response 200
   end
 end
