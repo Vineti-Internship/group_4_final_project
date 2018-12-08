@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_08_104046) do
+ActiveRecord::Schema.define(version: 2018_12_08_123204) do
 
   create_table "airlines", force: :cascade do |t|
     t.string "name"
@@ -31,17 +31,17 @@ ActiveRecord::Schema.define(version: 2018_12_08_104046) do
   end
 
   create_table "lane_max_counts", force: :cascade do |t|
-    t.integer "max_count"
-    t.integer "lane_id"
+    t.integer "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["lane_id"], name: "index_lane_max_counts_on_lane_id"
   end
 
   create_table "lanes", force: :cascade do |t|
     t.integer "capacity", null: false
+    t.integer "lane_max_count_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["lane_max_count_id"], name: "index_lanes_on_lane_max_count_id"
   end
 
   create_table "users", force: :cascade do |t|
