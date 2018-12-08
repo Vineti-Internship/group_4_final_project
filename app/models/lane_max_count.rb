@@ -1,3 +1,3 @@
 class LaneMaxCount < ApplicationRecord
-  belongs_to :lane
+  has_many :lanes
 end
