@@ -10,7 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_06_233620) do
+ActiveRecord::Schema.define(version: 2018_12_08_104046) do
+
+  create_table "airlines", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "airplanes", force: :cascade do |t|
+    t.string "name"
+    t.string "model"
+    t.string "status"
+    t.string "country"
+    t.time "time_on_lane"
+    t.integer "airline_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["airline_id"], name: "index_airplanes_on_airline_id"
+  end
+
+  create_table "lane_max_counts", force: :cascade do |t|
+    t.integer "max_count"
+    t.integer "lane_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lane_id"], name: "index_lane_max_counts_on_lane_id"
+  end
+
+  create_table "lanes", force: :cascade do |t|
+    t.integer "capacity", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
