@@ -8,8 +8,8 @@ class User < ApplicationRecord
     validates_format_of :email, with: /@/
     validates_presence_of :password_confirmation, :if => :password_digest_changed?
     validates :password_confirmation, length: {minimum: 6}
-    has_many :ticket
-    has_many :flight, through: :ticket
+    has_many :tickets
+    has_many :flights, through: :tickets
 
     def downcase_email
         self.email = self.email.delete(' ').downcase
