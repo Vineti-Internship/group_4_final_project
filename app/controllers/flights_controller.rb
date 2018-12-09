@@ -5,7 +5,7 @@ class FlightsController < ApplicationController
 
   # GET /flights
   def index
-    render json: Flight.all each_serializer: FlightListSerializer
+    render json: Flight.all, each_serializer: FlightListSerializer
   end
 
   # GET /flights/1
@@ -20,6 +20,7 @@ class FlightsController < ApplicationController
 
       if @flight.save
         render json: @flight, status: :created, location: @flight
+      end
     rescue StandardError => e
       render json: {errors: e}, status: :bad_request
     end
@@ -30,6 +31,7 @@ class FlightsController < ApplicationController
     begin
       if @flight.update(flight_params)
         render json: @flight
+      end
     rescue StandardError => e
       render json: {errors: e}, status: :bad_request
     end
@@ -40,6 +42,7 @@ class FlightsController < ApplicationController
     begin
       if @flight.destroy
         render json: {}, status: :ok
+      end
     rescue StandardError => e
       render json: {errors: e}, status: :bad_request
     end
