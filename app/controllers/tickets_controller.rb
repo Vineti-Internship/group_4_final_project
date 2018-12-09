@@ -1,7 +1,7 @@
 class TicketsController < ApplicationController
     before_action :set_ticket, only: [:show, :destroy]
     before_action :authenticate_request!
-    before_action :flight_manager_only, only: :index
+    before_action :flight_manager_only, only: [:index, :show]
 
     def index
         tickets = Ticket.all
@@ -13,7 +13,8 @@ class TicketsController < ApplicationController
     end
 
     def create
-        ticket = Ticket.new (user_id: current_user.id, ticket_params)
+        ticket = Ticket.new (ticket_params)
+        ticket.user_id = current_user.id
         if ticket.save
             render json: {status: 'ticket created successfully'}, status: :created
         else
