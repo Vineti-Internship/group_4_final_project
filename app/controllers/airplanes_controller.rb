@@ -1,4 +1,8 @@
 class AirplanesController < ApplicationController
+  before_action :authenticate_request!
+  # before_action :flight_manager_only, only: [:index, :show] #user can't see airplanes
+  before_action :lane_manager_only, except: [:index, :show]
+
   before_action :set_airplane, only: [:show, :update, :destroy]
 
   # GET /airplanes

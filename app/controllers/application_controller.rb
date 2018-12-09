@@ -21,12 +21,16 @@ class ApplicationController < ActionController::API
         invalid_authentication unless payload[0]['aud'] == 'admin'
     end
 
-    def f_manager_only
-        invalid_authentication unless payload[0]['aud'] == 'f_manager' || invalid_authentication unless payload[0]['aud'] == 'admin'
+    def flight_manager_only
+        invalid_authentication unless (payload[0]['aud'] == 'f_manager' || payload[0]['aud'] == 'admin')
     end
-
-    def l_manager_only
-        invalid_authentication unless payload[0]['aud'] == 'l_manager' || invalid_authentication unless payload[0]['aud'] == 'admin'
+ 
+    def lane_manager_only
+        invalid_authentication unless (payload[0]['aud'] == 'l_manager' || payload[0]['aud'] == 'admin')
+    end
+ 
+    def lane_or_flight_manager_only
+        invalid_authentication unless (payload[0]['aud'] == 'l_manager' || payload[0]['aud'] == 'f_manager' || payload[0]['aud'] == 'admin')
     end
 
     private

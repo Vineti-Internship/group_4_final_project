@@ -44,15 +44,17 @@ ActiveRecord::Schema.define(version: 2018_12_08_215713) do
   end
 
   create_table "lane_max_counts", force: :cascade do |t|
-    t.integer "max_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "value"
   end
 
   create_table "lanes", force: :cascade do |t|
     t.integer "capacity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "lane_max_count_id"
+    t.index ["lane_max_count_id"], name: "index_lanes_on_lane_max_count_id"
   end
 
   create_table "tickets", force: :cascade do |t|

@@ -1,27 +1,16 @@
 class LaneMaxCountsController < ApplicationController
-  before_action :set_lane_max_count, only: [:show, :update, :destroy]
+  before_action :authenticate_request!
+  before_action :admin_only, only: [:update]
+  before_action :lane_manager_only, except: [:update]
+  
+  before_action :set_lane_max_count, only: [:update]
+
 
   # GET /lane_max_counts
   def index
     @lane_max_counts = LaneMaxCount.all
 
     render json: @lane_max_counts
-  end
-
-  # GET /lane_max_counts/1
-  def show
-    render json: @lane_max_count
-  end
-
-  # POST /lane_max_counts
-  def create
-    @lane_max_count = LaneMaxCount.new(lane_max_count_params)
-
-    if @lane_max_count.save
-      render json: @lane_max_count, status: :created, location: @lane_max_count
-    else
-      render json: @lane_max_count.errors, status: :unprocessable_entity
-    end
   end
 
   # PATCH/PUT /lane_max_counts/1
