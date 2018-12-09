@@ -1,3 +1,3 @@
 class LaneMaxCountSerializer < ActiveModel::Serializer
-  attributes :id, :max_count
+  attributes :id, :value
 end

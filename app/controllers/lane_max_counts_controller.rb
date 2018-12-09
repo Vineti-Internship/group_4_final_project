@@ -33,19 +33,14 @@ class LaneMaxCountsController < ApplicationController
     end
   end
 
-  # DELETE /lane_max_counts/1
-  def destroy
-    @lane_max_count.destroy
-  end
-
   private
-    # Use callbacks to share common setup or constraints between actions.
+  #   # Use callbacks to share common setup or constraints between actions.
     def set_lane_max_count
       @lane_max_count = LaneMaxCount.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def lane_max_count_params
-      params.require(:lane_max_count).permit(:max_count)
+      params.require(:lane_max_count).permit(:value)
     end
 end
