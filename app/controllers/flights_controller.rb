@@ -1,6 +1,6 @@
 class FlightsController < ApplicationController
   before_action :authenticate_request!
-  before_action :f_manager_only, except: [:index]
+  before_action :flight_manager_only, except: [:index]
   before_action :set_flight, only: [:show, :update, :destroy]
 
   # GET /flights

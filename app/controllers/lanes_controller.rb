@@ -1,6 +1,8 @@
 class LanesController < ApplicationController
+  before_action :authenticate_request!
+  before_action :lane_or_flight_manager_only, only: [:index]
+  before_action :lane_manager_only, except: [:index]
   before_action :set_lane, only: [:show, :update, :destroy]
-
 
   # GET /lanes
   def index
@@ -29,8 +31,6 @@ class LanesController < ApplicationController
     end
   end
 
-
-
   # PATCH/PUT /lanes/1
   def update
     if @lane.update(lane_params)
@@ -50,11 +50,6 @@ class LanesController < ApplicationController
     def set_lane
       @lane = Lane.find(params[:id])
     end
-
-    # def check_if
-    #   errors[:base] << "Add your validation message here"
-    #   return false if Lane.count > 4
-    # end
 
     # Only allow a trusted parameter "white list" through.
     def lane_params
