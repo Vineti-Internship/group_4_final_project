@@ -1,5 +1,5 @@
 class Flight < ApplicationRecord
-  belongs_to :lane, inverse_of: :flight
+  belongs_to :lane, inverse_of: :flights
   belongs_to :airplane, inverse_of: :flight
   has_many :tickets
   has_many :users, through: :tickets
