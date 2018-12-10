@@ -12,7 +12,7 @@ RSpec.describe Lane, :type => :model do
 
   it "is not valid without a capacity" do
     lane.capacity = nil
-    expect(subject).to_not be_valid
+    expect(lane).to_not be_valid
   end
 
   it "is not valid without a lane_max_count_id" do
