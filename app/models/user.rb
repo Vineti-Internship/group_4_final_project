@@ -7,11 +7,11 @@ class User < ApplicationRecord
     validates_uniqueness_of :email, case_sensitive: false
     validates_format_of :email, with: /@/
     validates_presence_of :password_confirmation, :if => :password_digest_changed?
-    validates :password_confirmation, length: {minimum: 6}
     has_many :tickets
     has_many :flights, through: :tickets
 
-    def downcase_email
+    def downcase_email    validates :password_confirmation, length: {minimum: 6}
+
         self.email = self.email.delete(' ').downcase
     end
 end

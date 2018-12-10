@@ -12,7 +12,11 @@ class FlightsController < ApplicationController
   def show
     render json: @flight
   end
-
+  def start_flight
+    set_flight
+    @lane=@flight.lane_id
+    @lame.capacity
+  end
   # POST /flights
   def create
     begin
