@@ -9,8 +9,9 @@ class User < ApplicationRecord
     validates_presence_of :password_confirmation, :if => :password_digest_changed?
     has_many :tickets
     has_many :flights, through: :tickets
+    validates :password_confirmation, length: {minimum: 6}
 
-    def downcase_email    validates :password_confirmation, length: {minimum: 6}
+    def downcase_email    
 
         self.email = self.email.delete(' ').downcase
     end
