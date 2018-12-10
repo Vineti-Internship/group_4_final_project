@@ -1,6 +1,7 @@
 class AirplanesController < ApplicationController
   before_action :authenticate_request!
   before_action :flight_manager_only, only: [:index, :show] #user can't see airplanes
+  #TODO: flight manager can access to :find action
   before_action :lane_manager_only, except: [:index, :show]
   before_action :set_airplane, only: [:show, :update, :destroy]
 
@@ -27,6 +28,12 @@ class AirplanesController < ApplicationController
     end
   end
 
+  #POST /airplanes/find
+  def find
+    data = params.require(:airplane).permit(:flight_time, :capacity)
+    #TODO: find all available airplanes
+  end
+
   # PATCH/PUT /airplanes/1
   def update
     if @airplane.update(airplane_params)
@@ -48,6 +55,7 @@ class AirplanesController < ApplicationController
     end
 
     # Only allow a trusted parameter "white list" through.
+    #TODO: remove status and country
     def airplane_params
       params.require(:airplane).permit(:name, :model, :status, :country, :time_on_lane, :airline_id)
     end

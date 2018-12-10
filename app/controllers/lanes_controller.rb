@@ -1,6 +1,8 @@
 class LanesController < ApplicationController
   before_action :authenticate_request!
+  #TODO: user cant see anything about lane
   before_action :lane_or_flight_manager_only, only: [:index]
+  #TODO: flight manager cant see all lanes
   before_action :lane_manager_only, except: [:index]
   before_action :set_lane, only: [:show, :update, :destroy]
 
@@ -38,6 +40,12 @@ class LanesController < ApplicationController
     else
       render json: @lane.errors, status: :unprocessable_entity
     end
+  end
+
+  #POST /lanes/find
+  def find
+    data = params.require(:lane).permit(:capacity, :flight_start)
+    #TODO: find all available lanes
   end
 
   # DELETE /lanes/1
