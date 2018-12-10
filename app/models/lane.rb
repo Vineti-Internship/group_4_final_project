@@ -1,5 +1,6 @@
 class Lane < ApplicationRecord
   belongs_to :lane_max_count
+  # , optional: true 
   has_many :flights
 
   validates :capacity,
