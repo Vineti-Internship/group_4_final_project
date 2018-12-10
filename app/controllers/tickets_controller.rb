@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
     before_action :set_ticket, only: [:show, :destroy]
-    before_action :authenticate_request!
+    before_action :authenticate_request! #TODO: user cant see all tickets
     before_action :flight_manager_only, only: [:index, :show]
 
     def index

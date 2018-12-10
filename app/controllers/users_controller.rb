@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-    before_action :authenticate_request!, except: [:login, :create]
-    before_action :admin_only, except: [:login, :profile, :create, :destroy]
+    before_action :authenticate_request!, except: [:login, :create, :update, :destroy]
+    before_action :admin_only, except: [:login, :profile, :create, :destroy, :update]
 
     def index
         users = User.all
@@ -30,10 +30,22 @@ class UsersController < ApplicationController
         render json: user
     end
 
+    def update_role
+        user = current_user
+        user_role = params.require(:user).permit(:role)
+        
+        if user.update(user_role)
+            render json: user
+        else
+            render json: user.errors, status: :unprocessable_entity
+        end
+    end
+
     def update
         user = current_user
+        user_paras_wo_role = params.require(:user).permit(:name, :email, :password, :password_confirmation) 
 
-        if user.update(user_params)
+        if user.update(user_paras_wo_role)
             render json: user
         else
             render json: user.errors, status: :unprocessable_entity

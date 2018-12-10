@@ -21,7 +21,7 @@ class FlightsController < ApplicationController
   def create
     begin
       @flight = Flight.new(flight_params)
-
+      #TODO: check if there is a space for new flight/airplane
       if @flight.save
         render json: @flight, status: :created, location: @flight
       end
