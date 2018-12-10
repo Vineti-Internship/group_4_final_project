@@ -34,7 +34,7 @@ RSpec.describe Airplane, :type => :model do
   end
 
   describe "Associations" do
-    it { should have_one(:flight) }
+    it { should have_maby(:flights) }
     it { should belong_to(:airline) }
   end
   describe "Validations" do 

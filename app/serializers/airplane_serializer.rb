@@ -1,5 +1,5 @@
 class AirplaneSerializer < ActiveModel::Serializer
-  has_one :airline
+  has_many :airline
 
   attributes :id, :name, :model, :status, :country, :time_on_lane
 end
