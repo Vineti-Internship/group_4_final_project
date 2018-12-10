@@ -12,11 +12,14 @@ class FlightsController < ApplicationController
   def show
     render json: @flight
   end
+
   def start_flight
     set_flight
-    @lane=@flight.lane_id
-    @lame.capacity
+    @currentcap=@flight.lane.capacity-@flight.airplane.capacity
+    @flight.lane.update(lane_id, :capacity => @currentcap})
+    @flight.airplane.update(airplane_id, :status=>"start")
   end
+
   # POST /flights
   def create
     begin
