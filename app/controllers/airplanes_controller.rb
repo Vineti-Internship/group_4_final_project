@@ -30,8 +30,13 @@ class AirplanesController < ApplicationController
 
   #POST /airplanes/find
   def find
-    data = params.require(:airplane).permit(:flight_time, :capacity)
-    #TODO: find all available airplanes
+    # data = params.require(:airplane).permit(:capacity)
+    planes = Airplane.all.select {|airplane| airplane.capacity >= params[:capacity] and airplane.flights.length == 0}  
+    if planes  
+      render json: { available_planes: planes}, status: :ok
+    else
+      render json: planes.errors, status: :unprocessable_entity
+    end
   end
 
   # PATCH/PUT /airplanes/1
