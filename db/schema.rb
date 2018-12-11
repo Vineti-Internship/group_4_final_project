@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2018_12_10_193319) do
     t.integer "airline_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "capacity"
     t.index ["airline_id"], name: "index_airplanes_on_airline_id"
   end
 

@@ -30,8 +30,13 @@ class AirplanesController < ApplicationController
 
   #POST /airplanes/find
   def find
-    data = params.require(:airplane).permit(:flight_time, :capacity)
-    #TODO: find all available airplanes
+    # data = params.require(:airplane).permit(:capacity)
+    planes = Airplane.all.select {|airplane| airplane.capacity >= params[:capacity] and airplane.flights.length == 0}  
+    if planes  
+      render json: { available_planes: planes}, status: :ok
+    else
+      render json: planes.errors, status: :unprocessable_entity
+    end
   end
 
   # PATCH/PUT /airplanes/1
@@ -57,6 +62,6 @@ class AirplanesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     #TODO: remove status and country
     def airplane_params
-      params.require(:airplane).permit(:name, :model, :status, :country, :time_on_lane, :airline_id)
+      params.require(:airplane).permit(:name, :model, :status, :country, :time_on_lane, :airline_id, :capacity)
     end
 end
