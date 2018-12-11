@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Airplane, :type => :model do
   let(:airline) {Airline.new(name: 'Aeroflot Russian Airlines')} 
-  let(:airplane) {Airplane.new(name: "name", model: "model", status: "free", country: "country", time_on_lane: 30.minutes.from_now, airline: airline)}
+  let(:airplane) {Airplane.new(name: "name", model: "model", status: "free", country: "country", time_on_lane: 30.minutes.from_now, airline: airline, capacity: 300)}
 
   it "is valid with valid attributes" do
     expect(airplane).to be_valid
