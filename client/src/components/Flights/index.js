@@ -4,7 +4,7 @@ import React from "react";
 import * as flightsActionCreators from "../../actions/flights_action";
 
 const FlightsCon = (props) => {
-	return <Flights flights={props.flights} handleClick={props.loadFlights}/>;
+	return <Flights flights={props.flights} getFlights={props.loadFlights}/>;
 };
 
 const mapStateToProps= state => ({
