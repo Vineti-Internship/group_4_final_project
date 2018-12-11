@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
-import {BrowserRouter as Router, Link, Redirect, Route} from "react-router-dom";
+import Flights from "./components/Flights";
+import {BrowserRouter as Router, Link, Redirect, Route, Switch} from "react-router-dom";
 
 class App extends React.Component {
 	render() {
@@ -10,10 +11,10 @@ class App extends React.Component {
 					
 				</div>
 				<Router>
-					<switch>
+					<Switch>
 						<Route exact path = '/flights' render ={()=> <Flights/>} />
 						<Route exact path = '/' render={()=>  <Redirect to='/flights' />} />
-					</switch>
+					</Switch>
 				</Router>
 			</div>
 		);
