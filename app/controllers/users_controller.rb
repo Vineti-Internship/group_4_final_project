@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     def create
         user = User.new(user_params)
 
-        if user.save
+        if user&.save
             render json: {status: 'User created successfully'}, status: :created
         else
             render json: {errors: user.errors.full_messages}, status: :bad_request
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
         user = current_user
         user_role = params.require(:user).permit(:role)
         
-        if user.update(user_role)
+        if user&.update(user_role)
             render json: user
         else
             render json: user.errors, status: :unprocessable_entity
@@ -45,17 +45,17 @@ class UsersController < ApplicationController
         user = current_user
         user_paras_wo_role = params.require(:user).permit(:name, :email, :password, :password_confirmation) 
 
-        if user.update(user_paras_wo_role)
+        if user&.update(user_paras_wo_role)
             render json: user
         else
-            render json: user.errors, status: :unprocessable_entity
+            render json: user&.errors, status: :unprocessable_entity
         end
     end
 
     def destroy
         user = current_user
 
-        if user.destroy
+        if user&.destroy
             head(:ok)
         else
             head(:unprocessable_entity)
