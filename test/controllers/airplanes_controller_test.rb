@@ -12,7 +12,7 @@ class AirplanesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create airplane" do
     assert_difference('Airplane.count') do
-      post airplanes_url, params: { airplane: { airline_id: @airplane.airline_id, country: @airplane.country, model: @airplane.model, name: @airplane.name, status: @airplane.status, time_on_lane: @airplane.time_on_lane } }, as: :json
+      post airplanes_url, params: { airplane: { airline_id: @airplane.airline_id, model: @airplane.model, name: @airplane.name, status: @airplane.status, time_on_lane: @airplane.time_on_lane } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class AirplanesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update airplane" do
-    patch airplane_url(@airplane), params: { airplane: { airline_id: @airplane.airline_id, country: @airplane.country, model: @airplane.model, name: @airplane.name, status: @airplane.status, time_on_lane: @airplane.time_on_lane } }, as: :json
+    patch airplane_url(@airplane), params: { airplane: { airline_id: @airplane.airline_id, model: @airplane.model, name: @airplane.name, status: @airplane.status, time_on_lane: @airplane.time_on_lane } }, as: :json
     assert_response 200
   end
 
