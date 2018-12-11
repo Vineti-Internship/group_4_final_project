@@ -1,10 +1,12 @@
-import * as actionTypes from "./type";
+import * as actionTypes from "./types";
+import axios from "axios";
 
-export const getFlights = () => async dispatch =>{
-	const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-	const flights = await res.json();
-	dispatch({
-		type:actionTypes.getFlights,
-		payload: flights
-	});
+export const loadFlights = () => async dispatch =>{
+	const res = await axios.get("/flights");
+	const flights = res.data;
+	dispatch(getFlights(flights));
 }; 
+
+export const getFlights = (flights) => {
+	return {type: actionTypes.GET_FLIGHTS, payload: flights};
+};

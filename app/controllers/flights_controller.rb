@@ -1,5 +1,4 @@
 class FlightsController < ApplicationController
-  before_action :authenticate_request!
   before_action :flight_manager_only, except: [:index]
   before_action :set_flight, only: [:show, :update, :destroy]
 
@@ -16,7 +15,7 @@ class FlightsController < ApplicationController
   def start_flight
     set_flight
     @currentcap=@flight.lane.capacity-@flight.airplane.capacity
-    @flight.lane.update(lane_id, :capacity => @currentcap})
+    @flight.lane.update(lane_id, :capacity => @currentcap)
     @flight.airplane.update(airplane_id, :status=>"start")
   end
 
