@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import FlightReducer from "./flights_reducer";
+import FlightsReducer from "./flights_reducer";
 
 export default combineReducers({
-	flights: FlightReducer
+	flights: FlightsReducer
 });
