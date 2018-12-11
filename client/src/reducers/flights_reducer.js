@@ -1,10 +1,12 @@
 import * as actionTypes from "../actions/types";
 
-const initialState = [];
+const initialFlightsState = [];
 
-export default (flights = initialState, action) => {
+/*eslint indent: [2, "tab", {"SwitchCase": 1}]*/
+export default (flights = initialFlightsState, action) => {
 	switch(action.type){
 		case actionTypes.getFlights:
 			return [...flights, action.payload];
+
 	}
 };
