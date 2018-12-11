@@ -20,18 +20,18 @@ middle_east = Airline.create!(name:'Middle East Airlines')
 puts "#{Airline.count} airlines created succesfully!"
 
 Airplane.destroy_all
-Airplane.create!(name:'airplane 1',  model:'MK3OR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, airline_id:aeroflot.id)
-Airplane.create!(name:'airplane 2',  model:'MA9OR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, airline_id:aeroflot.id)
-Airplane.create!(name:'airplane 3',  model:'MBWOR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, airline_id:aeroflot.id)
-Airplane.create!(name:'airplane 4',  model:'MK8OR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, airline_id:aeroflot.id)
-Airplane.create!(name:'airplane 5',  model:'MK3OR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, airline_id:s7.id)
-Airplane.create!(name:'airplane 6',  model:'MA9OR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, airline_id:s7.id)
-Airplane.create!(name:'airplane 7',  model:'MBWOR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, airline_id:s7.id)
-Airplane.create!(name:'airplane 8',  model:'MK8OR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, airline_id:flying_route.id)
-Airplane.create!(name:'airplane 9',  model:'MA9OR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, airline_id:flying_route.id)
-Airplane.create!(name:'airplane 10', model:'MBWOR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, airline_id:middle_east.id)
-Airplane.create!(name:'airplane 11', model:'MK8OR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, airline_id:middle_east.id)
-Airplane.create!(name:'airplane 12', model:'MK3OR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, airline_id:middle_east.id)
+Airplane.create!(name:'airplane 1',  model:'MK3OR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, capacity: 100, airline_id:aeroflot.id)
+Airplane.create!(name:'airplane 2',  model:'MA9OR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, capacity: 200, airline_id:aeroflot.id)
+Airplane.create!(name:'airplane 3',  model:'MBWOR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, capacity: 300, airline_id:aeroflot.id)
+Airplane.create!(name:'airplane 4',  model:'MK8OR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, capacity: 400, airline_id:aeroflot.id)
+Airplane.create!(name:'airplane 5',  model:'MK3OR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, capacity: 400, airline_id:s7.id)
+Airplane.create!(name:'airplane 6',  model:'MA9OR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, capacity: 500, airline_id:s7.id)
+Airplane.create!(name:'airplane 7',  model:'MBWOR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, capacity: 500, airline_id:s7.id)
+Airplane.create!(name:'airplane 8',  model:'MK8OR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, capacity: 500, airline_id:flying_route.id)
+Airplane.create!(name:'airplane 9',  model:'MA9OR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, capacity: 600, airline_id:flying_route.id)
+Airplane.create!(name:'airplane 10', model:'MBWOR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, capacity: 150, airline_id:middle_east.id)
+Airplane.create!(name:'airplane 11', model:'MK8OR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, capacity: 250, airline_id:middle_east.id)
+Airplane.create!(name:'airplane 12', model:'MK3OR', status:'FREE', country:'Armenia',time_on_lane:30.minutes.from_now, capacity: 350, airline_id:middle_east.id)
 
 puts "#{Airplane.count} airplanes created succesfully!"
 
