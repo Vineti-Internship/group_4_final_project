@@ -33,6 +33,11 @@ RSpec.describe Airplane, :type => :model do
     expect(airplane).to_not be_valid
   end
 
+  it "is not valid without a capacity" do
+    airline.capacity = nil
+    expect(airline).to_not be_valid
+  end
+
   describe "Associations" do
     it { should have_many(:flights) }
     it { should belong_to(:airline) }
