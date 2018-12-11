@@ -41,9 +41,9 @@ LaneMaxCount.create!(value:4)
 puts "#{LaneMaxCount.count} lane_max_count created succesfully!"
 
 Lane.destroy_all
-Lane.create!(capacity:200, lane_max_count_id:LaneMaxCount.first.id)
-Lane.create!(capacity:100, lane_max_count_id:LaneMaxCount.first.id)
-Lane.create!(capacity:150, lane_max_count_id:LaneMaxCount.first.id)
+Lane.create!(capacity:200)
+Lane.create!(capacity:100)
+Lane.create!(capacity:150)
 
 puts "#{Lane.count} lanes created succesfully!"
 
