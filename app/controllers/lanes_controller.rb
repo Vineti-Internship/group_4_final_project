@@ -21,13 +21,13 @@ class LanesController < ApplicationController
   # POST /lanes
   def create
     @lane = Lane.new(lane_params)
+
     if Lane.count < LaneMaxCount.first.value
-		@lane.lane_max_count_id = LaneMaxCount.first.id
-		if @lane.save
-				render json: @lane, status: :created, location: @lane
-		else
-				render json: @lane.errors, status: :unprocessable_entity
-		end
+      if @lane.save
+          render json: @lane, status: :created, location: @lane
+      else
+          render json: @lane.errors, status: :unprocessable_entity
+      end
     else
       	render json: {errors: "No more space to create lane"}, status: :unprocessable_entity
     end
