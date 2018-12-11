@@ -60,8 +60,7 @@ class AirplanesController < ApplicationController
     end
 
     # Only allow a trusted parameter "white list" through.
-    #TODO: remove status and country
     def airplane_params
-      params.require(:airplane).permit(:name, :model, :status, :country, :time_on_lane, :airline_id, :capacity)
+      params.require(:airplane).permit(:name, :model, :status,:time_on_lane, :airline_id, :capacity)
     end
 end
