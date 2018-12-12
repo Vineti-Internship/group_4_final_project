@@ -2,5 +2,9 @@ class FlightSerializer < ActiveModel::Serializer
   belongs_to :lane
   belongs_to :airplane
 
-  attributes :from, :to, :flight_start, :flight_time
+  attributes :id, :from, :to, :flight_start, :flight_end, :flight_time
+
+  def flight_end
+    object.flight_start + (object.flight_time.hour).hours + (object.flight_time.min).minutes
+  end
 end
