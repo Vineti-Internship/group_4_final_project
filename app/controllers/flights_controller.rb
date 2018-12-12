@@ -13,17 +13,23 @@ class FlightsController < ApplicationController
   end
 
   def start_flight
-    set_flight
-    @currentcap=@flight.lane.capacity-@flight.airplane.capacity
-    @flight.lane.update(lane_id, :capacity => @currentcap)
-    @flight.airplane.update(airplane_id, :status=>"start")
+    begin
+      if set_flight
+        @lane_id = @flight.lane_id
+        @airplane_id = @flight.airplane_id
+        @currentcap = @flight.lane.capacity - @flight.airplane.capacity
+        Lane.update(@lane_id, :capacity => @currentcap)
+        Airplane.update(@airplane_id, :status => "start")
+      end
+    rescue StandardError => e
+      render json: {errors: e}, status: :bad_request
+    end
   end
 
   # POST /flights
   def create
     begin
       @flight = Flight.new(flight_params)
-      #TODO: check if there is a space for new flight/airplane
       if @flight.save
         render json: @flight, status: :created, location: @flight
       end
@@ -35,6 +41,7 @@ class FlightsController < ApplicationController
   # PATCH/PUT /flights/1
   def update
     begin
+      set_flight
       if @flight.update(flight_params)
         render json: @flight
       end
