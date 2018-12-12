@@ -1,5 +1,6 @@
 import React from "react";
 import Spinner from "../Spinner";
+import {Link} from "react-router-dom";
 
 class Flights extends React.Component {
 	componentWillMount() {
@@ -33,6 +34,7 @@ class Flights extends React.Component {
 							})}
 						</tbody>
 					</table>
+					<Link to="/newflight">+ New Flight</Link>
 				</div>
 			);
 		return <Spinner/>;
