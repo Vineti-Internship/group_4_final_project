@@ -5,6 +5,6 @@ class FlightSerializer < ActiveModel::Serializer
   attributes :id, :from, :to, :flight_start, :flight_end, :flight_time
 
   def flight_end
-    object.flight_start + (object.flight_time.hour).hours + (object.flight_time.min).minutes
+    object.flight_start + (object.flight_time).minutes
   end
 end
