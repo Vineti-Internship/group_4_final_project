@@ -1,13 +1,13 @@
 import * as actionTypes from "./types";
 import axios from "axios";
 
-export const loadFlights = () => async dispatch => {
+export const loadAllFlights = () => async dispatch => {
 	const res = await axios.get("/flights");
 	const flights = res.data;
-	dispatch(getFlights(flights));
+	dispatch(getAllFlights(flights));
 }; 
 
-export const getFlights = (flights) => {
+export const getAllFlights = (flights) => {
 	return {
 		type: actionTypes.GET_FLIGHTS, 
 		payload: flights
