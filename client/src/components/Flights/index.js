@@ -8,7 +8,7 @@ const FlightsCon = (props) => {
 };
 
 const mapStateToProps= state => ({
-	flights:state.flights
+	flights:state.flights.all_flights
 });
 
 export default connect(mapStateToProps, flightsActionCreators)(FlightsCon);

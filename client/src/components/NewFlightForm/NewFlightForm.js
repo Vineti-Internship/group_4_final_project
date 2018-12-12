@@ -5,13 +5,16 @@ class NewFlightForm extends React.Component {
 	render() {
 		return (
 			<div className="new-flight-form">
-				<h1>Create New Fight</h1>
+				<h1>Create New Flight</h1>
 				<form>
+					<label>Flight destination:</label>
+					<input type="text"/>
+					<br/>
 					<label>Flight start:</label>
 					<input type="datetime-local"/>
 					<br/>
 					<label>Flight duration:</label>
-					<input type="time" class="without_ampm" />
+					<input type="time" className="without_ampm" />
 					<br/>
 					<label>Passanger count:</label>
 					<input type="number"/>
