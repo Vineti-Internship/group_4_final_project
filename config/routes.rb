@@ -12,6 +12,4 @@ Rails.application.routes.draw do
   post '/airplanes/find' => 'airplanes#find'
   post '/flights/startflight' => 'flights#start_flight'
   post '/flights/finishflight' => 'flights#finish_flight'
-  #TODO: add PUT route for airplane/find 
-  #TODO: add PUT route for lane/find
 end

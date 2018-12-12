@@ -1,6 +1,6 @@
 class AirplanesController < ApplicationController
   before_action :authenticate_request!
-  before_action :flight_manager_only, only: [:index, :show] #user can't see airplanes
+  before_action :flight_manager_only, only: [:find] #user can't see airplanes
   #TODO: flight manager can access to :find action
   before_action :lane_manager_only, except: [:index, :show]
   before_action :set_airplane, only: [:show, :update, :destroy]
@@ -30,13 +30,18 @@ class AirplanesController < ApplicationController
 
   #POST /airplanes/find
   def find
-    # data = params.require(:airplane).permit(:capacity)
-    planes = Airplane.all.select {|airplane| airplane.capacity >= params[:capacity] and airplane.flights.length == 0}  
-    if planes  
-      render json: { available_planes: planes}, status: :ok
-    else
-      render json: planes.errors, status: :unprocessable_entity
+    available_planes = []
+    Airplane.all.each do |plane|
+      f_start = params[:flight_start] - airplane.lane_duration
+      f_end = params[:flight_start] + params[:flight_time]
+      plane.flights.each do |flight|
+        if ((flight.flight_start + flight.flight_time < f_start && flight.flight_start - flight.airplane.lane_duration < f_start) ||
+          (flight.flight_start + flight.flight_time > f_end && flight.flight_start - flight.airplane.lane_duration > f_end))
+          available_planes.push(plane)
+        end
+      end
     end
+    render json: { available_planes: available_planes}, status: :ok
   end
 
   # PATCH/PUT /airplanes/1
