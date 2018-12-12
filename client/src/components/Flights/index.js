@@ -1,10 +1,10 @@
 import {connect} from "react-redux";
 import Flights from "./Flights";
 import React from "react";
-import * as flightsActionCreators from "../../actions/flights_action";
+import * as flightsActionCreators from "../../actions/flights_actions";
 
 const FlightsCon = (props) => {
-	return <Flights flights={props.flights} getFlights={props.loadAllFlights}/>;
+	return <Flights {...props} flights={props.flights} getFlights={props.loadAllFlights}/>;
 };
 
 const mapStateToProps= state => ({
