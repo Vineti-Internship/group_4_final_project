@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import SearchForm from "./components/SearchForm";
 import Flights from "./components/Flights";
 import NewFlightForm from "./components/NewFlightForm";
 import NotFound from "./components/NotFound";
@@ -9,6 +10,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="App">
+				<SearchForm/>
 				<Router>
 					<React.Fragment>
 						<div className='nav'>
