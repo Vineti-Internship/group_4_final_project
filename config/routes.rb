@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post '/users/login' => 'users#login'
   get '/profile' => 'users#profile'
   post '/airplanes/find' => 'airplanes#find'
+  post '/flights/startflight' => 'flights#start_flight'
   #TODO: add PUT route for airplane/find 
   #TODO: add PUT route for lane/find
 end
