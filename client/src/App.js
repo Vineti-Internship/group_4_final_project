@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import Flights from "./components/Flights";
+import NewFlightForm from "./components/NewFlightForm";
 import NotFound from "./components/NotFound";
 import {BrowserRouter as Router, Link, Redirect, Route, Switch} from "react-router-dom";
 
@@ -16,6 +17,7 @@ class App extends React.Component {
 						</div>
 						<Switch>
 							<Route exact path = '/flights' render ={()=> <Flights/>} />
+							<Route exact path = '/newflight' render={()=>  <NewFlightForm/>} />
 							<Route exact path = '/' render={()=>  <Redirect to='/flights' />} />
 							<Route path="*" render={() => <NotFound/>} />
 						</Switch>
