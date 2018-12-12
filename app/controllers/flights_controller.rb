@@ -14,13 +14,23 @@ class FlightsController < ApplicationController
 
   def start_flight
     begin
-      if set_flight
+        set_flight
         @lane_id = @flight.lane_id
         @airplane_id = @flight.airplane_id
         @currentcap = @flight.lane.capacity - @flight.airplane.capacity
         Lane.update(@lane_id, :capacity => @currentcap)
         Airplane.update(@airplane_id, :status => "start")
-      end
+    rescue StandardError => e
+      render json: {errors: e}, status: :bad_request
+    end
+  end
+
+  def finish_flight
+    begin
+      set_flight
+      @airplane_id = @flight.airplane_id
+      Airplane.update(@airplane_id, :status =>"free")
+     @flight.update(  :is_ended => true)
     rescue StandardError => e
       render json: {errors: e}, status: :bad_request
     end
