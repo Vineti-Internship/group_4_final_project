@@ -11,7 +11,7 @@ class Flights extends React.Component {
 		if(this.props.flights)
 			return (
 				<div className="flights">
-					<button onClick={this.props.getFlights} >Refresh</button>
+					<button onClick={this.props.getFlights} className="refresh-btn">Refresh</button>
 					<table>
 						<tbody>
 							<tr>
