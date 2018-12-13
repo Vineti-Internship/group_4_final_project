@@ -1,8 +1,7 @@
 class AirplanesController < ApplicationController
-  before_action :authenticate_request!
-  before_action :flight_manager_only, only: [:find] #user can't see airplanes
-  #TODO: flight manager can access to :find action
-  before_action :lane_manager_only, except: [:index, :show]
+  #before_action :authenticate_request!
+  #before_action :flight_manager_only, only: [:find] #user can't see airplanes
+  before_action :lane_manager_only, except: [:index, :show, :find]
   before_action :set_airplane, only: [:show, :update, :destroy]
 
   # GET /airplanes
@@ -32,16 +31,18 @@ class AirplanesController < ApplicationController
   def find
     available_planes = []
     Airplane.all.each do |plane|
-      f_start = params[:flight_start] - airplane.lane_duration
-      f_end = params[:flight_start] + params[:flight_time]
+      f_start = params[:flight_start].to_datetime - plane.time_on_lane
+      f_end = params[:flight_start].to_datetime + params[:flight_time].to_i.minutes
       plane.flights.each do |flight|
-        if ((flight.flight_start + flight.flight_time < f_start && flight.flight_start - flight.airplane.lane_duration < f_start) ||
-          (flight.flight_start + flight.flight_time > f_end && flight.flight_start - flight.airplane.lane_duration > f_end))
-          available_planes.push(plane)
+        if ((flight.flight_start + flight.flight_time < f_start && flight.flight_start - flight.airplane.time_on_lane < f_start) ||
+          (flight.flight_start + flight.flight_time > f_end && flight.flight_start - flight.airplane.time_on_lane > f_end))
+          if params[:capacity] <= plane.capacity
+            available_planes.push(plane)
+          end
         end
       end
     end
-    render json: { available_planes: available_planes}, status: :ok
+    render json: available_planes, status: :ok
   end
 
   # PATCH/PUT /airplanes/1
