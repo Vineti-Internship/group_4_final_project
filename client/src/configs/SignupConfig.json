@@ -4,5 +4,6 @@
     "passwordInput": "//*[@name='password']",
     "passConfInput": "//*[@name='password_confirmation']",
     "registerButton": "//*[@class='submit-btn']",
-    "registrationH1": "//*[@class='registration-header']"
+    "registrationH1": "//*[@class='registration-header']",
+    "emailTakenLabel": "//*[@class='email-taken-lbl']"
 }
