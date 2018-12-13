@@ -10,7 +10,7 @@ module.exports['default'] = class SignupPageObject extends BasePageObject{
         this.setValue(this.selector.nameInput, "Mane Poghosian");
     }
     fillInEmail(){
-        this.setValue(this.selector.emailInput, "tester1@gmail.com");
+        this.setValue(this.selector.emailInput, "tester2@gmail.com");
     }
     fillInPassword(){
         this.setValue(this.selector.passwordInput, "password");
@@ -27,5 +27,8 @@ module.exports['default'] = class SignupPageObject extends BasePageObject{
     }
     waitUntilH1Exists(){
         browser.waitForExist(this.selector.registrationH1, 10000);
+    }
+    getEmailTakenText(){
+        return browser.element(this.selector.emailTakenLabel).getText();
     }
 }

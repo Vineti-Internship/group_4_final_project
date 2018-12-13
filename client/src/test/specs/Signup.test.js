@@ -20,4 +20,16 @@ describe('Sign up', () => {
     signupPageObject.fillInPassConf();
     signupPageObject.clickRegisterButton();
   });
+  it('Sign up with existing email', () => {
+    homePageObject.navigateToHomePage();
+    homePageObject.clickOnSignupButton();
+    signupPageObject.fillInName();
+    signupPageObject.fillInEmail();
+    signupPageObject.fillInPassword();
+    signupPageObject.fillInPassConf();
+    signupPageObject.clickRegisterButton();
+    let emailTakenText = signupPageObject.getEmailTakenText();
+    console.log(emailTakenText);
+    assert.equal(emailTakenText, "Email has already been taken");
+  });
 });
