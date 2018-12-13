@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   post '/airplanes/find' => 'airplanes#find'
   post '/lanes/find' => 'lanes#find'
   post '/flights/startflight' => 'flights#start_flight'
+  post '/flights/search' => 'flights#search_flight'
   post '/flights/finishflight' => 'flights#finish_flight'
 end

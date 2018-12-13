@@ -1,6 +1,6 @@
 class FlightsController < ApplicationController
   before_action :flight_manager_only, except: [:index]
-  before_action :set_flight, only: [:show, :update, :destroy]
+  before_action :set_flight, only: [:show, :update, :destroy, :start_flight, :finish_flight]
 
   # GET /flights
   def index
@@ -12,9 +12,22 @@ class FlightsController < ApplicationController
     render json: @flight
   end
 
+  def search_flight
+    begin
+      result=[]
+      Flight.all.each do  |flight|
+        if flight.to == (params[:to])
+          result.push(flight)
+        end
+      end
+        render json: { result: result}, status: :ok
+    rescue StandardError => e
+      render json: {errors: e}, status: :bad_request
+    end
+  end
+
   def start_flight
     begin
-        set_flight
         @lane_id = @flight.lane_id
         @airplane_id = @flight.airplane_id
         @currentcap = @flight.lane.capacity - @flight.airplane.capacity
@@ -27,7 +40,6 @@ class FlightsController < ApplicationController
 
   def finish_flight
     begin
-      set_flight
       @airplane_id = @flight.airplane_id
       Airplane.update(@airplane_id, :status =>"free")
      @flight.update(  :is_ended => true)
