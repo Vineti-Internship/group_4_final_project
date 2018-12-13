@@ -1,0 +1,8 @@
+{
+    "nameInput": "//*[@name='name']",
+    "emailInput": "//*[@name='email']",
+    "passwordInput": "//*[@name='password']",
+    "passConfInput": "//*[@name='password_confirmation']",
+    "registerButton": "//*[@class='submit-btn']",
+    "registrationH1": "//*[@class='registration-header']"
+}
