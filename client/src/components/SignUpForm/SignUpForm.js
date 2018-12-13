@@ -60,7 +60,7 @@ class SignUpForm extends React.Component {
 	render() {
 		return (
 			<div className="sign-up-form">
-				<h1>Registration</h1>
+				<h1 className="registration-header">Registration</h1>
 				<form onSubmit={this.handleCreateUser}>
 					<label>Full Name:</label>
 					<input type="text" name="name" required onChange={this.handleChange} value={this.state.name}/>

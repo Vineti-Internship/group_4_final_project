@@ -6,10 +6,10 @@ class SearchForm extends React.Component {
 			<div className="search-form">
 				<form>
 					<label>From:</label>
-					<input type="text"/>
+					<input type="text" className="from-input"/>
 					<label>To:</label>
-					<input type="text"/>
-					<button type="submit">Search</button>
+					<input type="text" className="to-input"/>
+					<button type="submit" className="search-btn">Search</button>
 				</form>
 			</div>
 		);
