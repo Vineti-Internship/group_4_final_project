@@ -74,11 +74,11 @@ class SignUpForm extends React.Component {
 					<label>Confirm Password:</label>
 					<input type="password" name="password_confirmation" required onChange={this.handleChange} value={this.state.password_confirmation}/>
 					<br/>
-					{this.state.invalidEmail && <label style={{color:"red"}}>Email has already been taken</label>}
+					{this.state.invalidEmail && <label style={{color:"red"}} className="email-taken-lbl">Email has already been taken</label>}
 					{this.state.invalidEmail && <br/>}
-					{this.state.shortPassword && <label style={{color:"red"}}>Password is too short (minimum is 6 characters)</label>}
+					{this.state.shortPassword && <label style={{color:"red"}} className="password-short-lbl">Password is too short (minimum is 6 characters)</label>}
 					{this.state.shortPassword && <br/>}
-					{this.state.didntMatchPassword && <label style={{color:"red"}}>Passwords did not match</label>}
+					{this.state.didntMatchPassword && <label style={{color:"red"}} className="password-didnt-match-lbl">Passwords did not match</label>}
 					{this.state.didntMatchPassword && <br/>}
 					<button onClick={this.handleCancelClick} className="cancel-btn">Cancel</button>
 					<button type="submit" className="submit-btn">Register</button>
