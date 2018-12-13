@@ -19,9 +19,9 @@ class UsersController < ApplicationController
         user.role="client"
 
         if user&.save
-            render json: {status: 'User created successfully'}, status: :created
+            render json: {status: "ok", code: 201, message: "User created successfully"}, status: :created
         else
-            render json: {errors: user.errors.full_messages}, status: :bad_request
+            render json: {status:"error", code: 400, message: user.errors.full_messages}
         end
     end
 
