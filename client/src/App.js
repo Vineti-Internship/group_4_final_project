@@ -12,9 +12,9 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="App">
-				<SearchForm/>
 				<Router>
 					<React.Fragment>
+						<SearchForm/>
 						<div className="nav">
 							<Link to="/flights" style={{marginRight:"16px"}} className="link-flights">Flights</Link>
 							<Link to="/signup" style={{marginRight:"16px"}} className="link-signup">Sign Up</Link>
@@ -24,6 +24,7 @@ class App extends React.Component {
 							<Route exact path = "/flights" render ={()=> <Flights/>} />
 							<Route exact path = "/signup" render ={({history})=> <SignUpForm history={history}/>} />
 							<Route exact path = "/newflight" render={()=>  <NewFlightForm/>} />
+							{/* <Route exact path = "/search/:data" render={()=> } */}
 							<Route exact path = "/" render={()=>  <Redirect to="/flights" />} />
 							<Route path="*" render={() => <NotFound/>} />
 						</Switch>
