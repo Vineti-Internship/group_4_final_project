@@ -4,6 +4,7 @@ const HomeConfig = require('../../configs/HomeConfig.json');
 const SignupPageObject = require('../../pages/SignupPageObject').default;
 const SignupConfig = require('../../configs/SignupConfig.json');
 
+//for this whole test suite to work, it has to be run only once with a non-taken email
 describe('Sign up', () => {
   let homePageObject = new HomePageObject(HomeConfig);
   let signupPageObject = new SignupPageObject(SignupConfig);
@@ -32,4 +33,17 @@ describe('Sign up', () => {
     console.log(emailTakenText);
     assert.equal(emailTakenText, "Email has already been taken");
   });
+
+  it('Sign up with a password under 6 characters', () => {
+    signupPageObject.fillInName();
+    signupPageObject.fillInEmail();
+    signupPageObject.setInvalidPass();
+    signupPageObject.confInvalidPass();
+    signupPageObject.clickRegisterButton(); 
+    let passShortText = signupPageObject.getPassShortText();
+    console.log(passShortText);
+    assert.equal(passShortText, "Password is too short (minimum is 6 characters)");
+  });
+
+  
 });
