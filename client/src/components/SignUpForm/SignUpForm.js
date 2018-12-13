@@ -80,8 +80,8 @@ class SignUpForm extends React.Component {
 					{this.state.shortPassword && <br/>}
 					{this.state.didntMatchPassword && <label style={{color:"red"}}>Passwords did not match</label>}
 					{this.state.didntMatchPassword && <br/>}
-					<button onClick={this.handleCancelClick}>Cancel</button>
-					<button type="submit">Register</button>
+					<button onClick={this.handleCancelClick} className="cancel-btn">Cancel</button>
+					<button type="submit" className="submit-btn">Register</button>
 				</form>
 			</div>
 		);

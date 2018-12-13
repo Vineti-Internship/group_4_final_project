@@ -34,7 +34,7 @@ class Flights extends React.Component {
 							})}
 						</tbody>
 					</table>
-					<Link to="/newflight">+ New Flight</Link>
+					<Link to="/newflight" className="link-newflight">+ New Flight</Link>
 				</div>
 			);
 		return <Spinner/>;

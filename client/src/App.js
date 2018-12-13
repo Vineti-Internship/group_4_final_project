@@ -16,9 +16,9 @@ class App extends React.Component {
 				<Router>
 					<React.Fragment>
 						<div className="nav">
-							<Link to="/flights" style={{marginRight:"16px"}}>Flights</Link>
-							<Link to="/signup" style={{marginRight:"16px"}}>Sign Up</Link>
-							<Link to="#" style={{marginRight:"16px"}}>Profile</Link>
+							<Link to="/flights" style={{marginRight:"16px"}} className="link-flights">Flights</Link>
+							<Link to="/signup" style={{marginRight:"16px"}} className="link-signup">Sign Up</Link>
+							<Link to="#" style={{marginRight:"16px"}} className="link-profile">Profile</Link>
 						</div>
 						<Switch>
 							<Route exact path = "/flights" render ={()=> <Flights/>} />
