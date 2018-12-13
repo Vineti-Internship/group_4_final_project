@@ -22,7 +22,7 @@ class App extends React.Component {
 						</div>
 						<Switch>
 							<Route exact path = "/flights" render ={()=> <Flights/>} />
-							<Route exact path = "/signup" render ={()=> <SignUpForm/>} />
+							<Route exact path = "/signup" render ={({history})=> <SignUpForm history={history}/>} />
 							<Route exact path = "/newflight" render={()=>  <NewFlightForm/>} />
 							<Route exact path = "/" render={()=>  <Redirect to="/flights" />} />
 							<Route path="*" render={() => <NotFound/>} />
