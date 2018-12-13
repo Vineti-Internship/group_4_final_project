@@ -13,3 +13,18 @@ export const getAllFlights = (flights) => {
 		payload: flights
 	};
 };
+
+export const searchFlights = (to) => async dispatch => {
+	console.log(to);
+	const res = await axios.post("/flights/search",{to});
+	console.log(res);
+	const search_result = await res.data;
+	dispatch(getSearchResult(search_result));
+};
+
+export const getSearchResult = (search_result) => {
+	return {
+		type: actionTypes.SEARCH_FLIGHTS,
+		search_result
+	};
+};
