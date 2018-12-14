@@ -12,22 +12,30 @@ describe('Sign up', () => {
     homePageObject.navigateToHomePage();
     homePageObject.clickOnSignupButton();
     let headerText = signupPageObject.getHeaderText();
+    let str1 = '123456';
+    let str2 = '123456';
+    let userName = "Mane Poghosian";
+    let userEmail = "tester22@gmail.com";
     console.log(headerText);
     signupPageObject.waitUntilH1Exists();
     assert.equal(headerText, "Registration");
-    signupPageObject.fillInName();
-    signupPageObject.fillInEmail();
-    signupPageObject.fillInPassword();
-    signupPageObject.fillInPassConf();
+    signupPageObject.setName(userName);
+    signupPageObject.setEmail(userEmail);
+    signupPageObject.setPassword(str1);
+    signupPageObject.setPassConf(str2);
     signupPageObject.clickRegisterButton();
   });
   it('Sign up with existing email', () => {
+    let str1 = '123456';
+    let str2 = '123456';
+    let userName = "Mane Poghosian";
+    let userEmail = "tester22@gmail.com";
     homePageObject.navigateToHomePage();
     homePageObject.clickOnSignupButton();
-    signupPageObject.fillInName();
-    signupPageObject.fillInEmail();
-    signupPageObject.fillInPassword();
-    signupPageObject.fillInPassConf();
+    signupPageObject.setName(userName);
+    signupPageObject.setEmail(userEmail);
+    signupPageObject.setPassword(str1);
+    signupPageObject.setPassConf(str2);
     signupPageObject.clickRegisterButton();
     let emailTakenText = signupPageObject.getEmailTakenText();
     console.log(emailTakenText);
@@ -35,10 +43,14 @@ describe('Sign up', () => {
   });
 
   it('Sign up with a password under 6 characters', () => {
-    signupPageObject.fillInName();
-    signupPageObject.fillInEmail();
-    signupPageObject.setInvalidPass();
-    signupPageObject.confInvalidPass();
+    let str1 = '12345';
+    let str2 = '12345';
+    let userName = "Mane Poghosian";
+    let userEmail = "tester222@gmail.com";
+    signupPageObject.setName(userName);
+    signupPageObject.setEmail(userEmail);
+    signupPageObject.setPassword(str1);
+    signupPageObject.setPassConf(str2);
     signupPageObject.clickRegisterButton(); 
     let passShortText = signupPageObject.getPassShortText();
     console.log(passShortText);

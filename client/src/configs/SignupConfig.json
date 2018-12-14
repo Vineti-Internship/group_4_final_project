@@ -3,8 +3,9 @@
     "emailInput": "//*[@name='email']",
     "passwordInput": "//*[@name='password']",
     "passConfInput": "//*[@name='password_confirmation']",
-    "registerButton": "//*[@class='submit-btn']",
+    "registerButton": "//*[@class='submit-btn btn btn-success']",
     "registrationH1": "//*[@class='registration-header']",
-    "emailTakenLabel": "//*[@class='email-taken-lbl']",
-    "passShortLabel": "//*[@class='password-short-lbl']"
+    "emailTakenLabel": "//label[@class='email-taken-lbl']",
+    "passShortLabel": "//label[@class='password-short-lbl']",
+    "passDidntMatch": "//label[@class='password-didnt-match-lbl']"
 }
