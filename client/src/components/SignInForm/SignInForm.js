@@ -90,7 +90,7 @@ class SignInForm extends React.Component {
             }
           </div>
           <div className="form-group">
-            <button className="btn btn-primary btn-lg" disabled={isLoading}>Sign in</button>            
+            <button className="btn btn-primary btn-lg" >Sign in</button>            
           </div>
 				</form>
 			</div>
@@ -121,7 +121,7 @@ class SignInForm extends React.Component {
 //   router: React.PropTypes.object.isRequired
 // }
 // export default connect(null, {SignIn})(SignInForm);
-const mapStateToProps = (state) => {
-  return { errorMessage: state.auth.error };
-}
+// const mapStateToProps = (state) => {
+//   return { errorMessage: state.auth.error };
+// }
 export default connect(null, {login})(SignInForm);
