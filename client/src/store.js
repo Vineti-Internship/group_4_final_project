@@ -4,9 +4,6 @@ import thunk from "redux-thunk";
 import jwtDecode from "jwt-decode";
 import setAuthorizationToken from "./helpers/setAuthorizationToken";
 import { setCurrentUser } from "./actions/auth_actions";
-// import { render } from "react-dom";
-// import { Router, browserHistory } from 'react-router';
-
 
 const store = createStore(
 	rootReducer,
@@ -15,7 +12,7 @@ const store = createStore(
 
 if (localStorage.jwtToken) {
 	setAuthorizationToken(localStorage.jwtToken);
-	store.dispatch(setCurrentUser((localStorage.jwtToken)));
+	store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
 }
 
 export default store;

@@ -10,10 +10,11 @@ import SignUpForm from "./components/SignUpForm";
 import SignInForm from "./components/SignInForm";
 import { connect } from "react-redux";
 import { logout } from "./actions/auth_actions";
+import Auth from "./Auth";
 
 class App extends React.Component {
 	render() {
-		console.log("auth", this.props.auth);
+		// console.log("auth", this.props); 
 		
 		return (
 			<div className="App">
@@ -23,7 +24,7 @@ class App extends React.Component {
 						<div className="nav">
 							<Link to="/flights" style={{marginRight:"16px"}} className="link-flights">Flights</Link>
 							<Link to="/signup" style={{marginRight:"16px"}} className="link-signup">Sign Up</Link>
-							<Link to="/signin" style={{marginRight:"16px"}} className="link-signin">Sign In</Link>
+							{!this.props.auth && <Link to="/signin" style={{marginRight:"16px"}} className="link-signin">Sign In</Link>}
 							<Link to="#" style={{marginRight:"16px"}} className="link-profile">Profile</Link>
 
 						</div>
@@ -32,7 +33,7 @@ class App extends React.Component {
 							<Route exact path = "/signup" render ={({history})=> <SignUpForm history={history}/>} />
 							<Route exact path = "/newflight" render={()=>  <NewFlightForm/>} />
 							<Route exact path = "/" render={()=>  <Redirect to="/flights" />} />
-							<Route exact path="/signin" render={() => <SignInForm/>} />
+							{this.props.auth? <Redirect to="/profile"/>: <Route exact path="/signin" render={() => <SignInForm/>} />}
 							<Route path="*" render={() => <NotFound/>} />
 						</Switch>
 					</React.Fragment>
@@ -43,8 +44,10 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
+	// console.log(state);
 	return {
-		auth: state.authenticated
+		aud: state.auth.aud,
+		auth: state.auth.authenticated
 	};
 }
 export default connect(mapStateToProps, { logout })(App);

@@ -71,9 +71,9 @@ class SignInForm extends React.Component {
 
     const { email, password, isLoading, identifier, errors } = this.state;
 		return (
-			<div className="col-md-6 col-md-offset-3">
+			<div align="center" className="col-md-6 col-md-offset-3">
 				<h2>Sign in</h2>
-				<form name="form" onSubmit={this.handleSubmit}>
+				<form name="signinform" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input type="email" name="email" className="form-control" value={this.state.email} onChange={this.handleChange}/>

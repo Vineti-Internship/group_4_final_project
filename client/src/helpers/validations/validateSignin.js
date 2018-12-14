@@ -12,7 +12,7 @@ export const validate = (data) => {
 	if(!data.password) {
 		errors.password = "is Required";
 	}
-
+	
 	return {
 		errors,
 		isValid: isEmpty(errors)
