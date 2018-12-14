@@ -15,7 +15,12 @@ class UsersController < ApplicationController
     end
 
     def create
+        password = Base64.decode64(user_params["password"])
+        password_confirmation = Base64.decode64(user_params["password_confirmation"])
+
         user = User.new(user_params)
+        user.password = password
+        user.password_confirmation = password_confirmation
         user.role="client"
 
         if user&.save
