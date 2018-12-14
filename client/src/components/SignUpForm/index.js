@@ -4,9 +4,12 @@ import React from "react";
 import * as usersActionCreators from "../../actions/users_actions";
 import SignUpForm from "./SignUpForm";
 
-const SignUpFormCon = (props) => {
-	return <SignUpForm {...props} createUser={props.createUser} status={props.status}/>;
-};
+const SignUpFormCon = props =>
+	<SignUpForm 
+		{...props} 
+		createUser={props.createUser} 
+		status={props.status}/>;
+
 
 const mapStateToProps= state => ({
 	status:state.users.status

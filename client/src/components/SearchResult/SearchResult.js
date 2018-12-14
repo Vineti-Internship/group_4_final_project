@@ -18,6 +18,9 @@ class SearchResult extends React.Component {
 
 	capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 
+	normalizeTime = str => 
+		`${new Date(str).toISOString().split('T')[0]}\t${new Date(str).toISOString().split('T')[1].slice(0,8)}`
+
 	render() {
 		if(this.state.dataLoaded)
 			return (
@@ -29,12 +32,14 @@ class SearchResult extends React.Component {
 									<div className="card" style={{width:"auto", display:"inline-block", backgroundColor:"whitesmoke"}} >
 										<div className="card-body">
 											<h5 className="card-title">From: {this.capitalize(flight.from)} <br/> To: {this.capitalize(flight.to)}</h5>
-											<h4 className="card-text">Scheduled departure: {flight.flight_start} <br/> Scheduled arrival: {flight.flight_end} <br/> Airplane capacity: {flight.airplane.capacity}</h4>
+											<h4 className="card-text">Scheduled departure: {this.normalizeTime(flight.flight_start)} <br/> Scheduled arrival: {this.normalizeTime(flight.flight_end)} <br/> Available tickets: {flight.airplane.capacity - flight.tickets.length}</h4>
 											<div align="right">
-												<button className="btn btn-primary">More</button>
+												<button className="btn btn-primary" onClick={()=> this.props.history.push(`/flights/${flight.id}`)}>More</button>
 											</div>
 										</div>
 									</div>
+									<br/>
+									<br/>
 								</div>
 							);
 						})}
