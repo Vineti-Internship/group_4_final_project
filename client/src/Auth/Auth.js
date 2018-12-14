@@ -5,7 +5,7 @@ class Auth{
 		//deauthenticate
 		//get token
 		//es funkcianery petqa gres, yndexic kanches
-	}
+	}	
 
 }
 
