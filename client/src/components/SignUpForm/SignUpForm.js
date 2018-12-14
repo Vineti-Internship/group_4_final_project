@@ -1,4 +1,5 @@
 import React from "react";
+import Blowfish from "javascript-blowfish";
 
 class SignUpForm extends React.Component {
 	constructor(props){
@@ -29,7 +30,13 @@ class SignUpForm extends React.Component {
 	/*eslint indent: [2, "tab", {"SwitchCase": 1}]*/
 	async handleCreateUser(e){
 		e.preventDefault();
-		await this.props.createUser(this.state);
+		const data = {...this.state};
+		const bf = new Blowfish("777");
+		
+		data.password = bf.base64Encode(data.password);	
+		data.password_confirmation = bf.base64Encode(data.password_confirmation);	
+
+		await this.props.createUser(data);
 		this.setState({password:"", password_confirmation:""});
 		if(this.props.status.length !== 0)
 			this.props.status.forEach(message => {
@@ -53,7 +60,6 @@ class SignUpForm extends React.Component {
 
 	handleCancelClick(e){
 		e.preventDefault();
-
 		this.props.history.push("/");
 	}
 
