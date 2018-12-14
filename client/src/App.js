@@ -3,6 +3,7 @@ import React from "react";
 import "./App.css";
 import SearchForm from "./components/SearchForm";
 import Flights from "./components/Flights";
+import Flight from "./components/Flight";
 import NewFlightForm from "./components/NewFlightForm";
 import NotFound from "./components/NotFound";
 import {BrowserRouter as Router, Link, Redirect, Route, Switch} from "react-router-dom";
@@ -23,6 +24,7 @@ class App extends React.Component {
 						</div>
 						<Switch>
 							<Route exact path = "/flights" render ={()=> <Flights/>} />
+							<Route exact path = "/flights/:flightId" render ={({match, history})=> <Flight match={match} history={history}/>} />
 							<Route exact path = "/signup" render ={({history})=> <SignUpForm history={history}/>} />
 							<Route exact path = "/newflight" render={()=>  <NewFlightForm/>} />
 							<Route exact path = "/search/:search_url" render={({match, history})=> <SearchResult match={match} history={history}/>} />

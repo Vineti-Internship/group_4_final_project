@@ -1,5 +1,5 @@
 class FlightsController < ApplicationController
-  # before_action :flight_manager_only, except: [:index]
+  # before_action :flight_manager_only, except: [:index, :show]
   before_action :set_flight, only: [:show, :update, :destroy, :start_flight, :finish_flight]
 
   # GET /flights

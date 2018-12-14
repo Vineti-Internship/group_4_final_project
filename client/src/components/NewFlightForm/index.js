@@ -5,14 +5,13 @@ import React from "react";
 import * as lanesActionCreators from "../../actions/lanes_actions";
 import * as airplanesActionCreators from "../../actions/airplanes_actions";
 
-const NewFlightFormCon = (props) => {
-	return <NewFlightForm 
+const NewFlightFormCon = props => 
+	<NewFlightForm 
 		{...props} 
 		lanes={props.foundLanes} 
 		findLanes={props.findLanes} 
 		airplanes={props.foundAirplanes}
 		findAirplanes={props.findAirplanes}/>;
-};
 
 const mapStateToProps= state => ({
 	foundLanes: state.lanes.found_lanes,
