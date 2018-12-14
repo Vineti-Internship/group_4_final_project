@@ -1,3 +1,7 @@
+require 'rubygems'
+require 'crypt/blowfish'
+require 'base64'
+
 class ApplicationController < ActionController::API
     require 'json_web_token'
 
