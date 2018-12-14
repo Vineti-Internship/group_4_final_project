@@ -1,7 +1,9 @@
 import * as actionTypes from "../actions/types";
-// import {isEmpty} from "../helpers/validations/validateSignin";
+import {isEmpty} from "../helpers/validations/validateSignin";
 const initialState = {
-	user: {}
+	user: {},
+  authenticated: false,
+  error: {}
 };
 
 export default (state = initialState, action = {}) => {
@@ -9,7 +11,8 @@ export default (state = initialState, action = {}) => {
 	case actionTypes.SET_CURRENT_USER:
 		return {
 			...state,
-			user: action.payload
+			user: action.payload,
+			// isAutenticated: !isEmpty(action.payload)    
 		};
 	case actionTypes.AUTHENTICATED:
 		return { 

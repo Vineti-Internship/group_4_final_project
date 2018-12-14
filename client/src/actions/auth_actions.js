@@ -33,9 +33,9 @@ export function login(data) {
 
 			console.log(jwtDecode(res.data.auth_token));
 			
-			Auth.authenticateToken(token);
+			// Auth.authenticateToken(token);
 			setAuthorizationToken(token);
-			dispatch(setCurrentUser((token)));
+			dispatch(setCurrentUser(jwtDecode(token)));
 		} catch(err) {
 			dispatch({
 				type: actionTypes.AUTHENTICATION_ERROR,

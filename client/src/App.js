@@ -8,9 +8,13 @@ import NotFound from "./components/NotFound";
 import {BrowserRouter as Router, Link, Redirect, Route, Switch} from "react-router-dom";
 import SignUpForm from "./components/SignUpForm";
 import SignInForm from "./components/SignInForm";
+import { connect } from "react-redux";
+import { logout } from "./actions/auth_actions";
 
 class App extends React.Component {
 	render() {
+		console.log("auth", this.props.auth);
+		
 		return (
 			<div className="App">
 				<SearchForm/>
@@ -38,4 +42,9 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+function mapStateToProps(state) {
+	return {
+		auth: state.authenticated
+	};
+}
+export default connect(mapStateToProps, { logout })(App);
