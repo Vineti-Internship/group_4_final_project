@@ -12,7 +12,7 @@ import SearchResult from "./components/SearchResult";
 class App extends React.Component {
 	render() {
 		return (
-			<div className="App">
+			<div className="App" style={{margin:"20px"}}>
 				<Router>
 					<React.Fragment>
 						<SearchForm/>
