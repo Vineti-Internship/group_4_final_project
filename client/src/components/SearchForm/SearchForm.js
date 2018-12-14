@@ -27,15 +27,20 @@ class SearchForm extends React.Component {
 
 	render() {
 		return (
-			<div className="search-form">
-				<form onSubmit={this.handleSearchClick}>
-					<label>From:</label>
-					<input type="text" required className="from-input" name="from" value={this.state.from} onChange={this.handleChange}/>
-					<label>To:</label>
-					<input type="text" required className="to-input" name="to" value={this.state.to} onChange={this.handleChange}/>
-					<button type="submit" className="search-btn">Search</button>
-				</form>
-			</div>
+			<center>
+				<div className="search-form" style={{width:"40rem"}} >
+					<form onSubmit={this.handleSearchClick}>
+						<div className="input-group">
+							<div className="input-group-prepend">
+								<span className="input-group-text" id="">From and to countries</span>
+							</div>
+							<input type="text" required className="form-control from-input" name="from" value={this.state.from} onChange={this.handleChange}/>
+							<input type="text" required className="form-control to-input" name="to" value={this.state.to} onChange={this.handleChange}/>
+							<button type="submit" className="search-btn btn btn-primary">Search</button>
+						</div>
+					</form>
+				</div>
+			</center>
 		);
 	}
 }

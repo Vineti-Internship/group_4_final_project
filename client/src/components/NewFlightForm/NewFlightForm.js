@@ -55,70 +55,87 @@ class NewFlightForm extends React.Component {
 		return (
 			<div className="new-flight-form">
 				<h1>Create New Flight</h1>
-				<form>
-					<label>Flight destination:</label>
-					<input type="text" required name="to" onChange={this.handleChange} value={this.state.to}/>
-					<br/>
-					<label>Flight start:</label>
-					<input type="datetime-local" required name="flight_start" onChange={this.handleChange} value={this.state.flight_start}/>
-					<br/>
-					<label>Flight duration:</label>
-					<input type="time" className="without_ampm" required name="flight_time" onChange={this.handleChange} value={this.state.flight_time}/>
-					<br/>
-					<label>Passanger count:</label>
-					<input type="number" required name="capacity" onChange={this.handleChange} value={this.state.capacity}/>
-					<br/>
-					<button className="find-airplane-btn" onClick={this.handleFindAirplane}>Find available airplane</button>
-					<div className="found-airplanes">
-						{this.state.airplanes? this.state.airplanes.map((airplane) =>{
-							if(this.state.selected_airplane_id === airplane.id)
-								return (
-									<div className="card" key={airplane.id} style={{width:"10rem", display:"inline-block", backgroundColor:"DodgerBlue"}} onClick={(e)=>this.selectAirplane(e, airplane.id)}>
-										<div className="card-body">
-											<h5 className="card-title">{airplane.name}</h5>
-											<h4 className="card-text">{airplane.model}</h4>
+				<center>
+					<form style={{width:"30rem"}}>
+						<div className="input-group mb-3">
+							<div className="input-group-prepend">
+								<span className="input-group-text" id="inputGroup-sizing-default">Flight destination:</span>
+							</div>
+							<input type="text" required name="to" onChange={this.handleChange} value={this.state.to} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
+						</div>
+						<div className="input-group mb-3">
+							<div className="input-group-prepend">
+								<span className="input-group-text" id="inputGroup-sizing-default">Flight start:</span>
+							</div>
+							<input type="datetime-local" required name="flight_start" onChange={this.handleChange} value={this.state.flight_start} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
+						</div>
+						<div className="input-group mb-3">
+							<div className="input-group-prepend">
+								<span className="input-group-text" id="inputGroup-sizing-default">Flight duration:</span>
+							</div>
+							<input type="time" required name="flight_time" onChange={this.handleChange} value={this.state.flight_time} className="form-control without_ampm" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
+						</div> 
+						<div className="input-group mb-3">
+							<div className="input-group-prepend">
+								<span className="input-group-text" id="inputGroup-sizing-default">Passanger count:</span>
+							</div>
+							<input type="number" required name="capacity" onChange={this.handleChange} value={this.state.capacity} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
+						</div> 
+						<button className="find-airplane-btn btn btn-primary" onClick={this.handleFindAirplane}>Find available airplane</button>
+						<div className="found-airplanes">
+							<br/>
+							{this.state.airplanes? this.state.airplanes.map((airplane) =>{
+								if(this.state.selected_airplane_id === airplane.id)
+									return (
+										<div className="card" key={airplane.id} style={{width:"10rem", display:"inline-block", backgroundColor:"DodgerBlue"}} onClick={(e)=>this.selectAirplane(e, airplane.id)}>
+											<div className="card-body">
+												<h5 className="card-title">{airplane.name}</h5>
+												<h4 className="card-text">{airplane.model}</h4>
+											</div>
 										</div>
-									</div>
-								);
-							else
-								return (
-									<div className="card" key={airplane.id} style={{width:"10rem", display:"inline-block", backgroundColor:"white"}} onClick={(e)=>this.selectAirplane(e, airplane.id)}>
-										<div className="card-body">
-											<h5 className="card-title">{airplane.name}</h5>
-											<h4 className="card-text">{airplane.model}</h4>
+									);
+								else
+									return (
+										<div className="card" key={airplane.id} style={{width:"10rem", display:"inline-block", backgroundColor:"white"}} onClick={(e)=>this.selectAirplane(e, airplane.id)}>
+											<div className="card-body">
+												<h5 className="card-title">{airplane.name}</h5>
+												<h4 className="card-text">{airplane.model}</h4>
+											</div>
 										</div>
-									</div>
-								);
-						}): <h2>...</h2>
-						}
-					</div>
-					<button className="find-lane-btn" onClick={this.handleFindLane}>Find available lane</button>
-					<br/>
-					<div className="found-lanes">
-						{this.state.lanes? this.state.lanes.map((lane) =>{
-							if(this.state.selected_lane_id === lane.id)
-								return (
-									<div className="card" key={lane.id} style={{width:"10rem", display:"inline-block", backgroundColor:"DodgerBlue"}} onClick={(e)=>this.selectLane(e, lane.id)}>
-										<div className="card-body">
-											<h5 className="card-title">Lane no {lane.id}</h5>
+									);
+							}): ""
+							}
+						</div>
+						<button className="find-lane-btn btn btn-primary" onClick={this.handleFindLane}>Find available lane</button>
+						<br/>
+						<div className="found-lanes">
+							<br/>
+							{this.state.lanes? this.state.lanes.map((lane) =>{
+								if(this.state.selected_lane_id === lane.id)
+									return (
+										<div className="card" key={lane.id} style={{width:"10rem", display:"inline-block", backgroundColor:"DodgerBlue"}} onClick={(e)=>this.selectLane(e, lane.id)}>
+											<div className="card-body">
+												<h5 className="card-title">Lane no {lane.id}</h5>
+											</div>
 										</div>
-									</div>
-								);
-							else
-								return (
-									<div className="card" key={lane.id} style={{width:"10rem", display:"inline-block", backgroundColor:"white"}} onClick={(e)=>this.selectLane(e, lane.id)}>
-										<div className="card-body">
-											<h5 className="card-title">Lane no {lane.id}</h5>
+									);
+								else
+									return (
+										<div className="card" key={lane.id} style={{width:"10rem", display:"inline-block", backgroundColor:"white"}} onClick={(e)=>this.selectLane(e, lane.id)}>
+											<div className="card-body">
+												<h5 className="card-title">Lane no {lane.id}</h5>
+											</div>
 										</div>
-									</div>
-								);
-						}): <h2>...</h2>
-						}
-					</div>
-					<br/>
-					<button className="cancel-btn">Cancel</button>
-					<input type="submit" value="Create flight"/>
-				</form>
+									);
+							}):""
+							}
+						</div>
+						<br/>
+						<button className="cancel-btn btn btn-danger">Cancel</button>
+						{"\t"}
+						<input className="btn btn-success" type="submit" value="Create flight"/>
+					</form>
+				</center>
 			</div>
 		);
 	}
