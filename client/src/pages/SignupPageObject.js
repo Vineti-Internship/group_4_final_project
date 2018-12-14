@@ -6,17 +6,11 @@ module.exports['default'] = class SignupPageObject extends BasePageObject{
         this.selector = selector;
     }
 
-    fillInName(){
-        this.setValue(this.selector.nameInput, "Mane Poghosian");
+    setName(userName){
+        this.setValue(this.selector.nameInput, userName);
     }
-    fillInEmail(){
-        this.setValue(this.selector.emailInput, "tester22@gmail.com");
-    }
-    fillInPassword(){
-        this.setValue(this.selector.passwordInput, "password");
-    }
-    fillInPassConf(){
-        this.setValue(this.selector.passConfInput, "password");
+    setEmail(userEmail){
+        this.setValue(this.selector.emailInput, userEmail);
     }
     clickRegisterButton(){
         this.click(this.selector.registerButton);
@@ -30,13 +24,16 @@ module.exports['default'] = class SignupPageObject extends BasePageObject{
     getEmailTakenText(){
         return browser.element(this.selector.emailTakenLabel).getText();
     }
-    setInvalidPass(){
-        this.setValue(this.selector.passwordInput, "12345");
-    }
-    confInvalidPass(){
-        this.setValue(this.selector.passConfInput, "12345");
-    }
     getPassShortText(){
         return browser.element(this.selector.passShortLabel).getText();
+    }
+    getPassDidntMatchText(){
+        return browser.element(this.selector.passDidntMatch).getText();
+    }
+    setPassword(str1){
+        this.setValue(this.selector.passwordInput, str1);
+    }
+    setPassConf(str2){
+        this.setValue(this.selector.passConfInput, str2);
     }
 }
