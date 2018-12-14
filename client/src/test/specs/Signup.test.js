@@ -57,5 +57,20 @@ describe('Sign up', () => {
     assert.equal(passShortText, "Password is too short (minimum is 6 characters)");
   });
 
+  it('Sign uo with not matching passowords', () => {
+    let str1 = '1234560';
+    let str2 = '123456';
+    let userName = 'Mane';
+    let userEmail = "tester123@gmail.com";
+    signupPageObject.setName(userName);
+    signupPageObject.setEmail(userEmail);
+    signupPageObject.setPassword(str1);
+    signupPageObject.setPassConf(str2);
+    signupPageObject.clickRegisterButton();
+    let passDidntMatchText = signupPageObject.getPassDidntMatchText();
+    console.log(passDidntMatchText);
+    assert.equal(passDidntMatchText, 'Passwords did not match');
+  });
+
   
 });
