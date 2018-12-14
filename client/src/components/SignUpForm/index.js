@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {connect} from "react-redux";
 import React from "react";
 import * as usersActionCreators from "../../actions/users_actions";

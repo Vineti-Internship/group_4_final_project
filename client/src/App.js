@@ -7,6 +7,7 @@ import NewFlightForm from "./components/NewFlightForm";
 import NotFound from "./components/NotFound";
 import {BrowserRouter as Router, Link, Redirect, Route, Switch} from "react-router-dom";
 import SignUpForm from "./components/SignUpForm";
+import SearchResult from "./components/SearchResult";
 
 class App extends React.Component {
 	render() {
@@ -24,7 +25,7 @@ class App extends React.Component {
 							<Route exact path = "/flights" render ={()=> <Flights/>} />
 							<Route exact path = "/signup" render ={({history})=> <SignUpForm history={history}/>} />
 							<Route exact path = "/newflight" render={()=>  <NewFlightForm/>} />
-							{/* <Route exact path = "/search/:data" render={()=> } */}
+							<Route exact path = "/search/:search_url" render={({match, history})=> <SearchResult match={match} history={history}/>} />
 							<Route exact path = "/" render={()=>  <Redirect to="/flights" />} />
 							<Route path="*" render={() => <NotFound/>} />
 						</Switch>

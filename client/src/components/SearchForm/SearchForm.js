@@ -4,11 +4,9 @@ import {withRouter} from "react-router";
 class SearchForm extends React.Component {
 	constructor(props){
 		super(props);
-		console.log(props);
 		this.state={
 			from:"",
 			to:"",
-			search_url:""
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSearchClick = this.handleSearchClick.bind(this);
@@ -19,13 +17,11 @@ class SearchForm extends React.Component {
 		this.setState({
 			[name]:value
 		});
-
 	}
 
-	handleSearchClick(e){
-		e.preventDefault();
-		const search_url=encodeURIComponent(`?from=${this.state.from}&?to=${this.state.to}`);
-		this.setState({search_url});
+	handleSearchClick(){
+		const search_url=encodeURIComponent(`${this.state.from.toLowerCase()}+${this.state.to.toLowerCase()}`);
+		this.setState({from:"", to:""});
 		this.props.history.push(`/search/${search_url}`);
 	}
 
@@ -34,9 +30,9 @@ class SearchForm extends React.Component {
 			<div className="search-form">
 				<form onSubmit={this.handleSearchClick}>
 					<label>From:</label>
-					<input type="text" className="from-input" name="from" value={this.state.from} onChange={this.handleChange}/>
+					<input type="text" required className="from-input" name="from" value={this.state.from} onChange={this.handleChange}/>
 					<label>To:</label>
-					<input type="text" className="to-input" name="to" value={this.state.to} onChange={this.handleChange}/>
+					<input type="text" required className="to-input" name="to" value={this.state.to} onChange={this.handleChange}/>
 					<button type="submit" className="search-btn">Search</button>
 				</form>
 			</div>
