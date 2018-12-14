@@ -10,20 +10,12 @@ import { setCurrentUser } from "./actions/auth_actions";
 
 const store = createStore(
 	rootReducer,
-	// compose(
 	applyMiddleware(thunk),
-	// 	window.devToolsExtension ? window.devToolsExtension() : f => f
-	// )
 );
 
 if (localStorage.jwtToken) {
 	setAuthorizationToken(localStorage.jwtToken);
-	store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
+	store.dispatch(setCurrentUser((localStorage.jwtToken)));
 }
-
-// render(
-//   <Provider store={store}>
-//     <Router history={browserHistory} routes={routes} />
-//   </Provider>, document.getElementById('app'));
 
 export default store;
