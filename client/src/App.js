@@ -26,7 +26,7 @@ class App extends React.Component {
 							<Route exact path = "/flights" render ={()=> <Flights/>} />
 							<Route exact path = "/flights/:flightId" render ={({match, history})=> <Flight match={match} history={history}/>} />
 							<Route exact path = "/signup" render ={({history})=> <SignUpForm history={history}/>} />
-							<Route exact path = "/newflight" render={()=>  <NewFlightForm/>} />
+							<Route exact path = "/newflight" render={({history})=>  <NewFlightForm history={history}/>} />
 							<Route exact path = "/search/:search_url" render={({match, history})=> <SearchResult match={match} history={history}/>} />
 							<Route exact path = "/" render={()=>  <Redirect to="/flights" />} />
 							<Route path="*" render={() => <NotFound/>} />

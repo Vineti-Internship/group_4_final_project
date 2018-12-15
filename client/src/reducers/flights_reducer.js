@@ -13,6 +13,8 @@ export default (state = initialFlightsState, action) => {
 			return {...state, all_flights:[...action.payload]};
 		case actionTypes.GET_CURRENT_FLIGHT:
 			return {...state, current_flight:{...action.payload}};
+		case actionTypes.CREATE_FLIGHT:
+			return {...state};
 		case actionTypes.FLIGHT_NOT_FOUND:
 			return {...state, error_code:404};
 		case actionTypes.SEARCH_FLIGHTS:
