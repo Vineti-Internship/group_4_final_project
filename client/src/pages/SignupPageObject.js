@@ -1,11 +1,13 @@
-const BasePageObject = require('./BasePageObject.js').default;
+const BasePageObject = require("./BasePageObject.js").default;
 
-module.exports['default'] = class SignupPageObject extends BasePageObject{
-    constructor(selector) {
-        super();
-        this.selector = selector;
-    }
+module.exports["default"] = class SignupPageObject extends BasePageObject{
+	constructor(selector) {
+		super();
+		this.selector = selector;
+	}
 
+
+	
     setName(userName){
         this.setValue(this.selector.nameInput, userName);
     }
