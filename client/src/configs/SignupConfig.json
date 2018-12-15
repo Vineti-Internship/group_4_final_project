@@ -8,5 +8,5 @@
     "emailTakenLabel": "//*[contains(@class, 'email-taken-lbl')]",
     "passShortLabel": "//*[contains(@class, 'password-short-lbl')]",
     "passDidntMatch": "//*[contains(@class, 'password-didnt-match-lbl')]",
-    "cancelButton": "//*[contains(@class, 'cancel-btn btn btn-danger')]"
+    "cancelButton": "//*[contains(@class, 'cancel-btn btn btn-danger')]",
 }
