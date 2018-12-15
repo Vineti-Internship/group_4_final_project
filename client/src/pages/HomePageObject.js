@@ -22,9 +22,14 @@ module.exports['default'] = class HomePageObject extends BasePageObject{
         this.click(this.selector.newFlightButton);
     }
 
+    clickOnSignInButton(){
+        this.click(this.selector.signInButton);
+    }
+
     setFrom(from){
         this.setValue(this.selector.fromInput, from);
     }
+    
     setTo(to){
         this.setValue(this.selector.toInput, to);
     }

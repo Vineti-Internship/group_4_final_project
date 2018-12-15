@@ -5,12 +5,11 @@ module.exports["default"] = class NewFlightPageObject extends BasePageObject{
 		super();
 		this.selector = selector;
 		}
-	
 		getHeaderText(){
 			return browser.element(this.selector.header).getText();
 		}
 		setDestination(param){
-			this.setValue(this.selector.destination, param);
+			this.setValue(this.selector.destinationn, param);
 		}
 		setStartTime(param){
 			this.setValue(this.selector.flightStart, param);
@@ -40,6 +39,6 @@ module.exports["default"] = class NewFlightPageObject extends BasePageObject{
 			this.getValue(this.selector.laneFoundCap);
 		}
 		createFlight(){
-			this.click(selector.createFlightButton);
+			this.click(this.selector.createFlightButton);
 		}
 }
