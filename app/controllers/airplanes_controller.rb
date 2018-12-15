@@ -31,7 +31,7 @@ class AirplanesController < ApplicationController
   def find
     available_planes = []
     Airplane.all.each do |plane|
-      if plane.flights.length == 0
+      if plane.flights.length == 0 && params[:capacity] <= plane.capacity
         available_planes.push(plane)
       else
         f_start = params[:flight_start].to_datetime - (plane.time_on_lane/60).minutes

@@ -43,7 +43,7 @@ class LanesController < ApplicationController
   def find
     available_lanes = []
     Lane.all.each  do |lane|
-      if lane.flights.length == 0
+      if lane.flights.length == 0 && lane.capacity >= params[:capacity]
         available_lanes.push(lane)
       else
         lane.flights.each do |flight|
