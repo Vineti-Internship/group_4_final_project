@@ -29,24 +29,10 @@ describe('Create New Flight', () => {
         newFlightPageObject.setCapacity('104');
         newFlightPageObject.findAvailAirplane();
         newFlightPageObject.selectAirplane();
-        //let text1 = newFlightPageObject.getCapacity();
-        // let cap1 = text1.split(' ')[1];
-        // console.log(cap1);
-        // if(cap1 > 100){
-            newFlightPageObject.findAvailLane();
-            newFlightPageObject.selectLane();
-            // let text2 = newFlightPageObject.getCapacity();
-            // let cap2 = text2.split(' ')[1];
-            //console.log(cap2);
-        //     if(cap2 > 100){
-                  newFlightPageObject.createFlight();
-        //     }
-        //     else{
-        //         assert.fail();
-        //     }
-        // }
-        // else{
-        //     assert.fail();
-        // }
+        newFlightPageObject.findAvailLane();
+        newFlightPageObject.selectLane();
+
     });
+
+
 });

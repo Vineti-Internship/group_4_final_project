@@ -1,6 +1,6 @@
 {
     "header": "//*[contains(@class, 'create-new-flight-header')]",
-    "destinationn":  "//*[contains(@name, 'to')]",
+    "destinationn":  "//*[contains(@id, 'to-input')]",
     "flightStart": "//*[contains(@name, 'flight_start')]",
     "duration": "//*[contains(@name, 'flight_time')]",
     "capacity": "//*[contains(@name, 'capacity')]",
