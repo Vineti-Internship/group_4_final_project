@@ -1,11 +1,12 @@
 {
-    "nameInput": "//*[@name='name']",
-    "emailInput": "//*[@name='email']",
-    "passwordInput": "//*[@name='password']",
-    "passConfInput": "//*[@name='password_confirmation']",
-    "registerButton": "//*[@class='submit-btn btn btn-success']",
-    "registrationH1": "//*[@class='registration-header']",
-    "emailTakenLabel": "//label[@class='email-taken-lbl']",
-    "passShortLabel": "//label[@class='password-short-lbl']",
-    "passDidntMatch": "//label[@class='password-didnt-match-lbl']"
+    "nameInput": "//*[contains(@name, 'name')]",
+    "emailInput": "//*[contains(@name, 'email')]",
+    "passwordInput": "//*[contains(@name, 'password')]",
+    "passConfInput": "//*[contains(@name, 'password_confirmation')]",
+    "registerButton": "//*[contains(@class, 'submit-btn btn btn-success')]",
+    "registrationH1": "//*[contains(@class, 'registration-header')]",
+    "emailTakenLabel": "//*[contains(@class, 'email-taken-lbl')]",
+    "passShortLabel": "//*[contains(@class, 'password-short-lbl')]",
+    "passDidntMatch": "//*[contains(@class, 'password-didnt-match-lbl')]",
+    "cancelButton": "//*[contains(@class, 'cancel-btn btn btn-danger')]"
 }

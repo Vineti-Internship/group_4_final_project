@@ -4,7 +4,6 @@ const HomeConfig = require('../../configs/HomeConfig.json');
 const SignupPageObject = require('../../pages/SignupPageObject').default;
 const SignupConfig = require('../../configs/SignupConfig.json');
 
-//for this whole test suite to work, it has to be run only once with a non-taken email
 describe('Sign up', () => {
   let homePageObject = new HomePageObject(HomeConfig);
   let signupPageObject = new SignupPageObject(SignupConfig);
@@ -15,7 +14,7 @@ describe('Sign up', () => {
     let str1 = '123456';
     let str2 = '123456';
     let userName = "Mane Poghosian";
-    let userEmail = "tester22@gmail.com";
+    let userEmail = "tester222@gmail.com";
     console.log(headerText);
     signupPageObject.waitUntilH1Exists();
     assert.equal(headerText, "Registration");
@@ -29,7 +28,7 @@ describe('Sign up', () => {
     let str1 = '123456';
     let str2 = '123456';
     let userName = "Mane Poghosian";
-    let userEmail = "tester22@gmail.com";
+    let userEmail = "tester222@gmail.com";
     homePageObject.navigateToHomePage();
     homePageObject.clickOnSignupButton();
     signupPageObject.setName(userName);
@@ -46,7 +45,7 @@ describe('Sign up', () => {
     let str1 = '12345';
     let str2 = '12345';
     let userName = "Mane Poghosian";
-    let userEmail = "tester222@gmail.com";
+    let userEmail = "tester2222@gmail.com";
     signupPageObject.setName(userName);
     signupPageObject.setEmail(userEmail);
     signupPageObject.setPassword(str1);
@@ -61,7 +60,7 @@ describe('Sign up', () => {
     let str1 = '1234560';
     let str2 = '123456';
     let userName = 'Mane';
-    let userEmail = "tester123@gmail.com";
+    let userEmail = "tester1234@gmail.com";
     signupPageObject.setName(userName);
     signupPageObject.setEmail(userEmail);
     signupPageObject.setPassword(str1);
@@ -70,6 +69,10 @@ describe('Sign up', () => {
     let passDidntMatchText = signupPageObject.getPassDidntMatchText();
     console.log(passDidntMatchText);
     assert.equal(passDidntMatchText, 'Passwords did not match');
+  });
+  it('Click Cancel works', () => {
+    signupPageObject.clickCancelButton();
+    
   });
 
   
