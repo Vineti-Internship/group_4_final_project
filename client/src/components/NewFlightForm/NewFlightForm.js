@@ -26,6 +26,7 @@ class NewFlightForm extends React.Component {
 		this.findLanesForm = this.findLanesForm.bind(this);
 		this.handleCreateFlight = this.handleCreateFlight.bind(this);
 		this.validateOptions = this.validateOptions.bind(this);
+		this.handleCalcel = this.handleCalcel.bind(this);
 	}
 
 	async handleFindLane(e){
@@ -66,6 +67,11 @@ class NewFlightForm extends React.Component {
 			selected_airplane_id:id,
 			fire_airplane_error:false,
 		});
+	}
+
+	handleCalcel(e){
+		e.preventDefault();
+		this.props.history.push("/");
 	}
 
 	validateOptions(){
@@ -187,7 +193,7 @@ class NewFlightForm extends React.Component {
 						{this.state.fire_airplane_error && <br/>}
 						{this.state.fire_lane_error && <label style={{color:"red"}}>You have to choose lane</label>}
 						{this.state.fire_lane_error && <br/>}
-						<button className="cancel-btn btn btn-danger">Cancel</button>
+						<button className="cancel-btn btn btn-danger" onClick={this.handleCalcel}>Cancel</button>
 						{"\t"}
 						<input className="btn btn-success" type="submit" value="Create flight"/>
 					</form>
