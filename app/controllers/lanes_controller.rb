@@ -1,6 +1,6 @@
 class LanesController < ApplicationController
   #before_action :flight_manager_only, only: [:find]
-  before_action :lane_manager_only, except: [:find]
+  # before_action :lane_manager_only, except: [:find]
   before_action :set_lane, only: [:show, :update, :destroy]
 
   # GET /lanes
