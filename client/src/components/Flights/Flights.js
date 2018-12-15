@@ -8,6 +8,8 @@ class Flights extends React.Component {
 		this.props.getFlights();
 	}
 
+	capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
+
 	render() {
 		if(this.props.flights)
 			return (
@@ -30,7 +32,7 @@ class Flights extends React.Component {
 								return (
 									<tr key={flight.id}>
 										<th scope="col">{flight.id}</th>
-										<td>{flight.to}</td>
+										<td>{this.capitalize(flight.to)}</td>
 										<td>{flight.airline_name}</td>
 										<td>{flight.flight_start}</td>
 										<td>{flight.flight_end}</td>

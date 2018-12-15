@@ -5,8 +5,8 @@ class SearchForm extends React.Component {
 	constructor(props){
 		super(props);
 		this.state={
-			from:"",
-			to:"",
+			search_from:"",
+			search_to:"",
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSearchClick = this.handleSearchClick.bind(this);
@@ -20,8 +20,8 @@ class SearchForm extends React.Component {
 	}
 
 	handleSearchClick(){
-		const search_url=encodeURIComponent(`${this.state.from.toLowerCase()}+${this.state.to.toLowerCase()}`);
-		this.setState({from:"", to:""});
+		const search_url=encodeURIComponent(`${this.state.search_from.toLowerCase()}+${this.state.search_to.toLowerCase()}`);
+		this.setState({search_from:"", search_to:""});
 		this.props.history.push(`/search/${search_url}`);
 	}
 
@@ -34,8 +34,8 @@ class SearchForm extends React.Component {
 							<div className="input-group-prepend">
 								<span className="input-group-text" id="">From and to countries</span>
 							</div>
-							<input type="text" required className="form-control from-input" name="from" value={this.state.from} onChange={this.handleChange}/>
-							<input type="text" required className="form-control to-input" name="to" value={this.state.to} onChange={this.handleChange}/>
+							<input type="text" required className="form-control from-input" name="search_from" value={this.state.from} onChange={this.handleChange}/>
+							<input type="text" required className="form-control to-input" name="search_to" value={this.state.to} onChange={this.handleChange}/>
 							<button type="submit" className="search-btn btn btn-primary">Search</button>
 						</div>
 					</form>
