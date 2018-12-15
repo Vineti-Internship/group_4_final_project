@@ -3,6 +3,13 @@ import setAuthorizationToken from "../helpers/setAuthorizationToken";
 import * as actionTypes from "./types";
 import Auth from "../Auth";
 import jwtDecode from "jwt-decode";
+import {
+	BrowserRouter as Router,
+	Route,
+	Link,
+	Redirect,
+	withRouter
+} from "react-router-dom";
 
 
 export const setCurrentUser = user => ({
@@ -23,6 +30,9 @@ export const login = data => async dispatch => {
 		const token = res.data.auth_token;
 		Auth.authenticateToken(token);
 		setAuthorizationToken(token);
+		console.log(jwtDecode(token));
+	
+		
 		dispatch(setCurrentUser(jwtDecode(token)));
 	} catch(err) {
 		dispatch({

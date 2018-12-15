@@ -10,7 +10,7 @@ class SignInForm extends React.Component {
     errors: {},
     isLoading: false,
   }
-
+  
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value })
@@ -25,10 +25,7 @@ class SignInForm extends React.Component {
     if (!isValid) {
       this.setState({ errors });
     }
-
     console.log("state", this.state.errors);
-    
-
     return isValid;
   }
 
@@ -47,13 +44,6 @@ class SignInForm extends React.Component {
         password
       }
       this.props.login(reqdata);
-      // .then(
-      //   (res) => {
-      //   // this.context.router.push("/");
-      //   console.log("res", res);
-      //    },
-      //   (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
-      // );
     }
     console.log(validate(this.state))
     console.log("email", email, "password", password);  
@@ -98,30 +88,4 @@ class SignInForm extends React.Component {
 	}
 }
 
-
-// const mapStateToProps = state => ({
-//   currentUser: state.user
-// })
-
-// const mapStateToProps = (state) => {
-//   return { errorMessage: state.auth.error };
-// }
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     SignIn: (data) => {
-//       dispatch(SignIn(data));
-//     }
-//   }
-// }
-// SignInForm.propTypes = {
-//   SignIn: React.PropTypes.func.isRequired
-// }
-
-// SignInForm.contextTypes = {
-//   router: React.PropTypes.object.isRequired
-// }
-// export default connect(null, {SignIn})(SignInForm);
-// const mapStateToProps = (state) => {
-//   return { errorMessage: state.auth.error };
-// }
 export default connect(null, {login})(SignInForm);
