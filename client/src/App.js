@@ -8,6 +8,8 @@ import NewFlightForm from "./components/NewFlightForm";
 import NotFound from "./components/NotFound";
 import {BrowserRouter as Router, Link, Redirect, Route, Switch} from "react-router-dom";
 import SignUpForm from "./components/SignUpForm";
+import NewLaneForm from "./components/NewLanesForm/new_lane_form";
+import Lanes from "./components/Lanes";
 import SearchResult from "./components/SearchResult";
 
 class App extends React.Component {
@@ -23,6 +25,8 @@ class App extends React.Component {
 							<Link to="#" style={{marginRight:"16px"}} className="link-profile">Profile</Link>
 						</div>
 						<Switch>
+              <Route exact path = "/lanes" render={()=>  <Lanes />} />
+              <Route exact path = "/newlane" render={()=>  <NewLaneForm />} />
 							<Route exact path = "/flights" render ={()=> <Flights/>} />
 							<Route exact path = "/flights/:flightId" render ={({match, history})=> <Flight match={match} history={history}/>} />
 							<Route exact path = "/signup" render ={({history})=> <SignUpForm history={history}/>} />
