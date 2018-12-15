@@ -168,7 +168,7 @@ class NewFlightForm extends React.Component {
 							<div className="input-group-prepend">
 								<span className="input-group-text" id="inputGroup-sizing-default">Flight destination:</span>
 							</div>
-							<input type="text" required name="to" onChange={this.handleChange} value={this.state.to} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
+							<input type="text" required id="to-input" name="to" onChange={this.handleChange} value={this.state.to} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
 						</div>
 						<div className="input-group mb-3">
 							<div className="input-group-prepend">
