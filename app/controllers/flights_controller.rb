@@ -1,5 +1,5 @@
 class FlightsController < ApplicationController
-  before_action :flight_manager_only, except: [:index]
+  # before_action :flight_manager_only, except: [:index, :show]
   before_action :set_flight, only: [:show, :update, :destroy, :start_flight, :finish_flight]
 
   # GET /flights
@@ -13,14 +13,14 @@ class FlightsController < ApplicationController
   end
 
   def search_flight
-    begin
+  	begin
       result=[]
       Flight.all.each do  |flight|
-        if flight.to == (params[:to])
+        if flight.to == (params[:to]) && flight.from == (params[:from])
           result.push(flight)
         end
       end
-        render json: { result: result}, status: :ok
+        render json: result, status: :ok
     rescue StandardError => e
       render json: {errors: e}, status: :bad_request
     end
