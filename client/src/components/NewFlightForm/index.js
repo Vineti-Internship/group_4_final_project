@@ -17,8 +17,9 @@ const NewFlightFormCon = props =>
 
 
 const mapStateToProps= state => ({
-	foundLanes: state.lanes.found_lanes,
-	foundAirplanes: state.airplanes.found_airplanes
+	foundLanes: state.lanes.foundLanes,
+	foundAirplanes: state.airplanes.foundAirplanes
 });
+
 
 export default connect(mapStateToProps, {...lanesActionCreators, ...airplanesActionCreators, ...flightActionCreators})(NewFlightFormCon);
