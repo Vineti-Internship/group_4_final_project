@@ -1,3 +1,3 @@
 {
-    "signupButton": "//*[@class = 'link-signup']"
+    "signupButton": "//*[@class='link-signup']"
 }
