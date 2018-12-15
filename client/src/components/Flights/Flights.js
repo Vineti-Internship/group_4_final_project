@@ -39,7 +39,7 @@ class Flights extends React.Component {
 							})}
 						</tbody>
 					</table>
-					<Link to="/newflight" style={{float:"left"}} className="link-newflight btn btn-primary">+ New Flight</Link>
+					{this.props.aud==="f_manager" && <Link to="/newflight" style={{float:"left"}} className="link-newflight btn btn-primary">+ New Flight</Link>}
 				</div>
 			);
 		return <Spinner/>;
