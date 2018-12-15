@@ -16,6 +16,7 @@ class SignUpForm extends React.Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleCreateUser = this.handleCreateUser.bind(this);
 		this.handleCancelClick = this.handleCancelClick.bind(this);
+		this.validateInputs = this.validateInputs.bind(this);
 	}
 
 	handleChange(e){
@@ -27,9 +28,29 @@ class SignUpForm extends React.Component {
 			didntMatchPassword:false
 		});
 	}
+
+	validateInputs(){
+		const {password, password_confirmation} = this.state;
+		let passwordShort = false;
+		let didntMatchPassword = false;
+		if (password.length < 6){
+			this.setState({shortPassword:true, password:"", password_confirmation:""});
+			passwordShort = true;
+		}
+		if(password !== password_confirmation){
+			this.setState({didntMatchPassword:true,  password:"", password_confirmation:""});
+			didntMatchPassword = true;
+		}
+		if(passwordShort || didntMatchPassword)
+			return false;
+		return true;
+	}
+
 	/*eslint indent: [2, "tab", {"SwitchCase": 1}]*/
 	async handleCreateUser(e){
 		e.preventDefault();
+		if(!this.validateInputs())
+			return;
 		const data = {...this.state};
 		const bf = new Blowfish("777");
 		
@@ -71,15 +92,6 @@ class SignUpForm extends React.Component {
 				<h1 className="registration-header">Registration</h1>
 				<center>
 					<form onSubmit={this.handleCreateUser} style={{width:"30rem"}}>
-						{
-							/* 
-							<div className="input-group mb-3">
-								<div className="input-group-prepend">
-									<span className="input-group-text" id="inputGroup-sizing-default">Default</span>
-								</div>
-								<input type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
-							</div> 
-		*/}
 						<div className="input-group mb-3">
 							<div className="input-group-prepend">
 								<span className="input-group-text" id="inputGroup-sizing-default">Full Name:</span>
