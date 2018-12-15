@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import React from "react";
 import * as lanesActionCreators from "../../actions/lanes_actions";
 import * as airplanesActionCreators from "../../actions/airplanes_actions";
+import * as flightActionCreators from "../../actions/flight_actions";
 
 const NewFlightFormCon = props => 
 	<NewFlightForm 
@@ -11,11 +12,13 @@ const NewFlightFormCon = props =>
 		lanes={props.foundLanes} 
 		findLanes={props.findLanes} 
 		airplanes={props.foundAirplanes}
-		findAirplanes={props.findAirplanes}/>;
+		findAirplanes={props.findAirplanes}
+		createFlight={props.createFlight}/>;
+
 
 const mapStateToProps= state => ({
 	foundLanes: state.lanes.found_lanes,
 	foundAirplanes: state.airplanes.found_airplanes
 });
 
-export default connect(mapStateToProps, {...lanesActionCreators, ...airplanesActionCreators})(NewFlightFormCon);
+export default connect(mapStateToProps, {...lanesActionCreators, ...airplanesActionCreators, ...flightActionCreators})(NewFlightFormCon);

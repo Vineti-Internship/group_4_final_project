@@ -24,3 +24,15 @@ export const notFound = () => {
 		type:actionTypes.FLIGHT_NOT_FOUND
 	};
 };
+
+export const createFlight = data => async dispatch => {
+	try {
+		await axios.post("/flights",{flight:{...data}});
+		dispatch({
+			type:actionTypes.CREATE_FLIGHT
+		});
+	} catch (error) {
+		console.log(error);
+	}
+
+};
