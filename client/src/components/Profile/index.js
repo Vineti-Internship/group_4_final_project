@@ -5,12 +5,12 @@ import React from "react";
 import * as usersActions from "../../actions/users_actions";
 
 const ProfileCon = (props) => {
-	return <Profile {...props} getUserInfo={props.getUserInfo}/>;
+	return <Profile {...props} getUserInfo={props.getUserInfo} user={props.user}/>;
 };
 
 function mapStateToProps(state) {
 	return {
-		user: state.user
+		user: state.users.user
 	};
 }
 

@@ -33,6 +33,7 @@ class AirplanesController < ApplicationController
     Airplane.all.each do |plane|
       f_start = params[:flight_start].to_datetime - (plane.time_on_lane/60).minutes
       f_end = params[:flight_start].to_datetime + params[:flight_time].to_i.minutes
+      available_planes.push(plane) if plane.flights.length == 0
       plane.flights.each do |flight|
         if flight.flight_start + flight.flight_time < f_start || flight.flight_start + flight.flight_time > f_end
           if params[:capacity] <= plane.capacity
