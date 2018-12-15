@@ -14,7 +14,7 @@ describe('Sign up', () => {
     let str1 = '123456';
     let str2 = '123456';
     let userName = "Mane Poghosian";
-    let userEmail = "tester222@gmail.com";
+    let userEmail = "tester@gmail.com";
     console.log(headerText);
     signupPageObject.waitUntilH1Exists();
     assert.equal(headerText, "Registration");
@@ -28,7 +28,7 @@ describe('Sign up', () => {
     let str1 = '123456';
     let str2 = '123456';
     let userName = "Mane Poghosian";
-    let userEmail = "tester222@gmail.com";
+    let userEmail = "tester@mail.com";
     homePageObject.navigateToHomePage();
     homePageObject.clickOnSignupButton();
     signupPageObject.setName(userName);
@@ -38,6 +38,7 @@ describe('Sign up', () => {
     signupPageObject.clickRegisterButton();
     let emailTakenText = signupPageObject.getEmailTakenText();
     console.log(emailTakenText);
+    signupPageObject.waitUntilEmailTakenExists();
     assert.equal(emailTakenText, "Email has already been taken");
   });
 
@@ -53,6 +54,7 @@ describe('Sign up', () => {
     signupPageObject.clickRegisterButton(); 
     let passShortText = signupPageObject.getPassShortText();
     console.log(passShortText);
+    signupPageObject.waitUntilPassShortExists();
     assert.equal(passShortText, "Password is too short (minimum is 6 characters)");
   });
 
@@ -68,11 +70,11 @@ describe('Sign up', () => {
     signupPageObject.clickRegisterButton();
     let passDidntMatchText = signupPageObject.getPassDidntMatchText();
     console.log(passDidntMatchText);
+    signupPageObject.waitUntilDidntMatchExists();
     assert.equal(passDidntMatchText, 'Passwords did not match');
   });
   it('Click Cancel works', () => {
     signupPageObject.clickCancelButton();
-    
   });
 
   
