@@ -1,6 +1,6 @@
 class LanesController < ApplicationController
   #before_action :flight_manager_only, only: [:find]
-  before_action :lane_manager_only, except: [:find]
+  # before_action :lane_manager_only, except: [:find]
   before_action :set_lane, only: [:show, :update, :destroy]
 
   # GET /lanes
@@ -43,18 +43,13 @@ class LanesController < ApplicationController
   def find
     available_lanes = []
     Lane.all.each  do |lane|
-      curr_cap = 0
-
       lane.flights.each do |flight|
-        f_start = params[:flight_start].to_datetime - flight.airplane.time_on_lane
+        f_start = params[:flight_start].to_datetime - (flight.airplane.time_on_lane/60).minutes
         f_end = params[:flight_start].to_datetime
-        if flight.flight_start < f_end && (flight.flight_start - flight.airplane.time_on_lane > f_start || flight.flight_start - flight.airplane.time_on_lane < f_start) 
-          curr_cap -= flight.airplane.capacity
-        elsif flight.flight_start > f_end && (flight.flight_start - flight.airplane.time_on_lane > f_start || flight.flight_start - flight.airplane.time_on_lane < f_start) 
-          curr_cap += flight.airplane.capacity
-        end 
-        if curr_cap + params[:capacity].to_i < lane.capacity
-          available_lanes.push(lane)
+        if flight.flight_start - (flight.airplane.time_on_lane/60).minutes > f_end || flight.flight_start < f_start
+          if lane.capacity >= params[:capacity]
+            available_lanes.push(lane)
+          end
         end
       end
     end

@@ -1,6 +1,7 @@
 class FlightListSerializer < ActiveModel::Serializer
   belongs_to :airplane
   belongs_to :lane
+  has_many :tickets
   attributes :id, :from, :to, :flight_start, :flight_end, :airline_name, :status
 
   def flight_end 
