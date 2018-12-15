@@ -8,7 +8,7 @@ class NewFlightForm extends React.Component {
 			from:"Yerevan",
 			to:"",
 			flight_start:"2018-12-13T01:00",
-			flight_time:"01:00",
+			flight_time:0,
 			capacity:"100",
 			selected_lane_id:-1,
 			selected_airplane_id:-1,
@@ -38,13 +38,11 @@ class NewFlightForm extends React.Component {
 
 	async handleFindAirplane(e){
 		e.preventDefault();
-		const flight_time = this.convertTimeToMinutes(this.state.flight_time)
+		const flight_time = this.state.flight_time
 		const data = {flight_start:this.state.flight_start, capacity:parseInt(this.state.capacity), flight_time};
 		await this.props.findAirplanes(data);
 		this.setState({airplanes:this.props.airplanes, airplanes_loaded:true, selected_airplane_id:-1, require_airplane_find:false});
 	}
-
-	convertTimeToMinutes = time => parseInt(time[0])*10*60+parseInt(time[1])*60+parseInt(time[3])*10+parseInt(time[4]);
 
 	handleChange(e){
 		const {name, value} = e.target;
@@ -98,10 +96,10 @@ class NewFlightForm extends React.Component {
 		if(!this.validateOptions())
 			return;
 		
-		const flight_time = this.convertTimeToMinutes(this.state.flight_time)
+		const flight_time = this.state.flight_time;
 		const data = {
 			from:"yerevan",
-			to:this.state.to,
+			to:this.state.to.toLowerCase(),
 			flight_start:this.state.flight_start, 
 			flight_time, 
 			lane_id:this.state.selected_lane_id, 
@@ -172,7 +170,7 @@ class NewFlightForm extends React.Component {
 							<div className="input-group-prepend">
 								<span className="input-group-text" id="inputGroup-sizing-default">Flight duration:</span>
 							</div>
-							<input type="time" required name="flight_time" onChange={this.handleChange} value={this.state.flight_time} className="form-control without_ampm" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
+							<input type="number" required name="flight_time" placeholder="duration in minutes" onChange={this.handleChange} value={this.state.flight_time} className="form-control without_ampm" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
 						</div> 
 						<div className="input-group mb-3">
 							<div className="input-group-prepend">
