@@ -1,7 +1,20 @@
+
 | Test Case ID | Test Scenario | Test Steps | Test Data | Expected Result | Actual Result | Status|
+
+
 |---|---|---|---|---|---|---|
-|NF01| Check new flight creation| 1.Navigate to http://localhost:8000/newflight <br> 2.Click +New Flight Button <br> 3.Set a-flight destination, b-flight start, c-duration and d-passanger count <br> 4. Click Find available airplane button <br> 5. Check, if the available planes have valid capacity | a-"London" b-"2018-12-13T02:00" c-600 minutes d-207 |
-|NF02| Check new flight creation| 1.Navigate to http://localhost:8000/newflight <br> 2.Click +New Flight Button <br> 3.Set a-flight destination, b-flight start, c-duration and d-passanger count <br>|
-|NF03| Check new flight creation| 1.Navigate to http://localhost:8000/newflight <br> 2.Click +New Flight Button <br> 3.Set a-flight destination, b-flight start, c-duration and d-passanger count <br>|
-|NF04| Check new flight creation| 1.Navigate to http://localhost:8000/newflight <br> 2.Click +New Flight Button |
-|NF05| Check new flight creation| 1.Navigate to http://localhost:8000/newflight <br> 2.Click +New Flight Button | 
+
+|NF01| Check new flight creation| 1.Navigate to http://localhost:8000/newflight <br> 2.Click +New Flight Button <br> 3.Set a-flight destination, b-flight start, c-duration and d-passanger count <br> 4. Click Find available airplane button <br> 5. Check, if the available planes have valid capacity  | a-"London" b-"2018-12-13T02:00" c-600 minutes d-207 | No airplanes with <207 capacity | Expected Result | Pass |
+
+|NF02| Check new flight creation| 1.Navigate to http://localhost:8000/newflight <br> 2.Click +New Flight Button <br> 3.Set a-flight destination, b-flight start, c-duration, d-passanger count, e-lane  <br> 4. Select an airplane <br> 5. Click Find available lane button <br> 5. Check, if the available lanes have valid capacity  | a-"Monaco" b-"2018-12-13T03:00" c-600 minutes d-207| No lanes with < 207 capacity | Expected Result | Pass |
+
+|NF03| Check new flight creation| 1.Navigate to http://localhost:8000/newflight <br> 2.Click +New Flight Button <br> 3.Set a-flight destination, b-flight start, c-duration and d-passanger count e-lane <br> 4.Select an airplane <br> 5. Click Find available lane button <br> 6. Click Create Flight | a-NULL b-"2018-12-13T04:00" c-600 d-100 e-100 | Pop Up box with text "Please fill out this field" | Expected Result | Pass |
+
+
+|NF04| Check new flight creation| 1.Navigate to http://localhost:8000/newflight <br> 2.Click +New Flight Button <br> 3.Set a-flight destination, b-flight start, c-duration and d-passanger count e-lane <br> 4.Select an airplane <br> 5. Click Find available lane button <br> 6. Click Create Flight | a-"New York" b-NULL c-600 d-100 e-100 | Pop Up box with text "Please fill out this field" | Expected Result | Pass |
+
+
+|NF05| Check new flight creation| 1.Navigate to http://localhost:8000/newflight <br> 2.Click +New Flight Button <br> 3.Set a-flight destination, b-flight start, c-duration and d-passanger count e-lane <br> 4.Select an airplane <br> 5. Click Find available lane button <br> 6. Click Create Flight | a-"New York" b-"2018-12-13T05:00" c-29 d-100 e-100 | Pop Up box with text "Please select a value, that is no less than 30" | Expected Result | Pass | 
+
+
+|NF06| Check new flight creation| 1.Navigate to http://localhost:8000/newflight <br> 2.Click +New Flight Button <br> 3.Set a-flight destination, b-flight start, c-duration and d-passanger count e-lane <br> 4.Select an airplane <br> 5. Click Find available lane button <br> 6. Click Create Flight | a-"New York" b-"2018-12-13T05:00" c-51 d-2 e-100 | Pop Up box with text "Please select a value, that is no less than 10" | Expected Result | Pass | 
