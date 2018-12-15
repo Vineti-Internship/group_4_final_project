@@ -17,4 +17,3 @@ export const GET_USER = "GET_USER";
 export const UPDATE_USER_INFO = "UPDATE_USER_INFO";
 
 export const GET_LANES = "GET_LANES";
-export const CREATE_USER = "CREATE_USER";
