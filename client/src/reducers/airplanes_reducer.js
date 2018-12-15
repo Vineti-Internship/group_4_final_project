@@ -8,7 +8,7 @@ const initialAirplanesState = {
 export default (state = initialAirplanesState, action) => {
 	switch(action.type){
 		case actionTypes.FIND_AIRPLANES:
-			return {...state, found_airplanes: [...action.payload]};
+			return {...state, foundAirplanes: [...action.payload]};
 		default:
 			return state;
 	}

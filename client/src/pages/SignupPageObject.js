@@ -1,11 +1,13 @@
-const BasePageObject = require('./BasePageObject.js').default;
+const BasePageObject = require("./BasePageObject.js").default;
 
-module.exports['default'] = class SignupPageObject extends BasePageObject{
-    constructor(selector) {
-        super();
-        this.selector = selector;
-    }
+module.exports["default"] = class SignupPageObject extends BasePageObject{
+	constructor(selector) {
+		super();
+		this.selector = selector;
+	}
 
+
+	
     setName(userName){
         this.setValue(this.selector.nameInput, userName);
     }
@@ -20,6 +22,15 @@ module.exports['default'] = class SignupPageObject extends BasePageObject{
     }
     waitUntilH1Exists(){
         browser.waitForExist(this.selector.registrationH1, 10000);
+    }
+    waitUntilEmailTakenExists(){
+        browser.waitForExist(this.selector.emailTakenLabel, 10000);
+    }
+    waitUntilPassShortExists(){
+        browser.waitForExist(this.selector.passShortLabel, 10000);
+    }
+    waitUntilDidntMatchExists(){
+        browser.waitForExist(this.selector.passDidntMatch, 10000);
     }
     getEmailTakenText(){
         return browser.element(this.selector.emailTakenLabel).getText();

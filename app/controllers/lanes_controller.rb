@@ -43,12 +43,17 @@ class LanesController < ApplicationController
   def find
     available_lanes = []
     Lane.all.each  do |lane|
-      lane.flights.each do |flight|
-        f_start = params[:flight_start].to_datetime - (flight.airplane.time_on_lane/60).minutes
-        f_end = params[:flight_start].to_datetime
-        if flight.flight_start - (flight.airplane.time_on_lane/60).minutes > f_end || flight.flight_start < f_start
-          if lane.capacity >= params[:capacity]
-            available_lanes.push(lane)
+      if lane.flights.length == 0
+        available_lanes.push(lane)
+      else
+        lane.flights.each do |flight|
+          f_start = params[:flight_start].to_datetime - (flight.airplane.time_on_lane/60).minutes
+          f_end = params[:flight_start].to_datetime
+          if flight.flight_start - (flight.airplane.time_on_lane/60).minutes > f_end || flight.flight_start < f_start
+            if lane.capacity >= params[:capacity]
+              available_lanes.push(lane)
+              break
+            end
           end
         end
       end
