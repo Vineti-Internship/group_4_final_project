@@ -48,8 +48,8 @@ Lane.create!(capacity:150)
 puts "#{Lane.count} lanes created succesfully!"
 
 Flight.destroy_all
-Flight.create!(from:'Yerevan', to:'Paris', flight_start:DateTime.new(2018,11,1), flight_time:15, lane_id:Lane.first.id,airplane_id:Airplane.first.id)
-Flight.create!(from:'Yerevan', to:'Moscow', flight_start:DateTime.new(2018,11,3), flight_time:30, lane_id:Lane.second.id,airplane_id:Airplane.second.id)
-Flight.create!(from:'Yerevan', to:'Paris', flight_start:DateTime.new(2018,12,9), flight_time:50, lane_id:Lane.third.id,airplane_id:Airplane.third.id)
+Flight.create!(from:'yerevan', to:'paris', flight_start:DateTime.new(2018,11,1), flight_time:15, lane_id:Lane.first.id,airplane_id:Airplane.first.id)
+Flight.create!(from:'yerevan', to:'moscow', flight_start:DateTime.new(2018,11,3), flight_time:30, lane_id:Lane.second.id,airplane_id:Airplane.second.id)
+Flight.create!(from:'yerevan', to:'paris', flight_start:DateTime.new(2018,12,9), flight_time:50, lane_id:Lane.third.id,airplane_id:Airplane.third.id)
 
 puts "#{Flight.count} flights created succesfully!"

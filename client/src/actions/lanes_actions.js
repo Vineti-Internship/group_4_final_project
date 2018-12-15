@@ -19,3 +19,16 @@ export const getFoundLanes = (lanes) => {
 		payload:lanes
 	};
 };
+
+export const allLanes = () => async dispatch => {
+	const res = await axios.get("/lanes");
+	const lanes = res.data;
+	dispatch(getAllLanes(lanes));
+};
+
+export const getAllLanes = (lanes) => {
+	return {
+		type: actionTypes.GET_LANES,
+		payload: lanes
+	};
+};
