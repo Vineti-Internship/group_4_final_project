@@ -4,7 +4,7 @@ import LanesReducer from "./lanes_reducer";
 import AirplanesReducer from "./airplanes_reducer";
 import UsersReducer from "./users_reducer";
 import auth from "./auth_reducer";
-import ProfileReducer from "./profile_reducer"
+import ProfileReducer from "./profile_reducer";
 
 export default combineReducers({
 	flights: FlightsReducer,

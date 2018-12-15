@@ -8,25 +8,32 @@ import NewFlightForm from "./components/NewFlightForm";
 import NotFound from "./components/NotFound";
 import {BrowserRouter as Router, Link, Redirect, Route, Switch} from "react-router-dom";
 import SignUpForm from "./components/SignUpForm";
-
+import * as authActions from "./actions/auth_actions";
 import SignInForm from "./components/SignInForm";
 import { connect } from "react-redux";
-import Auth from "./Auth";
 import Profile from "./components/Profile";
-
-import NewLaneForm from "./components/NewLanesForm/new_lane_form";
 import Lanes from "./components/Lanes";
 import SearchResult from "./components/SearchResult";
 
 
 class App extends React.Component {
-	render() {
-		// console.log("auth", this.props); 
+	constructor(props){
+		super(props);
+		this.state={auth:this.props.auth};
+		this.handleSignout = this.handleSignout.bind(this);
+	}
 
+	handleSignout(e){
+		e.preventDefault();
+		this.props.logout();
+		this.setState({auth:this.props.auth});
+	}
+
+	render() {
 		const userLinks = (
 			<React.Fragment>
-				{/* <Link to="/signout" style={{marginRight:"16px"}} className="link-signout">Sign Out</Link> */}
 				{this.props.auth && <Link to="/profile" style={{marginRight:"16px"}} className="link-profile">Profile</Link>}
+				{this.props.auth && <Link to="/" onClick={this.handleSignout} style={{marginRight:"16px"}} className="link-signout">Sign out</Link>}
 			</React.Fragment>
 		);
 		
@@ -44,20 +51,19 @@ class App extends React.Component {
 					<React.Fragment>
 						<SearchForm/>
 						<div className="nav">
-							{this.props.auth ? userLinks : guestLinks}
 							<Link to="/flights" style={{marginRight:"16px"}} className="link-flights">Flights</Link>
+							{this.props.auth ? userLinks : guestLinks}
 						</div>
 						<Switch>
-              <Route exact path = "/lanes" render={()=>  <Lanes />} />
-              <Route exact path = "/newlane" render={()=>  <NewLaneForm />} />
+							<Route exact path = "/lanes" render={()=>  <Lanes />} />
 							<Route exact path = "/flights" render ={()=> <Flights/>} />
 							<Route exact path = "/flights/:flightId" render ={({match, history})=> <Flight match={match} history={history}/>} />
-							<Route exact path = "/signup" render ={({history})=> <SignUpForm history={history}/>} />
+							<Route exact path = "/signup" render ={({history})=> this.props.auth?<Redirect to="/"/>:<SignUpForm history={history}/>} />
+							<Route exact path = "/signin" render={({history}) => this.props.auth?<Redirect to="/"/>:<SignInForm history={history}/>}/>
 							<Route exact path = "/newflight" render={({history})=>  <NewFlightForm history={history}/>} />
 							<Route exact path = "/search/:search_url" render={({match, history})=> <SearchResult match={match} history={history}/>} />
 							<Route exact path = "/" render={()=>  <Redirect to="/flights" />} />
-							<Route exact path = "/profile" render={() => <Profile />} />
-							{this.props.auth ? <Redirect to="/profile"/>: <Route exact path="/signin" render={() => <SignInForm/>} />}
+							<Route exact path = "/profile" render={() => this.props.auth?<Profile />:<Redirect to="/signin"/>} />}
 							<Route path="*" render={() => <NotFound/>} />
 						</Switch>
 					</React.Fragment>
@@ -74,4 +80,4 @@ function mapStateToProps(state) {
 		auth: state.auth.authenticated
 	};
 }
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, authActions)(App);

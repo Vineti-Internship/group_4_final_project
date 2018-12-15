@@ -1,13 +1,14 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import {Link} from "react-router-dom";
 import Spinner from "../Spinner";
 
 export default class Lanes extends React.Component {
-  componentWillMount() {
+	componentWillMount() {
 		this.props.getLanes();
 	}
 	render() {
-    if( this.props.lanes)
+		if( this.props.lanes)
 			return (
 				<div className="lanes">
 					<table>
@@ -28,7 +29,7 @@ export default class Lanes extends React.Component {
 					</table>
 					<Link to="/newlane">Create Lane</Link>
 				</div>
-      );
-      return <Spinner/>;
+			);
+		return <Spinner/>;
 	}
 }
