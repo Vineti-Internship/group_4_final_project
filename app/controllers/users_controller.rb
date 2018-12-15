@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :authenticate_request!, except: [:login, :create, :update, :destroy]
+    before_action :authenticate_request!, except: [:login, :create]
     before_action :admin_only, except: [:login, :profile, :create, :destroy, :update]
 
     def index
@@ -49,9 +49,8 @@ class UsersController < ApplicationController
 
     def update
         user = current_user
-        user_paras_wo_role = params.require(:user).permit(:name, :email, :password, :password_confirmation) 
-
-        if user&.update(user_paras_wo_role)
+        user_update_params = params.require(:user).permit(:name, :password, :password_confirmation)
+        if user&.update(user_update_params)
             render json: user
         else
             render json: user&.errors, status: :unprocessable_entity
