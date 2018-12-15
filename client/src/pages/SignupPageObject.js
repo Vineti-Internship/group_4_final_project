@@ -36,4 +36,7 @@ module.exports['default'] = class SignupPageObject extends BasePageObject{
     setPassConf(str2){
         this.setValue(this.selector.passConfInput, str2);
     }
+    clickCancelButton(){
+        this.click(this.selector.cancelButton);
+    }
 }
