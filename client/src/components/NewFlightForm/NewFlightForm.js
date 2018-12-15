@@ -20,7 +20,7 @@ class NewFlightForm extends React.Component {
 
 	async handleFindLane(e){
 		e.preventDefault();
-		const data = {flight_start:this.state.flight_start, capacity:this.state.capacity};
+		const data = {flight_start:this.state.flight_start, capacity:parseInt(this.state.capacity)};
 		await this.props.findLanes(data);
 		this.setState({lanes:this.props.lanes});
 	}
@@ -28,8 +28,9 @@ class NewFlightForm extends React.Component {
 	async handleFindAirplane(e){
 		e.preventDefault();
 		const flight_time = parseInt(this.state.flight_time[0])*10*60+parseInt(this.state.flight_time[1])*60+parseInt(this.state.flight_time[3])*10+parseInt(this.state.flight_time[4]);
-		const data = {flight_start:this.state.flight_start, capacity:this.state.capacity, flight_time};
+		const data = {flight_start:this.state.flight_start, capacity:parseInt(this.state.capacity), flight_time};
 		await this.props.findAirplanes(data);
+		this.setState({airplanes:this.props.airplanes});
 	}
 
 	handleChange(e){
@@ -85,48 +86,32 @@ class NewFlightForm extends React.Component {
 						<div className="found-airplanes">
 							<br/>
 							{this.state.airplanes? this.state.airplanes.map((airplane) =>{
-								if(this.state.selected_airplane_id === airplane.id)
-									return (
-										<div className="card" key={airplane.id} style={{width:"10rem", display:"inline-block", backgroundColor:"DodgerBlue"}} onClick={(e)=>this.selectAirplane(e, airplane.id)}>
-											<div className="card-body">
-												<h5 className="card-title">{airplane.name}</h5>
-												<h4 className="card-text">{airplane.model}</h4>
-											</div>
+								return (
+									<div className="card" key={airplane.id} style={this.state.selected_airplane_id === airplane.id?{width:"10rem", display:"inline-block", backgroundColor:"DodgerBlue"}:{width:"10rem", display:"inline-block", backgroundColor:"white"}} onClick={(e)=>this.selectAirplane(e, airplane.id)}>
+										<div className="card-body">
+											<h5 className="card-title">Name {airplane.name}</h5>
+											<h4 className="card-text"> Capacity {airplane.capacity}</h4>
+											<p className="card-text">Model {airplane.model}</p>
 										</div>
-									);
-								else
-									return (
-										<div className="card" key={airplane.id} style={{width:"10rem", display:"inline-block", backgroundColor:"white"}} onClick={(e)=>this.selectAirplane(e, airplane.id)}>
-											<div className="card-body">
-												<h5 className="card-title">{airplane.name}</h5>
-												<h4 className="card-text">{airplane.model}</h4>
-											</div>
-										</div>
-									);
+									</div>
+								);
 							}): ""
 							}
 						</div>
+						<br/>
 						<button className="find-lane-btn btn btn-primary" onClick={this.handleFindLane}>Find available lane</button>
 						<br/>
 						<div className="found-lanes">
 							<br/>
 							{this.state.lanes? this.state.lanes.map((lane) =>{
-								if(this.state.selected_lane_id === lane.id)
-									return (
-										<div className="card" key={lane.id} style={{width:"10rem", display:"inline-block", backgroundColor:"DodgerBlue"}} onClick={(e)=>this.selectLane(e, lane.id)}>
-											<div className="card-body">
-												<h5 className="card-title">Lane no {lane.id}</h5>
-											</div>
+								return (
+									<div className="card" key={lane.id} style={this.state.selected_lane_id === lane.id?{width:"10rem", display:"inline-block", backgroundColor:"MediumSeaGreen"}:{width:"10rem", display:"inline-block", backgroundColor:"white"}} onClick={(e)=>this.selectLane(e, lane.id)}>
+										<div className="card-body">
+											<h5 className="card-title">Lane no {lane.id}</h5>
+											<h4 className="card-text">Capacity {lane.capacity}</h4>
 										</div>
-									);
-								else
-									return (
-										<div className="card" key={lane.id} style={{width:"10rem", display:"inline-block", backgroundColor:"white"}} onClick={(e)=>this.selectLane(e, lane.id)}>
-											<div className="card-body">
-												<h5 className="card-title">Lane no {lane.id}</h5>
-											</div>
-										</div>
-									);
+									</div>
+								);
 							}):""
 							}
 						</div>

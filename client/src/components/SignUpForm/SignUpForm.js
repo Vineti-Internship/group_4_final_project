@@ -50,6 +50,8 @@ class SignUpForm extends React.Component {
 					case "Email has already been taken":
 						this.setState({invalidEmail:true});
 						break;
+					default:
+						break;
 				}
 			});
 		else{
