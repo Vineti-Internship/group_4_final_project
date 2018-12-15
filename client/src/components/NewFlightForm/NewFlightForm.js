@@ -5,10 +5,9 @@ class NewFlightForm extends React.Component {
 	constructor(props){
 		super(props);
 		this.state={
-			from:"Yerevan",
 			to:"",
-			flight_start:"2018-12-13T01:00",
-			flight_time:0,
+			flight_start:this.getMinimumDate(),
+			flight_time:30,
 			capacity:"100",
 			selected_lane_id:-1,
 			selected_airplane_id:-1,
@@ -16,6 +15,7 @@ class NewFlightForm extends React.Component {
 			airplanes_loaded:false,
 			fire_airplane_error:false,
 			fire_lane_error:false,
+			invalid_duration:false,
 			require_airplane_find:false,
 			require_lane_find:false
 		};
@@ -45,12 +45,14 @@ class NewFlightForm extends React.Component {
 	}
 
 	handleChange(e){
+		this.getMinimumDate();
 		const {name, value} = e.target;
 		if(name !== "to")
 			this.setState({
 				[name]:value,
 				require_lane_find:true,
 				require_airplane_find:true,
+				invalid_duration:false
 			});
 		else
 			this.setState({
@@ -85,6 +87,9 @@ class NewFlightForm extends React.Component {
 		if (this.state.selected_lane_id === -1){
 			this.setState({fire_lane_error:true});
 			return false;
+		}
+		if(this.state.flight_time < 30){
+			this.setState({invalid_duration:true});
 		}
 		if(this.state.require_airplane_find || this.state.require_lane_find)
 			return false
@@ -148,6 +153,11 @@ class NewFlightForm extends React.Component {
 		)
 	}
 
+	getMinimumDate = () => {
+		const now = new Date();
+		return `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}T${now.getHours()+1 <10?`0${now.getHours()+1}`:now.getHours()+1}:${now.getMinutes() <10?`0${now.getMinutes()}`:now.getMinutes()}`;
+	}
+
 	render() {
 		return (
 			<div className="new-flight-form">
@@ -164,19 +174,19 @@ class NewFlightForm extends React.Component {
 							<div className="input-group-prepend">
 								<span className="input-group-text" id="inputGroup-sizing-default">Flight start:</span>
 							</div>
-							<input type="datetime-local" required name="flight_start" onChange={this.handleChange} value={this.state.flight_start} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
+							<input type="datetime-local" min={this.getMinimumDate()} required name="flight_start" onChange={this.handleChange} value={this.state.flight_start} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
 						</div>
 						<div className="input-group mb-3">
 							<div className="input-group-prepend">
 								<span className="input-group-text" id="inputGroup-sizing-default">Flight duration:</span>
 							</div>
-							<input type="number" required name="flight_time" placeholder="duration in minutes" onChange={this.handleChange} value={this.state.flight_time} className="form-control without_ampm" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
+							<input type="number" min="30" required name="flight_time" placeholder="duration in minutes" onChange={this.handleChange} value={this.state.flight_time} className="form-control without_ampm" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
 						</div> 
 						<div className="input-group mb-3">
 							<div className="input-group-prepend">
 								<span className="input-group-text" id="inputGroup-sizing-default">Passanger count:</span>
 							</div>
-							<input type="number" required name="capacity" onChange={this.handleChange} value={this.state.capacity} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
+							<input type="number" min="10" required name="capacity" onChange={this.handleChange} value={this.state.capacity} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
 						</div> 
 						<button className="find-airplane-btn btn btn-primary" onClick={this.handleFindAirplane}>Find available airplane</button>
 						{this.state.require_airplane_find && <i className="fas fa-arrow-left require-airplane-notif"> Click here to refresh list</i>}
@@ -197,6 +207,8 @@ class NewFlightForm extends React.Component {
 						{this.state.fire_airplane_error && <br/>}
 						{this.state.fire_lane_error && <label className="no-lane-chosen-lbl" style={{color:"red"}}>You have to choose lane</label>}
 						{this.state.fire_lane_error && <br/>}
+						{this.state.invalid_duration && <label className="invalid-duration-lbl" style={{color:"red"}}>You have to choose valid flight duration</label>}
+						{this.state.invalid_duration && <br/>}
 						<button className="cancel-btn btn btn-danger" onClick={this.handleCalcel}>Cancel</button>
 						{"\t"}
 						<input className="submit-btn btn btn-success" type="submit" value="Create flight"/>
