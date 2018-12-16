@@ -52,25 +52,46 @@ class App extends React.Component {
 					<Link to="/signup" style={{marginRight:"16px"}} className="link-signup nav-link">Sign Up</Link>
 				</li>}
 			</React.Fragment>
-		);
+    );
+
+    const managerLinks = (
+      <React.Fragment>
+        {
+          this.props.aud === "l_manager" &&
+          <li className="nav-item">
+            <Link to="/lanes" style={{marginRight:"16px"}} className="link-signin nav-link">Lanes</Link>
+          </li>
+        }
+        {
+          this.props.aud === "l_manager" &&
+          <li className="nav-item">
+            <Link to="/airplanes" style={{marginRight:"16px"}} className="link-signin nav-link">Airplanes</Link>
+          </li>
+        }
+        {
+          this.props.aud !== "l_manager" &&
+          <li className="nav-item">
+            <Link to="/flights" style={{marginRight:"16px"}} className="link-signup nav-link">Flights</Link>
+          </li>
+        }
+      </React.Fragment>
+    );
+
 
 		return (
-
 			<div className="App" style={{margin:"20px"}}>
 				<Router>
 					<React.Fragment>
 						<SearchForm/>
 						<div className="nav">
 							<ul className="nav nav-tabs">
-								<li className="nav-item">
-									<Link to="/flights" style={{marginRight:"16px"}} className="link-flights nav-link">Flights</Link>
-								</li>
+                {managerLinks}
 								{this.props.auth ? userLinks : guestLinks}
 							</ul>
 						</div>
 						<Switch>
-							<Route exact path = "/lanes" render={()=>  <Lanes />} />
-							<Route exact path = "/newlane" render={({history})=>  <NewLanesForm history= {history} />} />
+							<Route exact path = "/lanes" render={()=>  this.props.aud === "l_manager"? <Lanes /> : <Redirect to="/profile"/>} />
+							<Route exact path = "/newlane" render={({history})=> <NewLanesForm history= {history} />} />
 							<Route exact path = "/airplanes" render={()=>  <Airplanes />} />
 							<Route exact path = "/flights" render ={({history})=> <Flights history={history}/>} />
 							<Route exact path = "/flights/:flightId" render ={({match, history})=> <Flight match={match} history={history}/>} />
