@@ -12,8 +12,7 @@ exports.config = {
     specs: [
         // './src/test/specs/Signup.test.js', 
         //'./src/test/specs/SignIn.test.js', 
-         './src/test/specs/NewFlight.test.js', 
-        // './src/test/specs/Search.test.js'
+        './src/test/specs/NewFlightAndSearch.test.js'
     ],
     // Patterns to exclude.
     exclude: [
