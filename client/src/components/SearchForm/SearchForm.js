@@ -20,7 +20,7 @@ class SearchForm extends React.Component {
 	}
 
 	handleSearchClick(){
-		const search_url=encodeURIComponent(`${this.state.search_from.toLowerCase()}+${this.state.search_to.toLowerCase()}`);
+		const search_url=encodeURIComponent(`${this.state.search_from.toLowerCase().replace(" ","")}+${this.state.search_to.toLowerCase().replace(" ","")}`);
 		this.setState({search_from:"", search_to:""});
 		this.props.history.push(`/search/${search_url}`);
 	}
