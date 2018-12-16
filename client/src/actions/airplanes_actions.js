@@ -19,3 +19,16 @@ export const getFoundAirplanes = (airplanes) => {
 		payload:airplanes
 	};
 };
+
+export const allAirplanes = () => async dispatch => {
+	const res = await axios.get("/airplanes");
+	const airplanes = res.data;
+	dispatch(getAllAirplanes(airplanes));
+};
+
+export const getAllAirplanes = (airplanes) => {
+	return {
+		type: actionTypes.GET_AIRPLANES,
+		payload: airplanes
+	};
+};
