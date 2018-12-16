@@ -12,6 +12,8 @@ export default (state = initialLanesState, action) => {
 			return {...state, foundLanes: [...action.payload]};
 		case actionTypes.GET_LANES:
 			return {...state, allLanes: [...action.payload]};
+		case actionTypes.CREATE_LANE:
+			return {...state};
 		default:
 			return state;
 	}
