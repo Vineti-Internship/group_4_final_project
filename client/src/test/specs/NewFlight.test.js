@@ -8,7 +8,7 @@ const SignInConfig = require('../../configs/SignInConfig.json');
 const SearchPageObject = require('../../pages/SearchPageObject').default;
 const SearchConfig = require('../../configs/SearchConfig.json');
 
-describe('Create New Flight', () => {
+describe("New Flight creation and confirmation", () => {
     let homePageObject = new HomePageObject(HomeConfig);
     let newFlightPageObject= new NewFlightPageObject(NewFlightConfig);
     let signInPageObject = new SignInPageObject(SignInConfig);
