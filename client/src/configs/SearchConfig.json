@@ -1,4 +1,6 @@
 {
-    "card1": "//search-res-#0/[contains(@class, 'card-body')]",
-    "cardTitle": "//*[contains(@class, 'card-body')]"
+    "card": "//*[contains(@class, 'search-res')]",
+    "cardTitle": "//*[contains(@class, 'card-title')]",
+    "moreButton": "//*[contains(@class, 'more-but btn btn-primary')]"
+
 }
