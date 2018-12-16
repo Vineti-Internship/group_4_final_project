@@ -1,7 +1,7 @@
 import * as actionTypes from "../actions/types";
 
 const initialAirplanesState = {
-	found_airplanes:[],
+	foundAirplanes:[],
 	allAirplanes: []
 };
 
@@ -9,7 +9,7 @@ const initialAirplanesState = {
 export default (state = initialAirplanesState, action) => {
 	switch(action.type){
 		case actionTypes.FIND_AIRPLANES:
-			return {...state, found_airplanes: [...action.payload]};
+			return {...state, foundAirplanes: [...action.payload]};
 		case actionTypes.GET_AIRPLANES:
 			return {...state, allAirplanes: [...action.payload]};
 		default:

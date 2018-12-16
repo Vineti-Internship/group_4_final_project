@@ -6,7 +6,15 @@ import {Link} from "react-router-dom";
 class Flights extends React.Component {
 	componentWillMount() {
 		this.props.getFlights();
-		console.log(this.props)
+	}
+
+	getLastFlightId = () => {
+		let max_id = 0;
+		this.props.flights.forEach(flight => {
+			if(flight.id > max_id)
+				max_id=flight.id
+		});
+		return max_id;
 	}
 
 	capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
@@ -15,6 +23,7 @@ class Flights extends React.Component {
 		`${new Date(str).toISOString().split('T')[0]}\t\t${new Date(str).toISOString().split('T')[1].slice(0,8)}`
 
 	render() {
+		const max_id = this.getLastFlightId();
 		if(this.props.flights)
 			return (
 				<div className="flights">
@@ -34,7 +43,7 @@ class Flights extends React.Component {
 						<tbody>
 							{this.props.flights.map(flight => {
 								return (
-									<tr key={flight.id} style={{cursor:"pointer"}} onClick={()=> this.props.history.push(`/flights/${flight.id}`)}>
+									<tr key={flight.id} style={{cursor:"pointer"}} className={max_id===flight.id? "last-created-flight":""} onClick={()=> this.props.history.push(`/flights/${flight.id}`)}>
 										<th scope="col">{flight.id}</th>
 										<td>{this.capitalize(flight.to)}</td>
 										<td>{flight.airline_name}</td>
