@@ -104,7 +104,7 @@ class NewFlightForm extends React.Component {
 		const flight_time = this.state.flight_time;
 		const data = {
 			from:"yerevan",
-			to:this.state.to.toLowerCase(),
+			to:this.state.to.toLowerCase().replace(" ",""),
 			flight_start:this.state.flight_start, 
 			flight_time, 
 			lane_id:this.state.selected_lane_id, 

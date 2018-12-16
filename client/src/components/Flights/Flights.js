@@ -10,6 +10,9 @@ class Flights extends React.Component {
 
 	capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 
+	normalizeTime = str => 
+		`${new Date(str).toISOString().split('T')[0]}\t\t${new Date(str).toISOString().split('T')[1].slice(0,8)}`
+
 	render() {
 		if(this.props.flights)
 			return (
@@ -34,8 +37,8 @@ class Flights extends React.Component {
 										<th scope="col">{flight.id}</th>
 										<td>{this.capitalize(flight.to)}</td>
 										<td>{flight.airline_name}</td>
-										<td>{flight.flight_start}</td>
-										<td>{flight.flight_end}</td>
+										<td>{this.normalizeTime(flight.flight_start)}</td>
+										<td>{this.normalizeTime(flight.flight_end)}</td>
 									</tr>
 								);
 							})}
