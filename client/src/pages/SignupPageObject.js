@@ -5,9 +5,6 @@ module.exports["default"] = class SignupPageObject extends BasePageObject{
 		super();
 		this.selector = selector;
 	}
-
-
-	
     setName(userName){
         this.setValue(this.selector.nameInput, userName);
     }

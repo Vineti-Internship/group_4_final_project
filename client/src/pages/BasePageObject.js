@@ -1,6 +1,6 @@
 module.exports["default"] = class BasePageObject{
 	constructor(selector){
-		this.selector =selector;
+		this.selector = selector;
   }
 
   getHtml(){

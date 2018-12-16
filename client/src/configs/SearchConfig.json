@@ -1,0 +1,4 @@
+{
+    "card1": "//search-res-#0/[contains(@class, 'card-body')]",
+    "cardTitle": "//*[contains(@class, 'card-body')]"
+}
