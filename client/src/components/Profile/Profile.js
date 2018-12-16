@@ -11,11 +11,11 @@ export default class Profile extends React.Component {
 		if(user)
 			return (
 				<div className="profile">
-					<h2>UserInfo</h2>
+					<h2>User Info</h2>
 					<div className="form-group">
-						<div>name: {user.name}</div>
-						<div>email: {user.email}</div>
-						<div>role: {user.role}</div>
+						<div>name: <p className="profile-name">{user.name}</p></div>
+						<div>email: <p className="profile-email">{user.email}</p></div>
+						<div>role: <p className="profile-role">{user.role}</p></div>
 					</div>
 					<div>
 						{/* {user.tickets.map(ticket => {
