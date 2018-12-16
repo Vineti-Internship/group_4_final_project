@@ -57,10 +57,10 @@ class App extends React.Component {
 							{this.props.auth ? userLinks : guestLinks}
 						</div>
 						<Switch>
-              <Route exact path = "/lanes" render={()=>  <Lanes />} />
-              <Route exact path = "/newlane" render={({history})=>  <NewLanesForm history= {history} />} />
-              <Route exact path = "/airplanes" render={()=>  <Airplanes />} />
-							<Route exact path = "/flights" render ={()=> <Flights/>} />
+							<Route exact path = "/lanes" render={()=>  <Lanes />} />
+							<Route exact path = "/newlane" render={({history})=>  <NewLanesForm history= {history} />} />
+							<Route exact path = "/airplanes" render={()=>  <Airplanes />} />
+							<Route exact path = "/flights" render ={({history})=> <Flights history={history}/>} />
 							<Route exact path = "/flights/:flightId" render ={({match, history})=> <Flight match={match} history={history}/>} />
 							<Route exact path = "/signup" render ={({history})=> this.props.auth?<Redirect to="/"/>:<SignUpForm history={history}/>} />
 							<Route exact path = "/signin" render={({history}) => this.props.auth?<Redirect to="/"/>:<SignInForm history={history}/>}/>
