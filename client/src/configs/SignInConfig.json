@@ -1,5 +1,5 @@
 {
     "email": "//*[contains(@name, 'email')]",
     "password": "//*[contains(@name, 'password')]",
-    "signIn": "//*[contains(@class, 'btn btn-primary btn-lg')]"
+    "signIn": "//*[contains(@class, 'btn btn-success btn-lg')]"
 }

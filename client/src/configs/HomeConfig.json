@@ -1,7 +1,8 @@
 {
-    "signupButton": "//*[@class='link-signup']",
+    "signupButton": "//*[@class='link-signup nav-link']",
     "fromInput": "//*[contains(@class, 'form-control from-input')]",
     "toInput": "//*[contains(@class, 'form-control to-input')]",
     "searchButton": "//*[contains(@class, 'search-btn btn btn-primary')]",
-    "newFlightButton": "//*[contains(@class, 'link-newflight btn btn-primary')]", "signInButton": "//*[@class='link-signin']"
+    "newFlightButton": "//*[contains(@class, 'link-newflight btn btn-primary')]", "signInButton": "//*[@class='link-signin nav-link']",
+    "lastCreatedFlight": "//*[@class='last-created-flight']"
 }

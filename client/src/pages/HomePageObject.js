@@ -34,4 +34,8 @@ module.exports['default'] = class HomePageObject extends BasePageObject{
         this.setValue(this.selector.toInput, to);
     }
 
+    getLastCreatedFlight(){
+        return this.getValue(this.selector.lastCreatedFlight).split(' ')[1];
+    }
+
 }
