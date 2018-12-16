@@ -32,3 +32,14 @@ export const getAllLanes = (lanes) => {
 		payload: lanes
 	};
 };
+
+export const createLane = data => async dispatch => {
+  try {
+		await axios.post("/lanes", { ... data } );
+		dispatch({
+			type:actionTypes.CREATE_LANE
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};
