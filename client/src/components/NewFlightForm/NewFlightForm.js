@@ -1,5 +1,4 @@
 import React from "react";
-import "./NewFlightForm.css";
 
 class NewFlightForm extends React.Component {
 	constructor(props){
@@ -31,17 +30,22 @@ class NewFlightForm extends React.Component {
 
 	async handleFindLane(e){
 		e.preventDefault();
-		const data = {flight_start:this.state.flight_start, capacity:parseInt(this.state.capacity)};
-		await this.props.findLanes(data);
-		this.setState({lanes:this.props.lanes, lanes_loaded:true, selected_lane_id:-1,  require_lane_find:false});
+		if(!this.state.lanes_loaded || this.state.require_lane_find)
+		{
+			const data = {flight_start:this.state.flight_start, capacity:parseInt(this.state.capacity)};
+			await this.props.findLanes(data);
+			this.setState({lanes:this.props.lanes, lanes_loaded:true, selected_lane_id:-1,  require_lane_find:false});
+		}
 	}
 
 	async handleFindAirplane(e){
 		e.preventDefault();
-		const flight_time = this.state.flight_time
-		const data = {flight_start:this.state.flight_start, capacity:parseInt(this.state.capacity), flight_time};
-		await this.props.findAirplanes(data);
-		this.setState({airplanes:this.props.airplanes, airplanes_loaded:true, selected_airplane_id:-1, require_airplane_find:false});
+		if(!this.state.airplanes_loaded || this.state.require_airplane_find){
+			const flight_time = this.state.flight_time
+			const data = {flight_start:this.state.flight_start, capacity:parseInt(this.state.capacity), flight_time};
+			await this.props.findAirplanes(data);
+			this.setState({airplanes:this.props.airplanes, airplanes_loaded:true, selected_airplane_id:-1, require_airplane_find:false});
+		}
 	}
 
 	handleChange(e){
