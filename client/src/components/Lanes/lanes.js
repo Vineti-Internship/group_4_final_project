@@ -5,10 +5,16 @@ import Spinner from "../Spinner";
 
 export default class Lanes extends React.Component {
 	componentWillMount() {
-		this.props.getLanes();
-	}
+    this.props.getLanes();
+    this.props.getMaxCount();
+  }
+
 	render() {
-		if( this.props.lanes)
+    const {lanes, maxCount } = this.props;
+    const count = maxCount.length !== 0 ? maxCount[0].value : -1;
+    const canCreate = count === -1 || count > lanes.length;
+
+		if(lanes)
 			return (
 				<div className="lanes">
 					<table>
@@ -17,17 +23,21 @@ export default class Lanes extends React.Component {
 								<th>Lane No</th>
 								<th>Capacity</th>
 							</tr>
-							{this.props.lanes.map(lane => {
-								return (
-									<tr key={lane.id}>
-										<th>{lane.id}</th>
-										<th>{lane.capacity}</th>
-									</tr>
-								);
+							{
+                lanes.map(lane => {
+                  return (
+                    <tr key={lane.id}>
+                      <th>{lane.id}</th>
+                      <th>{lane.capacity}</th>
+                    </tr>
+                  );
 							})}
 						</tbody>
 					</table>
-					<Link to="/newlane">Create Lane</Link>
+          {
+            canCreate &&
+            <Link to="/newlane">Create Lane</Link>
+          }
 				</div>
 			);
 		return <Spinner/>;
