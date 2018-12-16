@@ -1,21 +1,18 @@
 require 'test_helper'
 
-class TicketTest < ActiveSupport::TestCase
-  test 'valid ticket' do
-    ticket = Ticket.new(user_id:User.first.id, flight_id:Flight.first.id)
-    assert ticket.valid?
+describe Ticket, type: :model do
+  describe 'associations' do
+    describe 'belongs_to' do
+      it { is_expected.to belongs_to(:flight) }
+    end
+
+    describe 'has_many' do
+      it { is_expected.to belongs_to(:user) }
+    end
   end
 
-  test 'invalid without user' do
-    ticket = Ticket.new(flight_id:Flight.first.id)
-    refute ticket.valid?, 'ticket is valid without user'
-    assert_not_nil ticket.errors[:user_id], 'no validation error for user_id'
+  describe 'validations' do
+    it { is_expected.to validates(:user_id).uniqueness(scope: :flight_id) }
   end
-
-  test 'invalid without flight' do
-    ticket = Ticket.new(user_id:User.first.id)
-    refute ticket.valid?, 'ticket is valid without flight'
-    assert_not_nil ticket.errors[:flight_id], 'no validation error for flight_id'
-  end
-
 end
+
