@@ -1,0 +1,7 @@
+| Test Case ID | Test Scenario | Test Steps | Test Data | Expected Result | Actual Result | Status |
+|---|---|---|---|---|---|---|
+|S01|Check Search Functionality|1. Navigate to http://localhost:8000 <br> 2. Input existing flight aka a-from and b-to <br> 3.Click search|a-"Yerevan" b-"Rio"|All the flights in different divs with from-Yerevan and to-Rio, other info about the flight and a button "More", which takes to that flight page|Expected Result|Pass|
+|S02|Check Search Functionality|1. Navigate to http://localhost:8000 <br> 2. Input existing flight aka a-from and b-to <br> 3.Click search|a-"YeReVaN" b-"rIo"|All the flights in different divs with from-Yerevan and to-Rio, other info about the flight and a button "More", which takes to that flight page|Expected Result|Pass|
+|S03|Check Search Functionality|1. Navigate to http://localhost:8000 <br> 2. Input non-existing flight aka a-from and b-to <br> 3.Click search|a-"Somewhere" b-"Anywhere"|Header "No flights were found... :("|Expected Result|Pass|
+|S04|Check Search Functionality|1. Navigate to http://localhost:8000 <br> 2. Input a-from and leave b-to blank <br> 3.Click search|a-"Yerevan" b-NULL|Pop up at second input "Please fill out this field."|Expected Result|Pass|
+|S05|Check Search Functionality|1. Navigate to http://localhost:8000 <br> 2. Input b-to and leave a-from blank <br> 3.Click search|a-NULL b-"Yerevan"|Pop up at first input "Please fill out this field."|Expected Result|Pass|
