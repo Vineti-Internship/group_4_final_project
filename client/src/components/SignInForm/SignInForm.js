@@ -60,7 +60,7 @@ export default class SignInForm extends React.Component {
               <div className="input-group-prepend">
 								<span className="input-group-text" id="inputGroup-sizing-default">Email</span>
 							</div>
-              <input type="email" name="email" className="form-control" value={email} onChange={this.handleChange}/>        
+              <input type="email" required name="email" className="form-control" value={email} onChange={this.handleChange}/>        
 						  {!isLoading && !email && <label style={{color:"red"}}>{errors.email}</label>}
             </div>
 
@@ -68,7 +68,7 @@ export default class SignInForm extends React.Component {
               <div className="input-group-prepend">
 								<span className="input-group-text" id="inputGroup-sizing-default">Password</span>
 							</div>
-              <input type="password" name="password" className="form-control" value={password} onChange={this.handleChange}/>
+              <input type="password" required name="password" className="form-control" value={password} onChange={this.handleChange}/>
 						  {!isLoading && !password && <label style={{color:"red"}}>{errors.password}</label>}
             </div>
             {authError && <label style={{color:"red"}}>{this.props.error}</label> }
