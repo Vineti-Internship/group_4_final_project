@@ -19,3 +19,4 @@ export const UPDATE_USER_INFO = "UPDATE_USER_INFO";
 export const GET_LANES = "GET_LANES";
 export const CREATE_LANE = "CREATE_LANE";
 export const BUY_TICKET = "BUY_TICKET";
+export const GET_MAX_COUNT = "GET_MAX_COUNT";

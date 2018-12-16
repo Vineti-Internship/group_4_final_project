@@ -37,7 +37,7 @@ export const createLane = data => async dispatch => {
   try {
 		await axios.post("/lanes", { ... data } );
 		dispatch({
-			type:actionTypes.CREATE_LANE
+			type: actionTypes.CREATE_LANE
 		});
 	} catch (error) {
 		console.log(error);
