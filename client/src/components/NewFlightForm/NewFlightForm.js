@@ -159,7 +159,7 @@ class NewFlightForm extends React.Component {
 
 	getMinimumDate = () => {
 		const now = new Date();
-		return `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}T${now.getHours()+1 <10?`0${now.getHours()+1}`:now.getHours()+1}:${now.getMinutes() <10?`0${now.getMinutes()}`:now.getMinutes()}`;
+		return `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}T${now.getHours()+1 <10?`0${now.getHours()+1}`:now.getHours()+1<-12?now.getHours()+1:now.getHours()+1-12}:${now.getMinutes() <10?`0${now.getMinutes()}`:now.getMinutes()}`;
 	}
 
 	render() {
