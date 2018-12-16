@@ -100,7 +100,7 @@ class App extends React.Component {
 							<Route exact path = "/newflight" render={({history})=>  this.props.aud === "f_manager"?<NewFlightForm history={history}/>:<Redirect to="/"/>} />
 							<Route exact path = "/search/:search_url" render={({match, history})=> <SearchResult match={match} history={history}/>} />
 							<Route exact path = "/" render={()=>  <Redirect to="/flights" />} />
-							<Route exact path = "/profile" render={() => this.props.auth?<Profile />:<Redirect to="/signin"/>} />}
+							<Route exact path = "/profile" render={({history}) => this.props.auth?<Profile history={history}/>:<Redirect to="/signin"/>} />}
 							<Route path="*" render={() => <NotFound/>} />
 						</Switch>
 					</React.Fragment>
