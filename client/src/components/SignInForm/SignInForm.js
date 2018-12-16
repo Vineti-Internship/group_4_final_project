@@ -1,20 +1,24 @@
 import React from "react";
 import { validate } from "../../helpers/validations/validateSignin";
-import { isEmpty } from "../../helpers/validations/validateSignin"
-
+import { isEmpty } from "../../helpers/validations/validateSignin";
+import Auth from "../../Auth";
+ 
 export default class SignInForm extends React.Component {
-  state = {
-    email: "",
-    password: "",
-    errors: {},
-    isLoading: false,
+  constructor(){
+    super();
+    this.state = {
+      email: "",
+      password: "",
+      errors: {},
+      isLoading: false,
+      authError: false
+    }
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
   handleChange = (e) => {
     const { name, value } = e.target;
-    this.setState({ [name]: value })
+    this.setState({ [name]: value, authError:false })
   }
-
   isValid = () => {
     const obj = validate(this.state);
     const isValid = obj.isValid;
@@ -25,50 +29,55 @@ export default class SignInForm extends React.Component {
     }
     return isValid;
   }
-
-  handleSubmit = (e) => {
+  async handleSubmit(e) {
     e.preventDefault();
-    const {email, password} = this.state;
-    
+    const {email, password} = this.state;  
     if(this.isValid()) {
       this.setState({ errors: {}, isLoading: true });  
       const reqdata = {
         email,
         password
       }
-      this.props.login(reqdata);
-      this.props.history.push("/")
+      await this.props.login(reqdata);
+      if(Auth.isUserAuthenticated()){
+        this.props.history.push("/")
+      }
+      this.setState({
+        authError: true,
+        password:""
+      });    
     }
   }
 
-	render() {  
-    const { email, password, isLoading, identifier, errors } = this.state;
+	render() {      
+    const { email, password, isLoading, errors, authError } = this.state;    
 		return (
       <center>
         <div align="center" className="col-md-6 col-md-offset-3">
-          <h2>Sign in</h2>
-          <form name="signinform" onSubmit={this.handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input type="email" name="email" className="form-control" value={this.state.email} onChange={this.handleChange}/>
-              {!isLoading && !email &&
-                <div className="help-block">{this.state.errors.email}</div>
-              }
+          <h1 className="signin-header">Sign in</h1>
+          <form name="sign-in-form" onSubmit={this.handleSubmit} style={{width:"30rem"}}>
+            <div className="input-group mb-3">
+              <div className="input-group-prepend">
+								<span className="input-group-text" id="inputGroup-sizing-default">Email</span>
+							</div>
+              <input type="email" name="email" className="form-control" value={email} onChange={this.handleChange}/>        
+						  {!isLoading && !email && <label style={{color:"red"}}>{errors.email}</label>}
             </div>
 
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
+            <div className="input-group mb-3">
+              <div className="input-group-prepend">
+								<span className="input-group-text" id="inputGroup-sizing-default">Password</span>
+							</div>
               <input type="password" name="password" className="form-control" value={password} onChange={this.handleChange}/>
-              {!isLoading && !password &&
-                <div className="help-block">{errors.password}</div>
-              }
+						  {!isLoading && !password && <label style={{color:"red"}}>{errors.password}</label>}
             </div>
+            {authError && <label style={{color:"red"}}>{this.props.error}</label> }
             <div className="form-group">
-              <button className="btn btn-primary btn-lg" >Sign in</button>            
+              <button type="submit" className="btn btn-success btn-lg" >Sign in</button>            
             </div>
           </form>
         </div>
       </center>
-		);
+    );    
 	}
 }
