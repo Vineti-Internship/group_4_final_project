@@ -2,6 +2,10 @@ import React from "react";
 import Spinner from "../Spinner";
 
 class Flight extends React.Component {
+	constructor(props){
+		super(props);
+		this.buyTicketHandler = this.buyTicketHandler.bind(this);
+	}
 
 	async componentDidMount(){
 		const id = this.props.match.params.flightId;
@@ -11,6 +15,17 @@ class Flight extends React.Component {
 		this.setState({flight:this.props.flight});
 	}
 
+	async buyTicketHandler () {
+		if(window.confirm("Are you sure you want to buy this ticket?")) {
+			await this.props.buyTicket(this.state.flight.id);
+			const id = this.props.match.params.flightId;
+			await this.props.getFlight(id)
+			this.setState({flight:this.props.flight});	
+			if(this.props.status !== "error"){
+				this.props.history.push("/profile");
+			}
+		}	
+	}
 	capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 
 	normalizeTime = str => 
@@ -61,6 +76,11 @@ class Flight extends React.Component {
 								<h5 className="card-title">No:{this.state.flight.lane.id}</h5>
 							</div>
 						</div>
+						{this.props.status === "error" && <label>You already bought that ticket</label>}
+						<div>
+								<button onClick={this.buyTicketHandler} className="btn btn-success">Buy Ticket</button>
+						</div>
+						<br/>
 					</div>
 				</center>
 			);
