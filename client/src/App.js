@@ -41,8 +41,8 @@ class App extends React.Component {
 		
 		const guestLinks = (
 			<React.Fragment>
-				{!this.props.auth && <Link to="/signup" style={{marginRight:"16px"}} className="link-signup">Sign Up</Link>}
 				{!this.props.auth && <Link to="/signin" style={{marginRight:"16px"}} className="link-signin">Sign In</Link>}
+				{!this.props.auth && <Link to="/signup" style={{marginRight:"16px"}} className="link-signup">Sign Up</Link>}
 			</React.Fragment>
 		);
 
@@ -64,7 +64,7 @@ class App extends React.Component {
 							<Route exact path = "/flights/:flightId" render ={({match, history})=> <Flight match={match} history={history}/>} />
 							<Route exact path = "/signup" render ={({history})=> this.props.auth?<Redirect to="/"/>:<SignUpForm history={history}/>} />
 							<Route exact path = "/signin" render={({history}) => this.props.auth?<Redirect to="/"/>:<SignInForm history={history}/>}/>
-							<Route exact path = "/newflight" render={({history})=>  <NewFlightForm history={history}/>} />
+							<Route exact path = "/newflight" render={({history})=>  this.props.aud === "f_manager"?<NewFlightForm history={history}/>:<Redirect to="/"/>} />
 							<Route exact path = "/search/:search_url" render={({match, history})=> <SearchResult match={match} history={history}/>} />
 							<Route exact path = "/" render={()=>  <Redirect to="/flights" />} />
 							<Route exact path = "/profile" render={() => this.props.auth?<Profile />:<Redirect to="/signin"/>} />}
@@ -77,11 +77,9 @@ class App extends React.Component {
 	}
 }
 
-function mapStateToProps(state) {
-	// console.log(state);
-	return {
-		aud: state.auth.aud,
-		auth: state.auth.authenticated
-	};
-}
+const mapStateToProps = state => ({
+	aud: state.auth.aud,
+	auth: state.auth.authenticated
+});
+
 export default connect(mapStateToProps, authActions)(App);

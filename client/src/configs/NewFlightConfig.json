@@ -1,0 +1,15 @@
+{
+    "header": "//*[contains(@class, 'create-new-flight-header')]",
+    "destinationn":  "//*[contains(@id, 'to-input')]",
+    "flightStart": "//*[contains(@name, 'flight_start')]",
+    "duration": "//*[contains(@name, 'flight_time')]",
+    "capacity": "//*[contains(@name, 'capacity')]",
+    "findAirplaneButton": "//*[contains(@class, 'find-airplane-btn btn btn-primary')]",
+    "findLaneButton": "//*[contains(@class, 'find-lane-btn btn btn-primary')]",
+    "createFlightButton":  "//*[contains(@class, 'submit-btn btn btn-success')]",
+    "cancelButton":  "//*[contains(@class, 'cancel-btn btn btn-success')]",
+    "airplane": "//*[contains(@class, 'card airplane-found-#0')]",
+    "airplaneFoundCap":"//*[contains(@class, 'card-text airplane-found-capacity')]",
+    "lane": "//*[contains(@class, 'card lane-found-#0')]",
+    "laneFoundCap":"//*[contains(@class, 'card-text lane-found-capacity')]"
+}
