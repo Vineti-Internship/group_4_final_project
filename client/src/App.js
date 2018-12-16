@@ -34,10 +34,10 @@ class App extends React.Component {
 	render() {
 		const userLinks = (
 			<React.Fragment>
-				{this.props.auth && <li class="nav-item">
+				{this.props.auth && <li className="nav-item">
 					<Link to="/profile" style={{marginRight:"16px"}} className="link-profile  nav-link">Profile</Link>
 				</li>}
-				{this.props.auth && <li class="nav-item">
+				{this.props.auth && <li className="nav-item">
 					<Link to="/" onClick={this.handleSignout} style={{marginRight:"16px", float:"right"}} className="link-signout  nav-link">Sign out</Link>
 				</li>}
 			</React.Fragment>
@@ -45,10 +45,10 @@ class App extends React.Component {
 		
 		const guestLinks = (
 			<React.Fragment>
-				{!this.props.auth && <li class="nav-item">
+				{!this.props.auth && <li className="nav-item">
 					<Link to="/signin" style={{marginRight:"16px"}} className="link-signin nav-link">Sign In</Link>
 				</li>}
-				{!this.props.auth &&<li class="nav-item">
+				{!this.props.auth &&<li className="nav-item">
 					<Link to="/signup" style={{marginRight:"16px"}} className="link-signup nav-link">Sign Up</Link>
 				</li>}
 			</React.Fragment>
@@ -61,8 +61,8 @@ class App extends React.Component {
 					<React.Fragment>
 						<SearchForm/>
 						<div className="nav">
-							<ul class="nav nav-tabs">
-								<li class="nav-item">
+							<ul className="nav nav-tabs">
+								<li className="nav-item">
 									<Link to="/flights" style={{marginRight:"16px"}} className="link-flights nav-link">Flights</Link>
 								</li>
 								{this.props.auth ? userLinks : guestLinks}
