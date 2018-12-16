@@ -5,6 +5,7 @@ export const SEARCH_FLIGHTS = "SEARCH_FLIGHTS";
 export const CREATE_FLIGHT = "CREATE_FLIGHT";
 export const FIND_AIRPLANES = "FIND_AIRPLANES";
 export const GET_AIRPLANES = "GET_AIRPLANES";
+export const CREATE_AIRPLANE = "CREATE_AIRPLANE";
 export const FIND_LANES = "FIND_LANES";
 export const CREATE_USER = "CREATE_USER";
 
