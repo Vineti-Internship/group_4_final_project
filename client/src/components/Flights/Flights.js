@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 class Flights extends React.Component {
 	componentWillMount() {
 		this.props.getFlights();
+		console.log(this.props)
 	}
 
 	capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
@@ -33,7 +34,7 @@ class Flights extends React.Component {
 						<tbody>
 							{this.props.flights.map(flight => {
 								return (
-									<tr key={flight.id}>
+									<tr key={flight.id} style={{cursor:"pointer"}} onClick={()=> this.props.history.push(`/flights/${flight.id}`)}>
 										<th scope="col">{flight.id}</th>
 										<td>{this.capitalize(flight.to)}</td>
 										<td>{flight.airline_name}</td>
