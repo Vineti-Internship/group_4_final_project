@@ -14,6 +14,8 @@ import { connect } from "react-redux";
 import Profile from "./components/Profile";
 import Lanes from "./components/Lanes";
 import SearchResult from "./components/SearchResult";
+import Airplanes from "./components/AirplanesList";
+import NewLanesForm from "./components/NewLanesForm";
 
 
 class App extends React.Component {
@@ -55,7 +57,9 @@ class App extends React.Component {
 							{this.props.auth ? userLinks : guestLinks}
 						</div>
 						<Switch>
-							<Route exact path = "/lanes" render={()=>  <Lanes />} />
+              <Route exact path = "/lanes" render={()=>  <Lanes />} />
+              <Route exact path = "/newlane" render={({history})=>  <NewLanesForm history= {history} />} />
+              <Route exact path = "/airplanes" render={()=>  <Airplanes />} />
 							<Route exact path = "/flights" render ={()=> <Flights/>} />
 							<Route exact path = "/flights/:flightId" render ={({match, history})=> <Flight match={match} history={history}/>} />
 							<Route exact path = "/signup" render ={({history})=> this.props.auth?<Redirect to="/"/>:<SignUpForm history={history}/>} />
