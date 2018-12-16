@@ -16,7 +16,7 @@ import Lanes from "./components/Lanes";
 import SearchResult from "./components/SearchResult";
 import Airplanes from "./components/AirplanesList";
 import NewLanesForm from "./components/NewLanesForm";
-
+import NewAirplaneForm from "./components/NewAirplaneForm";
 
 class App extends React.Component {
 	constructor(props){
@@ -60,6 +60,7 @@ class App extends React.Component {
               <Route exact path = "/lanes" render={()=>  <Lanes />} />
               <Route exact path = "/newlane" render={({history})=>  <NewLanesForm history= {history} />} />
               <Route exact path = "/airplanes" render={()=>  <Airplanes />} />
+              <Route exact path = "/newairplane" render={({history})=>  <NewAirplaneForm history= {history} />} />
 							<Route exact path = "/flights" render ={()=> <Flights/>} />
 							<Route exact path = "/flights/:flightId" render ={({match, history})=> <Flight match={match} history={history}/>} />
 							<Route exact path = "/signup" render ={({history})=> this.props.auth?<Redirect to="/"/>:<SignUpForm history={history}/>} />
