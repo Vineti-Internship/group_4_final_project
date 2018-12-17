@@ -34,7 +34,7 @@ class SearchResult extends React.Component {
 											<h5 className="card-title">From: {this.capitalize(flight.from)} <br/> To: {this.capitalize(flight.to)}</h5>
 											<h4 className="card-text">Scheduled departure: {this.normalizeTime(flight.flight_start)} <br/> Scheduled arrival: {this.normalizeTime(flight.flight_end)} <br/> Available tickets: {flight.airplane.capacity - flight.tickets.length}</h4>
 											<div align="right">
-												<button className="btn btn-primary" onClick={()=> this.props.history.push(`/flights/${flight.id}`)}>More</button>
+												<button className="more-btn btn btn-primary" onClick={()=> this.props.history.push(`/flights/${flight.id}`)}>More</button>
 											</div>
 										</div>
 									</div>

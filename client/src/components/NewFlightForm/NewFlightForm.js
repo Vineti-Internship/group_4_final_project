@@ -1,5 +1,4 @@
 import React from "react";
-import "./NewFlightForm.css";
 
 class NewFlightForm extends React.Component {
 	constructor(props){
@@ -31,17 +30,22 @@ class NewFlightForm extends React.Component {
 
 	async handleFindLane(e){
 		e.preventDefault();
-		const data = {flight_start:this.state.flight_start, capacity:parseInt(this.state.capacity)};
-		await this.props.findLanes(data);
-		this.setState({lanes:this.props.lanes, lanes_loaded:true, selected_lane_id:-1,  require_lane_find:false});
+		if(!this.state.lanes_loaded || this.state.require_lane_find)
+		{
+			const data = {flight_start:this.state.flight_start, capacity:parseInt(this.state.capacity)};
+			await this.props.findLanes(data);
+			this.setState({lanes:this.props.lanes, lanes_loaded:true, selected_lane_id:-1,  require_lane_find:false});
+		}
 	}
 
 	async handleFindAirplane(e){
 		e.preventDefault();
-		const flight_time = this.state.flight_time
-		const data = {flight_start:this.state.flight_start, capacity:parseInt(this.state.capacity), flight_time};
-		await this.props.findAirplanes(data);
-		this.setState({airplanes:this.props.airplanes, airplanes_loaded:true, selected_airplane_id:-1, require_airplane_find:false});
+		if(!this.state.airplanes_loaded || this.state.require_airplane_find){
+			const flight_time = this.state.flight_time
+			const data = {flight_start:this.state.flight_start, capacity:parseInt(this.state.capacity), flight_time};
+			await this.props.findAirplanes(data);
+			this.setState({airplanes:this.props.airplanes, airplanes_loaded:true, selected_airplane_id:-1, require_airplane_find:false});
+		}
 	}
 
 	handleChange(e){
@@ -104,7 +108,7 @@ class NewFlightForm extends React.Component {
 		const flight_time = this.state.flight_time;
 		const data = {
 			from:"yerevan",
-			to:this.state.to.toLowerCase(),
+			to:this.state.to.toLowerCase().replace(" ",""),
 			flight_start:this.state.flight_start, 
 			flight_time, 
 			lane_id:this.state.selected_lane_id, 
@@ -155,7 +159,7 @@ class NewFlightForm extends React.Component {
 
 	getMinimumDate = () => {
 		const now = new Date();
-		return `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}T${now.getHours()+1 <10?`0${now.getHours()+1}`:now.getHours()+1}:${now.getMinutes() <10?`0${now.getMinutes()}`:now.getMinutes()}`;
+		return `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}T${now.getHours()+1 <10?`0${now.getHours()+1}`:now.getHours()+1<-12?now.getHours()+1:now.getHours()+1-12}:${now.getMinutes() <10?`0${now.getMinutes()}`:now.getMinutes()}`;
 	}
 
 	render() {

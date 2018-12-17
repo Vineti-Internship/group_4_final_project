@@ -3,7 +3,7 @@ import Auth from "../Auth";
 const initialState = {
 	authenticated: false,
 	aud: "",
-	error: {}
+	error: ""
 };
 
 /*eslint indent: [2, "tab", {"SwitchCase": 1}]*/
@@ -13,17 +13,17 @@ export default (state = initialState, action = {}) => {
 			return {
 				...state,
 				aud: action.payload.aud,
-				authenticated: Auth.isUserAuthenticated() 
+				authenticated: Auth.isUserAuthenticated()
 			};
 		case actionTypes.AUTHENTICATED:
 			return { 
 				...state, 
-				authenticated: Auth.isUserAuthenticated() 
+				authenticated: Auth.isUserAuthenticated()
 			};
 		case actionTypes.UNAUTHENTICATED:
 			return {
 				...state,
-				authenticated: Auth.isUserAuthenticated() 
+				authenticated: Auth.isUserAuthenticated()
 			};
 		case actionTypes.AUTHENTICATION_ERROR:
 			return {
