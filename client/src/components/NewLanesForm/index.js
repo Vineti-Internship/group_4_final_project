@@ -7,11 +7,13 @@ const NewLaneFormCon = props =>
 	<NewLaneForm 
 		{...props} 
     createLane = { props.createLane}
+    updateLane = { props.updateLane}
 		getLane = { props.getCurrentLane }
     />;
     
 const mapStateToProps = state => ({
   createLane: state.lanes.createLane,
+  updateLane: state.lanes.updateLane,
   lane: state.lanes.currentLane
 });
 
