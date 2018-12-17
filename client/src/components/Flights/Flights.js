@@ -8,9 +8,22 @@ class Flights extends React.Component {
 		this.props.getFlights();
 	}
 
+	getLastFlightId = () => {
+		let max_id = 0;
+		this.props.flights.forEach(flight => {
+			if(flight.id > max_id)
+				max_id=flight.id
+		});
+		return max_id;
+	}
+
 	capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 
+	normalizeTime = str => 
+		`${new Date(str).toISOString().split('T')[0]}\t\t${new Date(str).toISOString().split('T')[1].slice(0,8)}`
+
 	render() {
+		const max_id = this.getLastFlightId();
 		if(this.props.flights)
 			return (
 				<div className="flights">
@@ -30,12 +43,12 @@ class Flights extends React.Component {
 						<tbody>
 							{this.props.flights.map(flight => {
 								return (
-									<tr key={flight.id}>
+									<tr key={flight.id} style={{cursor:"pointer"}} className={max_id===flight.id? "last-created-flight":""} onClick={()=> this.props.history.push(`/flights/${flight.id}`)}>
 										<th scope="col">{flight.id}</th>
 										<td>{this.capitalize(flight.to)}</td>
 										<td>{flight.airline_name}</td>
-										<td>{flight.flight_start}</td>
-										<td>{flight.flight_end}</td>
+										<td>{this.normalizeTime(flight.flight_start)}</td>
+										<td>{this.normalizeTime(flight.flight_end)}</td>
 									</tr>
 								);
 							})}

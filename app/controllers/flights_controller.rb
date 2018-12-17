@@ -4,7 +4,7 @@ class FlightsController < ApplicationController
 
   # GET /flights
   def index
-    render json: Flight.all, each_serializer: FlightListSerializer
+    render json: Flight.all.order(:flight_start), each_serializer: FlightListSerializer
   end
 
   # GET /flights/1

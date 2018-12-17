@@ -38,9 +38,4 @@ module.exports["default"] = class BasePageObject{
     element.setValue(value);
     return this;
   }
-
-  getValue(selector, index = 0) {
-    browser.waitForExist(selector, 100000);
-    return browser.elements(selector).value[index].getText();
-  }
 };

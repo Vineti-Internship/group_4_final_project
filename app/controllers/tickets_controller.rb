@@ -18,7 +18,7 @@ class TicketsController < ApplicationController
         if ticket.save
             render json: {status: 'ticket created successfully'}, status: :created
         else
-            render json: {errors: ticket.errors.full_messages}, status: :bad_request
+            render json: {status:"error", code:400, message:ticket.errors.full_messages}
         end
     end
 

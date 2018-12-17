@@ -14,6 +14,8 @@ export default (state = initialUsersState, action) => {
 			return {...state, status:[]};
 		case actionTypes.GET_USER:
 			return {...state, user: action.payload};
+		// case actionTypes.GET_TICKET:
+		// 	return {...state, ...user.flights:[...action.payload]}
 		default:
 			return state;
 	}

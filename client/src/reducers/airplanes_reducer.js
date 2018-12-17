@@ -1,7 +1,7 @@
 import * as actionTypes from "../actions/types";
 
 const initialAirplanesState = {
-	foundAirplanes: [],
+	foundAirplanes:[],
 	allAirplanes: []
 };
 

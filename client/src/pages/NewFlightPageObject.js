@@ -41,4 +41,11 @@ module.exports["default"] = class NewFlightPageObject extends BasePageObject{
 		createFlight(){
 			this.click(this.selector.createFlightButton);
 		}
+
+		waitForAirplaneToExist(){
+			browser.waitForExist(this.selector.airplane, 10000);
+		}
+		waitForLaneToExist(){
+			browser.waitForExist(this.selector.lane, 10000);
+		}
 }

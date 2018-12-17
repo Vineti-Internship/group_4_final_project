@@ -4,6 +4,8 @@ import LanesReducer from "./lanes_reducer";
 import AirplanesReducer from "./airplanes_reducer";
 import UsersReducer from "./users_reducer";
 import auth from "./auth_reducer";
+import TicketReducer from "./ticket_reducer";
+import LaneMaxCountReducer from "./lane_max_count_reducer"
 
 export default combineReducers({
 	flights: FlightsReducer,
@@ -11,4 +13,6 @@ export default combineReducers({
 	airplanes: AirplanesReducer,
 	users: UsersReducer,
 	auth,
+  tickets: TicketReducer,
+  laneMaxCount: LaneMaxCountReducer
 });

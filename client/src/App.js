@@ -34,41 +34,74 @@ class App extends React.Component {
 	render() {
 		const userLinks = (
 			<React.Fragment>
-				{this.props.auth && <Link to="/profile" style={{marginRight:"16px"}} className="link-profile">Profile</Link>}
-				{this.props.auth && <Link to="/" onClick={this.handleSignout} style={{marginRight:"16px"}} className="link-signout">Sign out</Link>}
+				{this.props.auth && <li className="nav-item">
+					<Link to="/profile" style={{marginRight:"16px"}} className="link-profile  nav-link">Profile</Link>
+				</li>}
+				{this.props.auth && <li className="nav-item">
+					<Link to="/" onClick={this.handleSignout} style={{marginRight:"16px", float:"right"}} className="link-signout  nav-link">Sign out</Link>
+				</li>}
 			</React.Fragment>
 		);
 		
 		const guestLinks = (
 			<React.Fragment>
-				{!this.props.auth && <Link to="/signin" style={{marginRight:"16px"}} className="link-signin">Sign In</Link>}
-				{!this.props.auth && <Link to="/signup" style={{marginRight:"16px"}} className="link-signup">Sign Up</Link>}
+				{!this.props.auth && <li className="nav-item">
+					<Link to="/signin" style={{marginRight:"16px"}} className="link-signin nav-link">Sign In</Link>
+				</li>}
+				{!this.props.auth &&<li className="nav-item">
+					<Link to="/signup" style={{marginRight:"16px"}} className="link-signup nav-link">Sign Up</Link>
+				</li>}
 			</React.Fragment>
-		);
+    );
+
+    const managerLinks = (
+      <React.Fragment>
+        {
+          this.props.aud === "l_manager" &&
+          <li className="nav-item">
+            <Link to="/lanes" style={{marginRight:"16px"}} className="link-signin nav-link">Lanes</Link>
+          </li>
+        }
+        {
+          this.props.aud === "l_manager" &&
+          <li className="nav-item">
+            <Link to="/airplanes" style={{marginRight:"16px"}} className="link-signin nav-link">Airplanes</Link>
+          </li>
+        }
+        {
+          this.props.aud !== "l_manager" &&
+          <li className="nav-item">
+            <Link to="/flights" style={{marginRight:"16px"}} className="link-signup nav-link">Flights</Link>
+          </li>
+        }
+      </React.Fragment>
+    );
+
 
 		return (
-
 			<div className="App" style={{margin:"20px"}}>
 				<Router>
 					<React.Fragment>
 						<SearchForm/>
 						<div className="nav">
-							<Link to="/flights" style={{marginRight:"16px"}} className="link-flights">Flights</Link>
-							{this.props.auth ? userLinks : guestLinks}
+							<ul className="nav nav-tabs">
+                {managerLinks}
+								{this.props.auth ? userLinks : guestLinks}
+							</ul>
 						</div>
 						<Switch>
-              <Route exact path = "/lanes" render={()=>  <Lanes />} />
-              <Route exact path = "/newlane" render={({history})=>  <NewLanesForm history= {history} />} />
-              <Route exact path = "/airplanes" render={()=>  <Airplanes />} />
-              <Route exact path = "/newairplane" render={({history})=>  <NewAirplaneForm history= {history} />} />
-							<Route exact path = "/flights" render ={()=> <Flights/>} />
+							<Route exact path = "/lanes" render={({history})=> this.props.aud === "l_manager" ? <Lanes {...{history}}/> : <Redirect to="/profile"/>} />
+							<Route exact path = "/newlane" render={({history})=> <NewLanesForm {...{history}} />} />
+							<Route exact path = "/lanes/:laneId" render={({match, history})=> <NewLanesForm {...{match, history}} />} />
+							<Route exact path = "/airplanes" render={()=>  <Airplanes />} />
+							<Route exact path = "/flights" render ={({history})=> <Flights history={history}/>} />
 							<Route exact path = "/flights/:flightId" render ={({match, history})=> <Flight match={match} history={history}/>} />
 							<Route exact path = "/signup" render ={({history})=> this.props.auth?<Redirect to="/"/>:<SignUpForm history={history}/>} />
 							<Route exact path = "/signin" render={({history}) => this.props.auth?<Redirect to="/"/>:<SignInForm history={history}/>}/>
 							<Route exact path = "/newflight" render={({history})=>  this.props.aud === "f_manager"?<NewFlightForm history={history}/>:<Redirect to="/"/>} />
 							<Route exact path = "/search/:search_url" render={({match, history})=> <SearchResult match={match} history={history}/>} />
 							<Route exact path = "/" render={()=>  <Redirect to="/flights" />} />
-							<Route exact path = "/profile" render={() => this.props.auth?<Profile />:<Redirect to="/signin"/>} />}
+							<Route exact path = "/profile" render={({history}) => this.props.auth?<Profile history={history}/>:<Redirect to="/signin"/>} />}
 							<Route path="*" render={() => <NotFound/>} />
 						</Switch>
 					</React.Fragment>

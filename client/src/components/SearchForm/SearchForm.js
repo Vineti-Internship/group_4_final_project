@@ -20,7 +20,7 @@ class SearchForm extends React.Component {
 	}
 
 	handleSearchClick(){
-		const search_url=encodeURIComponent(`${this.state.search_from.toLowerCase()}+${this.state.search_to.toLowerCase()}`);
+		const search_url=encodeURIComponent(`${this.state.search_from.toLowerCase().replace(" ","")}+${this.state.search_to.toLowerCase().replace(" ","")}`);
 		this.setState({search_from:"", search_to:""});
 		this.props.history.push(`/search/${search_url}`);
 	}
@@ -32,7 +32,7 @@ class SearchForm extends React.Component {
 					<form onSubmit={this.handleSearchClick}>
 						<div className="input-group">
 							<div className="input-group-prepend">
-								<span className="input-group-text" id="">From and to countries</span>
+								<span className="input-group-text" id="">From | to</span>
 							</div>
 							<input type="text" required className="form-control from-input" name="search_from" value={this.state.from} onChange={this.handleChange}/>
 							<input type="text" required className="form-control to-input" name="search_to" value={this.state.to} onChange={this.handleChange}/>
