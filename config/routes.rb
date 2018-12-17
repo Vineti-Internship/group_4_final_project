@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :tickets
   resources :users
   put '/users/:id' => 'users#update_role'
+  put '/users_role/:id' => 'users#update_role'
   post '/users/login' => 'users#login'
   get '/profile' => 'users#profile'
   post '/airplanes/find' => 'airplanes#find'

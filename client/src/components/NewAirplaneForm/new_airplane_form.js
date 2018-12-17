@@ -85,7 +85,7 @@ export default class NewAirplaneForm extends React.Component {
 
     const data = {
       ...this.state,
-      status: "free"
+      status: "FREE"
     };
 
     this.props.createAirplane(data);
