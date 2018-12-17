@@ -3,32 +3,52 @@ const HomePageObject = require('../../pages/HomePageObject').default;
 const HomeConfig = require('../../configs/HomeConfig.json');
 const SignupPageObject = require('../../pages/SignupPageObject').default;
 const SignupConfig = require('../../configs/SignupConfig.json');
+const ProfilePageObject = require('../../pages/ProfilePageObject').default;
+const ProfileConfig = require('../../configs/ProfileConfig.json');
+const SignInPageObject = require('../../pages/SignInPageObject').default;
+const SignInConfig = require('../../configs/SignInConfig.json');
 
 describe('Sign up', () => {
+  let str1 = '123456';
+  let str2 = '123456';
+  let userName = "Mane Poghosian";
+  let userEmail = "testmail@gmail.com";
   let homePageObject = new HomePageObject(HomeConfig);
   let signupPageObject = new SignupPageObject(SignupConfig);
-  it('Sign up functionality', () => {
+  let signInPageObject = new SignInPageObject(SignInConfig);
+  let profilePageObject = new ProfilePageObject(ProfileConfig);
+
+  it('Navigate to Sign up page', () => {
     homePageObject.navigateToHomePage();
     homePageObject.clickOnSignupButton();
     let headerText = signupPageObject.getHeaderText();
-    let str1 = '123456';
-    let str2 = '123456';
-    let userName = "Mane Poghosian";
-    let userEmail = "tester@gmail.com";
     console.log(headerText);
     signupPageObject.waitUntilH1Exists();
     assert.equal(headerText, "Registration");
+  });
+
+  it('Sign up functionality', () => {
     signupPageObject.setName(userName);
     signupPageObject.setEmail(userEmail);
     signupPageObject.setPassword(str1);
     signupPageObject.setPassConf(str2);
     signupPageObject.clickRegisterButton();
+    driver.switchTo().alert().accept();
+    homePageObject.navigateToHomePage();
+    homePageObject.clickOnSignInButton();
+    signInPageObject.setEmail(userEmail);
+    signInPageObject.setPassword(str1);
+    signInPageObject.signIn();
+    homePageObject.clickOnProfileButton();
+    const profileEmail = profilePageObject.getProfileEmail();
+    console.log(profileEmail);
+    assert.equal(profileEmail, userEmail);
   });
+
   it('Sign up with existing email', () => {
-    let str1 = '123456';
-    let str2 = '123456';
-    let userName = "Mane Poghosian";
-    let userEmail = "tester@mail.com";
+    userName = "Mane Poghosian";
+    userEmail = "mane@mail.com";
+    homePageObject.clickOnSignOutButton();
     homePageObject.navigateToHomePage();
     homePageObject.clickOnSignupButton();
     signupPageObject.setName(userName);
@@ -43,39 +63,39 @@ describe('Sign up', () => {
   });
 
   it('Sign up with a password under 6 characters', () => {
-    let str1 = '12345';
-    let str2 = '12345';
-    let userName = "Mane Poghosian";
-    let userEmail = "tester2222@gmail.com";
+    str1 = '12345';
+    str2 = '12345';
+    userEmail = "tester1@gmail.com";
+    homePageObject.navigateToHomePage();
+    homePageObject.clickOnSignupButton();
     signupPageObject.setName(userName);
     signupPageObject.setEmail(userEmail);
     signupPageObject.setPassword(str1);
     signupPageObject.setPassConf(str2);
     signupPageObject.clickRegisterButton(); 
-    let passShortText = signupPageObject.getPassShortText();
+    const passShortText = signupPageObject.getPassShortText();
     console.log(passShortText);
     signupPageObject.waitUntilPassShortExists();
     assert.equal(passShortText, "Password is too short (minimum is 6 characters)");
   });
 
-  it('Sign uo with not matching passowords', () => {
+  it('Sign up with not matching passowords', () => {
     let str1 = '1234560';
     let str2 = '123456';
-    let userName = 'Mane';
-    let userEmail = "tester1234@gmail.com";
+    let userEmail = "tester2@gmail.com";
     signupPageObject.setName(userName);
     signupPageObject.setEmail(userEmail);
     signupPageObject.setPassword(str1);
     signupPageObject.setPassConf(str2);
     signupPageObject.clickRegisterButton();
-    let passDidntMatchText = signupPageObject.getPassDidntMatchText();
+    const passDidntMatchText = signupPageObject.getPassDidntMatchText();
     console.log(passDidntMatchText);
     signupPageObject.waitUntilDidntMatchExists();
     assert.equal(passDidntMatchText, 'Passwords did not match');
   });
-  it('Click Cancel works', () => {
-    signupPageObject.clickCancelButton();
-  });
 
-  
+  // it('Click Cancel works', () => {
+  //   signupPageObject.clickCancelButton();
+  // });
+
 });

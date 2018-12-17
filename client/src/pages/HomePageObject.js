@@ -38,8 +38,18 @@ module.exports['default'] = class HomePageObject extends BasePageObject{
         this.setValue(this.selector.toInput, to);
     }
 
-    getLastCreatedFlight(){
-        return this.getValue(this.selector.lastCreatedFlight).split(' ')[1];
+    getLastCreatedFlightDest(){
+        return browser.element(this.selector.lastCreatedFlight).getText().split(' ')[1];
     }
 
+    getLastCreatedFlightTime(){
+        return browser.element(this.selector.lastCreatedFlight).getText().split(' ')[3];
+    }
+
+    clickOnSignOutButton(){
+        this.click(this.selector.signOutButton);
+    }
+    clickOnRefreshButton(){
+        this.click(this.selector.refreshButton);
+    }
 }
