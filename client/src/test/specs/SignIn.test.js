@@ -12,7 +12,7 @@ describe('Sign In', () => {
     let signInPageObject = new SignInPageObject(SignInConfig);
     let profilePageObject = new ProfilePageObject(ProfileConfig);
     it('Sign in as a user, confirm validity', () => {
-        const userEmail = "eduardo@mail.com";
+        const userEmail = "mane@mail.com";
         const userPassword = "123456";
         homePageObject.navigateToHomePage();
         homePageObject.clickOnSignInButton();
@@ -23,4 +23,5 @@ describe('Sign In', () => {
         let profileEmail = profilePageObject.getProfileEmail();
         assert.equal(profileEmail, userEmail);
     });
+    
 });

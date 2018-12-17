@@ -31,22 +31,22 @@ describe("New Flight creation and confirmation", () => {
         console.log(header);
         assert.equal('Create New Flight', header);
      });
-    // it('Create New Flight', () => {
-    //     newFlightPageObject.setDestination(destination);
-    //     newFlightPageObject.setDuration(duration);
-    //     newFlightPageObject.setCapacity(capacity);
-    //     newFlightPageObject.findAvailAirplane();
-    //     newFlightPageObject.waitForAirplaneToExist();
-    //     newFlightPageObject.selectAirplane();
-    //     newFlightPageObject.findAvailLane();
-    //     newFlightPageObject.waitForLaneToExist();
-    //     newFlightPageObject.selectLane();
-    //     newFlightPageObject.createFlight();
+    it('Create New Flight', () => {
+        newFlightPageObject.setDestination(destination);
+        newFlightPageObject.setDuration(duration);
+        newFlightPageObject.setCapacity(capacity);
+        newFlightPageObject.findAvailAirplane();
+        newFlightPageObject.waitForAirplaneToExist();
+        newFlightPageObject.selectAirplane();
+        newFlightPageObject.findAvailLane();
+        newFlightPageObject.waitForLaneToExist();
+        newFlightPageObject.selectLane();
+        newFlightPageObject.createFlight();
 
-    //     let flightDest = homePageObject.getLastCreatedFlight();
-    //     console.log(flightDest);
-    //     assert.equal(flightDest, destination);
-    // });
+        let flightDest = homePageObject.getLastCreatedFlight();
+        console.log(flightDest);
+        assert.equal(flightDest, destination);
+    });
 
     it('Search flights with destination the cretaed flight has', () => {
         let from = "Yerevan";
@@ -55,9 +55,7 @@ describe("New Flight creation and confirmation", () => {
         homePageObject.setTo(destination);
         homePageObject.clickOnSearchButton();
         let allCards = searchPageObject.getCardBody(0);
-        //let allTitles = searchPageObject.getCardTitle();
         console.log(allCards);
-        //console.log(allTitles);
     });
 
     it('Check more button functionality', () => {
