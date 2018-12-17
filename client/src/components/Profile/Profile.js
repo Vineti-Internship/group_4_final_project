@@ -21,7 +21,7 @@ export default class Profile extends React.Component {
             <p class="lead">role: {role}</p>
             <hr class="my-4"/>
 						<div>name: <h3>{user.name}</h3></div>
-						<div>email: <h4>{user.email}</h4></div>
+						<div>email: <h4 className="user-email">{user.email}</h4></div>
          </div>
 					<div>
 					{(user.flights) && 
