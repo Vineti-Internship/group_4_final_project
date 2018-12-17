@@ -23,3 +23,5 @@ export const CREATE_LANE = "CREATE_LANE";
 export const UPDATE_LANE = "UPDATE_LANE";
 export const BUY_TICKET = "BUY_TICKET";
 export const GET_MAX_COUNT = "GET_MAX_COUNT";
+
+export const GET_AIRLINES = "GET_AIRLINES";
