@@ -1,0 +1,4 @@
+{
+    "profileEmail": "//*[contains(@class, 'profile-email')]"
+
+}
