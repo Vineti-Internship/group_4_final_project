@@ -6,9 +6,7 @@ class AirplanesController < ApplicationController
 
   # GET /airplanes
   def index
-    @airplanes = Airplane.all
-
-    render json: @airplanes
+    render json: Airplane.all, each_serializer: AirplaneListSerializer
   end
 
   # GET /airplanes/1
