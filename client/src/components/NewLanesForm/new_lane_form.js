@@ -40,12 +40,13 @@ export  default class NewLaneForm extends React.Component{
 
   submit = e => {
     e.preventDefault();
+    const {history, createLane, updateLane, lane} = this.props;
     const data = {
       capacity: this.state.capacity
     };
 
-    this.props.createLane(data);
-    this.props.history.push("/lanes");
+    lane ? updateLane(lane.id, data) : createLane(data);
+    history.push("/lanes");
   }
 
   back = e => {

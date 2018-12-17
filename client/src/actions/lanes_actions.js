@@ -60,3 +60,14 @@ export const createLane = data => async dispatch => {
 		console.log(error);
 	}
 };
+
+export const updateLane = (id, data) => async dispatch => {
+  try {
+		await axios.put(`/lanes/${id}`, { ... data } );
+		dispatch({
+			type: actionTypes.UPDATE_LANE
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};
