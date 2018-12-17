@@ -1,0 +1,5 @@
+| Test Case ID | Test Scenario | Test Steps | Test Data | Expected Result | Actual Result | Status |
+|---|---|---|---|---|---|---|
+|P01| Check Profile Functionality | 1. Navigate to http://localhost:8000 <br> 2. Sign in as a user <br> 3. Click Profile Button <br> | - | The user info should be visible and correct: role, name, email | Expected Result | Pass |
+|P02| Check Profile Functionality | 1. After test case P01, navigate to Navigate to http://localhost:8000 (the same as http://localhost:8000/flights) <br> 2. Click on any flight <br> 3. Buy a ticket <br> 4. Click "OK" and confirm buying a ticket | - | Should be redirected to user profile and the ticket, along with other bought tickets, should be visible | Expexted result | Pass |
+|P03| Check Profile Functionality | 1. Complete steps in P02  <br> 2. Check data on tickets | - | The flight data on the tickets are valid and "More" button redirects to that flights page | Expected Result | Pass |
