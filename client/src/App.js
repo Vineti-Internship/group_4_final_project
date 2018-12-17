@@ -13,10 +13,12 @@ import SignInForm from "./components/SignInForm";
 import { connect } from "react-redux";
 import Profile from "./components/Profile";
 import Lanes from "./components/Lanes";
+import Users from "./components/Users";
 import SearchResult from "./components/SearchResult";
 import Airplanes from "./components/AirplanesList";
 import NewLanesForm from "./components/NewLanesForm";
 import NewAirplaneForm from "./components/NewAirplaneForm";
+import EditUser from "./components/EditUser"
 
 class App extends React.Component {
 	constructor(props){
@@ -91,8 +93,10 @@ class App extends React.Component {
 						</div>
 						<Switch>
 							<Route exact path = "/lanes" render={({history})=> this.props.aud === "l_manager" ? <Lanes {...{history}}/> : <Redirect to="/profile"/>} />
-							<Route exact path = "/newlane" render={({history})=> <NewLanesForm {...{history}} />} />
+              <Route exact path = "/users" render={({history})=> <Users {...{history}} />} />
+              <Route exact path = "/newlane" render={({history})=> <NewLanesForm {...{history}} />} />
 							<Route exact path = "/lanes/:laneId" render={({match, history})=> <NewLanesForm {...{match, history}} />} />
+              <Route exact path = "/users/:userId" render={({match, history})=> <EditUser {...{match, history}} />} />
 							<Route exact path = "/airplanes" render={(history)=>  <Airplanes {...{history}} />} />
               <Route exact path = "/newairplane" render={({history})=> <NewAirplaneForm {...{history}} />} />
 							<Route exact path = "/flights" render ={({history})=> <Flights history={history}/>} />

@@ -8,6 +8,7 @@ export const GET_AIRPLANES = "GET_AIRPLANES";
 export const CREATE_AIRPLANE = "CREATE_AIRPLANE";
 export const FIND_LANES = "FIND_LANES";
 export const CREATE_USER = "CREATE_USER";
+export const GET_ALL_USERS = "GET_ALL_USERS";
 
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const AUTHENTICATED = "AUTHENTICATED_USER";
@@ -25,3 +26,5 @@ export const BUY_TICKET = "BUY_TICKET";
 export const GET_MAX_COUNT = "GET_MAX_COUNT";
 
 export const GET_AIRLINES = "GET_AIRLINES";
+export const UPDATE_USER = "UPDATE_USER";
+export const GET_CURRENT_USER = "GET_CURRENT_USER";

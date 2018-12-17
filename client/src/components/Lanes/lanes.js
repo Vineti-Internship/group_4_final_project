@@ -17,12 +17,16 @@ export default class Lanes extends React.Component {
 		if(lanes)
 			return (
 				<div className="lanes">
-					<table>
-						<tbody>
-							<tr>
-								<th>Lane No</th>
-								<th>Capacity</th>
-							</tr>
+        <br/>
+        <br/>
+					<table className="table table-striped table-bordered table-hover">
+            <thead className="thead-dark">
+                <tr>
+                  <th>Lane No</th>
+                  <th>Capacity</th>
+                </tr>
+            </thead>
+            <tbody>
 							{
                 lanes.map(lane => {
                   return (

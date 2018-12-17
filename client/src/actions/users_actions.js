@@ -16,13 +16,55 @@ export const createUser = (data) => async dispatch => {
 
 export const getUserInfo = () => async dispatch => {
 	const res = await axios.get("/profile");  
-	const userInfo = await res.data;
-	dispatch(getUser(userInfo));
+	const usersInfo = await res.data;
+	dispatch(getUser(usersInfo));
 };
 
-export const getUser = (userInfo) => {
+export const getUser = (usersInfo) => {
 	return {
 		type: actionTypes.GET_USER,
-		payload: userInfo
+		payload: usersInfo
 	};
 };
+
+export const allUsers = () => async dispatch => {
+	const res = await axios.get("/users");
+	const users = res.data;
+	dispatch(getAllUsers(users));
+};
+
+export const getAllUsers = (users) => {
+	return {
+		type: actionTypes.GET_ALL_USERS,
+		payload: users
+	};
+};
+
+export const getCurrentUser = id => async dispatch => {
+	try {
+    const res = await axios.get(`/users/${id}`);
+		const user = res.data;
+		dispatch(getUserById(user));
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const getUserById = (user) => {
+	return {
+		type: actionTypes.GET_CURRENT_USER,
+		payload: user
+	};
+};
+
+export const updateUser = (id, data) => async dispatch => {
+  try {
+		await axios.put(`/users_role/${id}`, { ... data } );
+		dispatch({
+			type: actionTypes.UPDATE_USER
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};
+
