@@ -18,7 +18,7 @@ const LanesConnect = (props) =>
 const mapStateToProps = state => {
 return ({
   lanes: state.lanes.allLanes,
-   maxCount: state.laneMaxCount.maxCount
+  maxCount: state.laneMaxCount.maxCount
 });
 }
 export default connect(mapStateToProps, { ... lanesActions, ...laneMaxCountsActions })(LanesConnect);

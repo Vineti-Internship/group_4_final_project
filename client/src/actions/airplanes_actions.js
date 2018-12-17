@@ -32,3 +32,14 @@ export const getAllAirplanes = (airplanes) => {
 		payload: airplanes
 	};
 };
+
+export const createAirplane = data => async dispatch => {
+  try {
+		await axios.post("/airplanes", { ... data } );
+		dispatch({
+			type:actionTypes.CREATE_AIRPLANE
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};

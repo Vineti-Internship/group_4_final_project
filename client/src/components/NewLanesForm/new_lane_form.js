@@ -15,7 +15,8 @@ export  default class NewLaneForm extends React.Component{
   }
 
   async componentWillMount(){
-		const id = this.props.match.params.laneId;
+    const {match} = this.props
+		const id = match ? match.params.laneId : -1;
     await this.props.getLane(id);
     const { lane } = this.props;
 
@@ -30,11 +31,11 @@ export  default class NewLaneForm extends React.Component{
   changeState = e => {
     const {name, value} = e.target;
     const { lane } = this.props;
-    const canSave = lane ? lane.capacity <= value : value > 0;
+    const canSave = lane.capacity ? lane.capacity <= value : value > 0;
 
     this.setState({
       [name]: value,
-      canSave
+      canSave: canSave && value < 1000
     });
   }
 
@@ -45,7 +46,7 @@ export  default class NewLaneForm extends React.Component{
       capacity: this.state.capacity
     };
 
-    lane ? updateLane(lane.id, data) : createLane(data);
+    lane.capacity ? updateLane(lane.id, data) : createLane(data);
     history.push("/lanes");
   }
 
