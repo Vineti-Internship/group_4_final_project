@@ -3,12 +3,15 @@ import * as actionTypes from "../actions/types";
 const initialUsersState = {
 	status:[],
 	allUsers: [],
-	currentUser: {}
+	currentUser: {},
+	user:{}
 };
 
 /*eslint indent: [2, "tab", {"SwitchCase": 1}]*/
 export default (state = initialUsersState, action) => {
 	switch(action.type){
+		case actionTypes.GET_USER:
+			return {...state, user: action.payload};
 		case actionTypes.CREATE_USER:
 			if(action.payload.constructor === Array)
 				return {...state, status:[...action.payload]};

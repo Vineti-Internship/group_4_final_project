@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import Spinner from "../Spinner";
 export default class Profile extends React.Component {	
 	componentDidMount() {
 		this.props.getUserInfo();
@@ -30,17 +31,20 @@ export default class Profile extends React.Component {
 
 
 	render () {
-		const {user} = this.props;
-		const role = user.role === "client"? "Zvartnots client": user.role === "l_manager"?"Lane manager of Zvartnots": user.role ==="f_manager"?"Flight manager of Zvartnots":"Administrator of Zvartnots"
-		let presentFlights=[];	
-		let pastFlights=[];
-		console.log(user)
-		if(user.flights)
-			user.flights.forEach(flight=>{
-				flight.is_ended? pastFlights.push(flight):presentFlights.push(flight);
-			});
+		console.log(this.props)
 		
-		if(user)
+		const {user} = this.props;
+		if(user){
+			const role = user.role === "client"? "Zvartnots client": user.role === "l_manager"?"Lane manager of Zvartnots": user.role ==="f_manager"?"Flight manager of Zvartnots":"Administrator of Zvartnots"
+			let presentFlights=[];	
+			let pastFlights=[];
+			console.log(user)
+			if(user.flights)
+				user.flights.forEach(flight=>{
+					flight.is_ended? pastFlights.push(flight):presentFlights.push(flight);
+				});
+			
+		
 			return (
 				<center>
 					<div className="profile" style={{width:"40rem"}}>
@@ -71,8 +75,9 @@ export default class Profile extends React.Component {
 				);
 			
 	}
+	return <Spinner />
 }
 
 
-
+}
 
