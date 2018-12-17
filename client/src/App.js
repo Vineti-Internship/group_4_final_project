@@ -59,19 +59,19 @@ class App extends React.Component {
         {
           this.props.aud === "l_manager" &&
           <li className="nav-item">
-            <Link to="/lanes" style={{marginRight:"16px"}} className="link-signin nav-link">Lanes</Link>
+            <Link to="/lanes" style={{marginRight:"16px"}} className="link-lanes nav-link">Lanes</Link>
           </li>
         }
         {
           this.props.aud === "l_manager" &&
           <li className="nav-item">
-            <Link to="/airplanes" style={{marginRight:"16px"}} className="link-signin nav-link">Airplanes</Link>
+            <Link to="/airplanes" style={{marginRight:"16px"}} className="link-airplanes nav-link">Airplanes</Link>
           </li>
         }
         {
           this.props.aud !== "l_manager" &&
           <li className="nav-item">
-            <Link to="/flights" style={{marginRight:"16px"}} className="link-signup nav-link">Flights</Link>
+            <Link to="/flights" style={{marginRight:"16px"}} className="link-flights nav-link">Flights</Link>
           </li>
         }
       </React.Fragment>
