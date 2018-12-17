@@ -1,8 +1,7 @@
 class AirlinesController < ApplicationController
-  before_action :authenticate_request!
-  before_action :admin_only, except: [:index, :show]
-  before_action :set_airline, only: [:show, :update, :destroy]
-
+  # before_action :authenticate_request!
+  # before_action :admin_only, except: [:index, :show]
+  # before_action :set_airline, only: [:show, :update, :destroy]
 
   # GET /airlines
   def index
