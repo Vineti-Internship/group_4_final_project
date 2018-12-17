@@ -18,15 +18,17 @@ export default class Airplanes extends React.Component {
 								<th>Model </th>
 								<th>Capacity</th>
                 <th>Time on lane</th>
+                <th>Status</th>
 							</tr>
 							{this.props.airplanes.map(airplane => {
 								return (
 									<tr key={airplane.id}>
-										<th>{airplane.airline.id}</th>	
+										<th>{airplane.airline.name}</th>
                     <th>{airplane.name}</th>
-                    <th>{airplane.model}></th>
+                    <th>{airplane.model}</th>
                     <th>{airplane.capacity}</th>
                     <th>{airplane.time_on_lane}</th>
+                    <th>{airplane.status}</th>
 									</tr>
 								);
 							})}

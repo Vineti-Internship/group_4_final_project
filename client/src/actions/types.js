@@ -5,6 +5,7 @@ export const SEARCH_FLIGHTS = "SEARCH_FLIGHTS";
 export const CREATE_FLIGHT = "CREATE_FLIGHT";
 export const FIND_AIRPLANES = "FIND_AIRPLANES";
 export const GET_AIRPLANES = "GET_AIRPLANES";
+export const CREATE_AIRPLANE = "CREATE_AIRPLANE";
 export const FIND_LANES = "FIND_LANES";
 export const CREATE_USER = "CREATE_USER";
 
@@ -22,3 +23,5 @@ export const CREATE_LANE = "CREATE_LANE";
 export const UPDATE_LANE = "UPDATE_LANE";
 export const BUY_TICKET = "BUY_TICKET";
 export const GET_MAX_COUNT = "GET_MAX_COUNT";
+
+export const GET_AIRLINES = "GET_AIRLINES";

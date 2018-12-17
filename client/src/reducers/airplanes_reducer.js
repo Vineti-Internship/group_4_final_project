@@ -12,6 +12,8 @@ export default (state = initialAirplanesState, action) => {
 			return {...state, foundAirplanes: [...action.payload]};
 		case actionTypes.GET_AIRPLANES:
 			return {...state, allAirplanes: [...action.payload]};
+		case actionTypes.CREATE_AIRPLANE:
+			return {...state};
 		default:
 			return state;
 	}
