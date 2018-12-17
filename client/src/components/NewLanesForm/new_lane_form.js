@@ -14,30 +14,9 @@ export  default class NewLaneForm extends React.Component{
     this.submit = this.submit.bind(this);
   }
 
-  changeState = e => {
-    const {name, value} = e.target;
-    this.setState({
-      [name]: value,
-      canSave: value > 0
-    });
-  }
-
-  submit = e => {
-    e.preventDefault();
-    const data = {
-      capacity: this.state.capacity
-    };
-
-    this.props.createLane(data);
-    this.props.history.push("/lanes");
-  }
-
-  back = e => {
-    e.preventDefault();
-    this.props.history.push("/lanes");
-  }
-  
-  componentWillMount = () => {
+  async componentWillMount(){
+		const id = this.props.match.params.laneId;
+    await this.props.getLane(id);
     const { lane } = this.props;
 
     if (lane) {
@@ -46,6 +25,33 @@ export  default class NewLaneForm extends React.Component{
       capacity: capacity
       });
     }
+  }
+
+  changeState = e => {
+    const {name, value} = e.target;
+    const { lane } = this.props;
+    const canSave = lane ? lane.capacity <= value : value > 0;
+
+    this.setState({
+      [name]: value,
+      canSave
+    });
+  }
+
+  submit = e => {
+    e.preventDefault();
+    const {history, createLane, updateLane, lane} = this.props;
+    const data = {
+      capacity: this.state.capacity
+    };
+
+    lane ? updateLane(lane.id, data) : createLane(data);
+    history.push("/lanes");
+  }
+
+  back = e => {
+    e.preventDefault();
+    this.props.history.push("/lanes");
   }
 
   render = () => {

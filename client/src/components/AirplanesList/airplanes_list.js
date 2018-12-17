@@ -7,7 +7,6 @@ export default class Airplanes extends React.Component {
 		this.props.getAirplanes();
 	}
 	render() {
-    debugger;
     if( this.props.airplanes)
 			return (
 				<div className="airplanes">
