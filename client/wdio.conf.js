@@ -11,9 +11,9 @@ exports.config = {
     //
     specs: [
         // './src/test/specs/*.test.js',
-         './src/test/specs/Signup.test.js',
+        //'./src/test/specs/Signup.test.js',
         // './src/test/specs/SignIn.test.js'
-        // './src/test/specs/NewFlightAndSearch.test.js'
+         './src/test/specs/NewFlightAndSearch.test.js'
     ],
     suites: {
         testSuite:[

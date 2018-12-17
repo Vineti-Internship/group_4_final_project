@@ -48,4 +48,5 @@ module.exports["default"] = class NewFlightPageObject extends BasePageObject{
 		waitForLaneToExist(){
 			browser.waitForExist(this.selector.lane, 10000);
 		}
+	
 }

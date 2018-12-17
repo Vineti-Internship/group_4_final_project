@@ -7,5 +7,7 @@
     "lastCreatedFlight": "//*[@class='last-created-flight']",
     "profileButton": "//*[@class='link-profile  nav-link']",
     "lanesButton": "//*[@class='link-signin nav-link']",
-    "signOutButton": "//*[@class='link-signout  nav-link']"
+    "signOutButton": "//*[@class='link-signout  nav-link']",
+    "refreshButton":"//*[@class='refresh-btn btn btn-primary']"
+    
 }
