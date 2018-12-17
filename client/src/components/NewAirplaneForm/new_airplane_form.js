@@ -14,6 +14,7 @@ export  default class NewAirplaneForm extends React.Component{
     };
 
   this.changeState = this.changeState.bind(this);
+  this.selectChange = this.selectChange.bind(this);
   this.submit = this.submit.bind(this);
   this.back = this.back.bind(this);
   }
@@ -26,10 +27,10 @@ export  default class NewAirplaneForm extends React.Component{
       const { name, model, capacity, time_on_lane} = airplane;
 
       this.setState({
-        name: name,
-        model: model,
-        capacity: capacity,
-        time_on_lane: time_on_lane
+        name,
+        model,
+        capacity,
+        time_on_lane
       });
     }
   }
@@ -42,15 +43,15 @@ export  default class NewAirplaneForm extends React.Component{
     });
   }
 
+  selectChange = e => {
+    this.setState({airline_id: e.target.value});
+  }
+
   submit = e => {
     e.preventDefault();
 
     const data = {
-      airline: this.state.airline,
-      name: this.state.name,
-      model: this.state.model,
-      capacity: this.state.capacity,
-      time_on_lane: this.state.time_on_lane,
+      ...this.state,
       status: "free"
     };
 
@@ -63,6 +64,20 @@ export  default class NewAirplaneForm extends React.Component{
     this.props.history.push("/airplanes");
   }
 
+  airlineSelect = () => {
+    return (
+      <select value={this.state.airline_id} onChange={this.selectChange} class="form-control">
+        {
+          this.props.airlines.map(airline => {
+            return (
+              <option value={airline.id}>{airline.name}</option>
+            );
+          })
+        }
+      </select>
+    );
+  }
+
   render = () => {
     const { name, model, capacity, time_on_lane} = this.state;
 
@@ -73,23 +88,16 @@ export  default class NewAirplaneForm extends React.Component{
       <form style={{width:"30rem"}} onSubmit={this.submit}>
         <label>Airline:</label>
        {
-          this.props.airlines.map(airline => {
-            return (
-              <tr key={airline.id}>
-                <th>{airline.id}</th>
-                <th>{airline.name}</th>
-              </tr>
-            );
-          })
+         this.airlineSelect()
         }
         <label>Name:</label>
-        <input type="text" name = "name" onChange={this.changeState} value={name} disabled={false}/><br/>
+        <input type="text" name = "name" onChange={this.changeState} value={name} /><br/>
         <label>Model:</label>
-        <input type="text" name = "model" onChange={this.changeState} value={model} disabled={false}/><br/>
+        <input type="text" name = "model" onChange={this.changeState} value={model} /><br/>
         <label>Capacity:</label>
-        <input type="number" name = "capacity" onChange={this.changeState} value={capacity} disabled={false}/><br/>
+        <input type="number" name = "capacity" onChange={this.changeState} value={capacity} /><br/>
         <label>Time on lane:</label>
-        <input type="number" name = "time_on_lane" onChange={this.changeState} value={time_on_lane} disabled={false}/><br/>
+        <input type="number" name = "time_on_lane" onChange={this.changeState} value={time_on_lane} /><br/>
         <div class="btn-group mr-2" role="group" aria-label="First group">
           <button className="btn btn-primary" onClick={this.back}>Back</button>
           </div>
