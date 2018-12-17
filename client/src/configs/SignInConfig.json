@@ -1,5 +1,6 @@
 {
     "email": "//*[contains(@name, 'email')]",
+    "header": "//*[contains(@class, 'signin-header')]",
     "password": "//*[contains(@name, 'password')]",
     "signIn": "//*[contains(@class, 'btn btn-success btn-lg')]"
 }
