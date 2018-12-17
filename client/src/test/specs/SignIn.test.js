@@ -11,17 +11,23 @@ describe('Sign In', () => {
     let homePageObject = new HomePageObject(HomeConfig);
     let signInPageObject = new SignInPageObject(SignInConfig);
     let profilePageObject = new ProfilePageObject(ProfileConfig);
-    it('Sign in as a user, confirm validity', () => {
-        const userEmail = "mane@mail.com";
-        const userPassword = "123456";
+    const userEmail = "mane@mail.com";
+    const userPassword = "123456";
+    it('Open sign in page, confirm opened։ ', () => {
         homePageObject.navigateToHomePage();
         homePageObject.clickOnSignInButton();
+        const headerText = signInPageObject.getHeaderText();
+        console.log(headerText);
+        assert.equal('Sign in', headerText);
+    });
+
+    it('Sign in as a user, confirm validity։ ', () => {
         signInPageObject.setEmail(userEmail);
         signInPageObject.setPassword(userPassword);
         signInPageObject.signIn();
         homePageObject.clickOnProfileButton();
-        let profileEmail = profilePageObject.getProfileEmail();
+        const profileEmail = profilePageObject.getProfileEmail();
+        console.log(profileEmail);
         assert.equal(profileEmail, userEmail);
     });
-    
 });

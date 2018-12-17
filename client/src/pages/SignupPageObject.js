@@ -47,4 +47,5 @@ module.exports["default"] = class SignupPageObject extends BasePageObject{
     clickCancelButton(){
         this.click(this.selector.cancelButton);
     }
+   
 }

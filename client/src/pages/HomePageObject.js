@@ -42,4 +42,7 @@ module.exports['default'] = class HomePageObject extends BasePageObject{
         return this.getValue(this.selector.lastCreatedFlight).split(' ')[1];
     }
 
+    clickOnSignOutButton(){
+        this.click(this.selector.signOutButton);
+    }
 }
