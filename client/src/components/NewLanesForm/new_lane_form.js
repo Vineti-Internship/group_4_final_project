@@ -15,7 +15,8 @@ export  default class NewLaneForm extends React.Component{
   }
 
   async componentWillMount(){
-		const id = this.props.match.params.laneId;
+    const {match} = this.props
+		const id = match ? match.params.laneId : -1;
     await this.props.getLane(id);
     const { lane } = this.props;
 
