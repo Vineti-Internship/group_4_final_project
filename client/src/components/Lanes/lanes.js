@@ -36,7 +36,7 @@ export default class Lanes extends React.Component {
 					</table>
           {
             canCreate &&
-            <Link to="/newlane">Create Lane</Link>
+            <Link to="/newlane" className="createLaneLink">Create Lane</Link>
           }
 				</div>
 			);
