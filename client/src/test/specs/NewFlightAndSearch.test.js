@@ -31,7 +31,7 @@ describe("New Flight creation and confirmation", () => {
         console.log(header);
         assert.equal('Create New Flight', header);
     });
-    
+
     it('Create New Flight', () => {
         newFlightPageObject.setDestination(destination);
         newFlightPageObject.setDuration(duration);
@@ -43,8 +43,8 @@ describe("New Flight creation and confirmation", () => {
         newFlightPageObject.waitForLaneToExist();
         newFlightPageObject.selectLane();
         newFlightPageObject.createFlight();
-
-        const flightDest = homePageObject.getLastCreatedFlight();
+        homePageObject.clickOnRefreshButton();
+        const flightDest = homePageObject.getLastCreatedFlightDest();
         console.log(flightDest);
         assert.equal(flightDest, destination);
     });
@@ -59,9 +59,7 @@ describe("New Flight creation and confirmation", () => {
         console.log(allCards);
     });
 
-    it('Check more button functionality', () => {
-        searchPageObject.clickMoreButton();
-    })
-
-
+    // it('Check more button functionality', () => {
+    //     searchPageObject.clickMoreButton();
+    // });
 });
