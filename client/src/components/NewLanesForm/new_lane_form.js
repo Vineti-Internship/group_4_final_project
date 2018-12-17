@@ -66,9 +66,10 @@ export  default class NewLaneForm extends React.Component{
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="">Capacity</span>
+                <input className="capacity-input" type="number" name="capacity" onChange={this.changeState} value={capacity} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
               </div>
-              <input className="capacity-input" type="number" name="capacity" onChange={this.changeState} value={capacity} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
               <br/>
+              <label style={{color:"grey"}}>Capacity need to be more than 1 and less than 1000</label>
             </div>
             <br/>
             <div class="btn-group mr-2" role="group" aria-label="First group">
