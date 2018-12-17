@@ -1,0 +1,8 @@
+| Test Case ID | Test Scenario | Test Steps | Test Data | Expected Result | Actual Result | Status |
+|---|---|---|---|---|---|---|
+|L01| Check Lanes Page Functionality | 1. Navigate to http://localhost:8000 <br> 2. Sign in as Benedict(lane manager) <br> 3. Click Lanes Button <br> | email- "benedict@mail.com" <br> password- "123456" | All the lanes available in the database, should be visible | Expected Result | Pass | 
+|L02| Check Lanes Page Functionality | 1.Complete 1, 2, 3 steps in Test case L01 <br> 2. Click on any lane | Lane 1 - 200 | Should be redirected to that lanes page, an input should be available, where capacity of lane can be edited and confirmed or canceled by below buttons | Expected Result | Pass |
+|L03| Check Lanes Page Functionality | 1. Complete 1, 2 steps in Test Case L02 <br> 2.Click "Back" button | - | Should be redirected to Lanes page  http://localhost:8000/lanes | Expected Result | Pass |
+|L04| Check Lanes Page Functionality | 1. Complete 1, 2 steps in Test Case L02 <br> 2. Input a smaller number, than written in the input <br> 3.Click "Create" button | 199 | "Create" button should be disabled | Expected Result | Pass | 
+|L05| Check Lanes Page Functionality | 1. Complete 1, 2 steps in Test Case L02 <br> 2. Input a bigger number, than written in the input <br> 3.Click "Create" button | 300 | Should edit lane capacity and redirect to http://localhost:8000/lanes | Expected Result | Pass | 
+|L05| Check Lanes Page Functionality | 1. Complete 1, 2 steps in Test Case L02 <br> 2. Input a bigger number, than written in the input <br> 3.Click "Create" button | 90000 | Should not edit lane capacity and inform about maximum number| Edits capacity and does not inform about maximum number | Fail |
