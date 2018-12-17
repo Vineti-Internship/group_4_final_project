@@ -14,11 +14,27 @@ export  default class NewLaneForm extends React.Component{
     this.submit = this.submit.bind(this);
   }
 
+  async componentWillMount(){
+		const id = this.props.match.params.laneId;
+    await this.props.getLane(id);
+    const { lane } = this.props;
+
+    if (lane) {
+      const { capacity} = lane;
+      this.setState({
+      capacity: capacity
+      });
+    }
+  }
+
   changeState = e => {
     const {name, value} = e.target;
+    const { lane } = this.props;
+    const canSave = lane ? lane.capacity <= value : value > 0;
+
     this.setState({
       [name]: value,
-      canSave: value > 0
+      canSave
     });
   }
 
@@ -35,17 +51,6 @@ export  default class NewLaneForm extends React.Component{
   back = e => {
     e.preventDefault();
     this.props.history.push("/lanes");
-  }
-  
-  componentWillMount = () => {
-    const { lane } = this.props;
-
-    if (lane) {
-      const { capacity} = lane;
-      this.setState({
-      capacity: capacity
-      });
-    }
   }
 
   render = () => {

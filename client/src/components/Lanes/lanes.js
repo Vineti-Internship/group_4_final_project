@@ -10,7 +10,7 @@ export default class Lanes extends React.Component {
   }
 
 	render() {
-    const {lanes, maxCount } = this.props;
+    const {lanes, maxCount, history } = this.props;
     const count = maxCount.length !== 0 ? maxCount[0].value : -1;
     const canCreate = count === -1 || count > lanes.length;
 
@@ -26,7 +26,7 @@ export default class Lanes extends React.Component {
 							{
                 lanes.map(lane => {
                   return (
-                    <tr key={lane.id}>
+                    <tr key={lane.id} onClick={()=> history.push(`/lanes/${lane.id}`)} style={{cursor:"pointer"}}>
                       <th>{lane.id}</th>
                       <th>{lane.capacity}</th>
                     </tr>

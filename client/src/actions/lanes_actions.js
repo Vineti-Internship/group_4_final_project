@@ -33,6 +33,23 @@ export const getAllLanes = (lanes) => {
 	};
 };
 
+export const getCurrentLane = id => async dispatch => {
+	try {
+    const res = await axios.get(`/lanes/${id}`);
+		const lane = res.data;
+		dispatch(getLane(lane));
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const getLane = (lane) => {
+	return {
+		type: actionTypes.GET_CURRENT_LANE,
+		payload: lane
+	};
+};
+
 export const createLane = data => async dispatch => {
   try {
 		await axios.post("/lanes", { ... data } );
