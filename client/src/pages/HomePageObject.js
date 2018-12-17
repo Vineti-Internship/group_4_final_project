@@ -14,6 +14,10 @@ module.exports['default'] = class HomePageObject extends BasePageObject{
         this.click(this.selector.signupButton);
     }
 
+    clickOnProfileButton(){
+        this.click(this.selector.profileButton);
+    }
+
     clickOnSearchButton(){
         this.click(this.selector.searchButton);
     }
