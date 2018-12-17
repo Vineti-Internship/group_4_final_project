@@ -52,4 +52,7 @@ module.exports['default'] = class HomePageObject extends BasePageObject{
     clickOnRefreshButton(){
         this.click(this.selector.refreshButton);
     }
+    clickOnLanesButton(){
+        this.click(this.selector.lanesButton);
+    }
 }

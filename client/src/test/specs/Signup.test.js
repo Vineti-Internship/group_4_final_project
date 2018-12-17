@@ -33,7 +33,7 @@ describe('Sign up', () => {
     signupPageObject.setPassword(str1);
     signupPageObject.setPassConf(str2);
     signupPageObject.clickRegisterButton();
-    driver.switchTo().alert().accept();
+    // driver.switchTo().alert().accept();
     homePageObject.navigateToHomePage();
     homePageObject.clickOnSignInButton();
     signInPageObject.setEmail(userEmail);
@@ -48,6 +48,7 @@ describe('Sign up', () => {
   it('Sign up with existing email', () => {
     userName = "Mane Poghosian";
     userEmail = "mane@mail.com";
+    console.log(userEmail);
     homePageObject.clickOnSignOutButton();
     homePageObject.navigateToHomePage();
     homePageObject.clickOnSignupButton();

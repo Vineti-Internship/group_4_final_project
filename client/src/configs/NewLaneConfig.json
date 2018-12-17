@@ -1,0 +1,6 @@
+{
+    "createLane": "//*[contains(@class, 'createLaneLink')]",
+    "capacity": "//*[contains(@name, 'capacity')]",
+    "createButton": "//*[contains(@class, 'btn btn-success')]",
+    "allLanes": "//*[contains(@class, 'lanes')]"
+}
