@@ -7,11 +7,11 @@ class Flight < ApplicationRecord
   validates :from, :to, :flight_start, :flight_time, :lane, :airplane, presence: true
 
   enum flight_status: FLIGHT_STATUS = {
-    created: 0,
-    ready_to_start: 1,
-    on_line: 2,
-    ready_to_finish: 3,
-    ended: 4
+    created: "Pending",
+    ready_to_start: "Ready",
+    on_line: "On Flight",
+    ready_to_finish: "Landing",
+    ended: "Ended"
   }
 
 end

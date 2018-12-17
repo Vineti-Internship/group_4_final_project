@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import Spinner from "../Spinner";
 
 export default class Airplanes extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
 		this.props.getAirplanes();
 	}
 	render() {

@@ -4,7 +4,7 @@ import Spinner from "../Spinner";
 import {Link} from "react-router-dom";
 
 class Flights extends React.Component {
-	componentWillMount() {
+	componentDidMount() {
 		this.props.getFlights();
 	}
 
@@ -38,6 +38,7 @@ class Flights extends React.Component {
 								<th scope="col">Airline</th>
 								<th scope="col">Scheduled departure</th>
 								<th scope="col">Scheduled arrival</th>
+								<th scope="col">Status</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -49,6 +50,7 @@ class Flights extends React.Component {
 										<td>{flight.airline_name}</td>
 										<td>{this.normalizeTime(flight.flight_start)}</td>
 										<td>{this.normalizeTime(flight.flight_end)}</td>
+										<td>{flight.status}</td>
 									</tr>
 								);
 							})}

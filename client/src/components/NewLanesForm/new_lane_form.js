@@ -14,7 +14,7 @@ export  default class NewLaneForm extends React.Component{
     this.submit = this.submit.bind(this);
   }
 
-  async componentWillMount(){
+  async componentDidMount(){
     const {match} = this.props
 		const id = match ? match.params.laneId : -1;
     await this.props.getLane(id);
@@ -63,19 +63,19 @@ export  default class NewLaneForm extends React.Component{
         <center>
           <h2>Create Lane</h2>
           <form style={{width:"30rem"}} onSubmit={this.submit}>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="">Capacity</span>
+            <div className="input-group">
+              <div className="input-group-prepend">
+                <span className="input-group-text" id="">Capacity</span>
                 <input className="capacity-input" type="number" name="capacity" onChange={this.changeState} value={capacity} className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
               </div>
               <br/>
               <label style={{color:"grey"}}>Capacity need to be more than 1 and less than 1000</label>
             </div>
             <br/>
-            <div class="btn-group mr-2" role="group" aria-label="First group">
+            <div className="btn-group mr-2" role="group" aria-label="First group">
               <button className="btn btn-primary" onClick={this.back}>Back</button>
             </div>
-            <div class="btn-group mr-2" role="group" aria-label="Second group">
+            <div className="btn-group mr-2" role="group" aria-label="Second group">
               <input className="btn btn-success" type="submit" value="Create" disabled={!canSave} />
             </div>
           </form>

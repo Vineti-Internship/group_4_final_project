@@ -4,7 +4,7 @@ class FlightsController < ApplicationController
 
   # GET /flights
   def index
-    render json: Flight.all.order(:flight_start), each_serializer: FlightListSerializer
+    render json: Flight.all.order(:flight_start).where(is_ended: false), each_serializer: FlightListSerializer
   end
 
   # GET /flights/1
@@ -16,7 +16,7 @@ class FlightsController < ApplicationController
   	begin
       result=[]
       Flight.all.each do  |flight|
-        if flight.to == (params[:to]) && flight.from == (params[:from])
+        if flight.to == (params[:to]) && flight.from == (params[:from] && !flight.is_ended)
           result.push(flight)
         end
       end
@@ -26,37 +26,16 @@ class FlightsController < ApplicationController
     end
   end
 
-  def start_flight
-    begin
-        @lane_id = @flight.lane_id
-        @airplane_id = @flight.airplane_id
-        @currentcap = @flight.lane.capacity - @flight.airplane.capacity
-        Lane.update(@lane_id, :capacity => @currentcap)
-        Airplane.update(@airplane_id, :status => "start")
-    rescue StandardError => e
-      render json: {errors: e}, status: :bad_request
-    end
-  end
-
-  def finish_flight
-    begin
-      @airplane_id = @flight.airplane_id
-      Airplane.update(@airplane_id, :status =>"free")
-     @flight.update(  :is_ended => true)
-    rescue StandardError => e
-      render json: {errors: e}, status: :bad_request
-    end
-  end
-
   # POST /flights
   def create
     begin
       @flight = Flight.new(flight_params)
+      @flight.is_ended = false
       if @flight.save
         render json: @flight, status: :created, location: @flight
+      else  
+        render json: {errors: e}, status: :bad_request
       end
-    rescue StandardError => e
-      render json: {errors: e}, status: :bad_request
     end
   end
 

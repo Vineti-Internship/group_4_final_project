@@ -159,7 +159,7 @@ class NewFlightForm extends React.Component {
 
 	getMinimumDate = () => {
 		const now = new Date();
-		return `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}T${now.getHours()+1 <10?`0${now.getHours()+1}`:now.getHours()+1<-12?now.getHours()+1:now.getHours()+1-12}:${now.getMinutes() <10?`0${now.getMinutes()}`:now.getMinutes()}`;
+		return `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}T${now.getHours()<10?`0${now.getHours()}`:now.getHours()}:${now.getMinutes() <10?`0${now.getMinutes()}`:now.getMinutes()}`;
 	}
 
 	render() {
@@ -184,7 +184,7 @@ class NewFlightForm extends React.Component {
 							<div className="input-group-prepend">
 								<span className="input-group-text" id="inputGroup-sizing-default">Flight duration:</span>
 							</div>
-							<input type="number" min="30" required name="flight_time" placeholder="duration in minutes" onChange={this.handleChange} value={this.state.flight_time} className="form-control without_ampm" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
+							<input type="number" min="1" required name="flight_time" placeholder="duration in minutes" onChange={this.handleChange} value={this.state.flight_time} className="form-control without_ampm" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
 						</div> 
 						<div className="input-group mb-3">
 							<div className="input-group-prepend">

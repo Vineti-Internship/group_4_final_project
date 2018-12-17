@@ -49,7 +49,7 @@ class LanesController < ApplicationController
         lane.flights.each do |flight|
           f_start = params[:flight_start].to_datetime - (flight.airplane.time_on_lane/60).minutes
           f_end = params[:flight_start].to_datetime
-          if flight.flight_start - (flight.airplane.time_on_lane/60).minutes > f_end || flight.flight_start < f_start
+          if flight.flight_start - (flight.airplane.time_on_lane/60).minutes >= f_end || flight.flight_start <= f_start
             if lane.capacity >= params[:capacity]
               available_lanes.push(lane)
               break
