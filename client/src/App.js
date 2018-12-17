@@ -54,30 +54,35 @@ class App extends React.Component {
 					<Link to="/signup" style={{marginRight:"16px"}} className="link-signup nav-link">Sign Up</Link>
 				</li>}
 			</React.Fragment>
-    );
+		);
 
-    const managerLinks = (
-      <React.Fragment>
-        {
-          this.props.aud === "l_manager" &&
-          <li className="nav-item">
-            <Link to="/lanes" style={{marginRight:"16px"}} className="link-lanes nav-link">Lanes</Link>
-          </li>
-        }
-        {
-          this.props.aud === "l_manager" &&
-          <li className="nav-item">
-            <Link to="/airplanes" style={{marginRight:"16px"}} className="link-airplanes nav-link">Airplanes</Link>
-          </li>
-        }
-        {
-          this.props.aud !== "l_manager" &&
-          <li className="nav-item">
-            <Link to="/flights" style={{marginRight:"16px"}} className="link-flights nav-link">Flights</Link>
-          </li>
-        }
-      </React.Fragment>
-    );
+		const managerLinks = (
+			<React.Fragment>
+				{
+					(this.props.aud === "l_manager" || this.props.aud === "admin") &&
+					<li className="nav-item">
+						<Link to="/lanes" style={{marginRight:"16px"}} className="link-lanes nav-link">Lanes</Link>
+					</li>
+				}
+				{
+					this.props.aud === "l_manager" &&
+					<li className="nav-item">
+						<Link to="/airplanes" style={{marginRight:"16px"}} className="link-airplanes nav-link">Airplanes</Link>
+					</li>
+				}
+			</React.Fragment>
+		);
+		
+
+		const adminLinks = (
+			<React.Fragment>
+				{this.props.aud === "admin" &&
+					<li className="nav-item">
+						<Link to="/users" style={{marginRight:"16px"}} className="link-lanes nav-link">Users</Link>
+					</li>}
+			</React.Fragment>);
+
+		
 
 
 		return (
@@ -87,18 +92,22 @@ class App extends React.Component {
 						<SearchForm/>
 						<div className="nav">
 							<ul className="nav nav-tabs">
-                {managerLinks}
+								<li className="nav-item">
+									<Link to="/flights" style={{marginRight:"16px"}} className="link-flights nav-link">Flights</Link>
+								</li>
+								{managerLinks}
+								{adminLinks}
 								{this.props.auth ? userLinks : guestLinks}
 							</ul>
 						</div>
 						<Switch>
-							<Route exact path = "/lanes" render={({history})=> this.props.aud === "l_manager" ? <Lanes {...{history}}/> : <Redirect to="/profile"/>} />
-              <Route exact path = "/users" render={({history})=> <Users {...{history}} />} />
-              <Route exact path = "/newlane" render={({history})=> <NewLanesForm {...{history}} />} />
+							<Route exact path = "/lanes" render={({history})=> (this.props.aud === "l_manager" || this.props.aud === "admin") ? <Lanes {...{history}}/> : <Redirect to="/profile"/>} />
+							<Route exact path = "/users" render={({history})=> this.props.aud==="admin"?<Users {...{history}} />:<Redirect to="/"/>} />
+							<Route exact path = "/newlane" render={({history})=> <NewLanesForm {...{history}} />} />
 							<Route exact path = "/lanes/:laneId" render={({match, history})=> <NewLanesForm {...{match, history}} />} />
-              <Route exact path = "/users/:userId" render={({match, history})=> <EditUser {...{match, history}} />} />
+							<Route exact path = "/users/:userId" render={({match, history})=> <EditUser {...{match, history}} />} />
 							<Route exact path = "/airplanes" render={(history)=>  <Airplanes {...{history}} />} />
-              <Route exact path = "/newairplane" render={({history})=> <NewAirplaneForm {...{history}} />} />
+							<Route exact path = "/newairplane" render={({history})=> <NewAirplaneForm {...{history}} />} />
 							<Route exact path = "/flights" render ={({history})=> <Flights history={history}/>} />
 							<Route exact path = "/flights/:flightId" render ={({match, history})=> <Flight match={match} history={history}/>} />
 							<Route exact path = "/signup" render ={({history})=> this.props.auth?<Redirect to="/"/>:<SignUpForm history={history}/>} />
