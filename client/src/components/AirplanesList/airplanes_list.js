@@ -10,8 +10,10 @@ export default class Airplanes extends React.Component {
     if( this.props.airplanes)
 			return (
 				<div className="airplanes">
-					<table>
-						<tbody>
+          <br/>
+          <br/>
+					<table className="table table-striped table-bordered table-hover">
+            <thead className="thead-dark">
 							<tr>
                 <th>Airline</th>
                 <th>Name </th>
@@ -20,6 +22,8 @@ export default class Airplanes extends React.Component {
                 <th>Time on lane</th>
                 <th>Status</th>
 							</tr>
+            </thead>
+            <tbody>
 							{this.props.airplanes.map(airplane => {
 								return (
 									<tr key={airplane.id}>
@@ -32,7 +36,7 @@ export default class Airplanes extends React.Component {
 									</tr>
 								);
 							})}
-						</tbody>
+            </tbody>
 					</table>
 					<Link to="/newairplane">Create Airplane</Link>
 				</div>
