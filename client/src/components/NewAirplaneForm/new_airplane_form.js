@@ -2,7 +2,8 @@ import React from 'react';
 
 export  default class NewAirplaneForm extends React.Component{
   constructor(props){
-		super(props);
+    super(props);
+
 		this.state={
       airline: " ",
       name: " ",
@@ -10,23 +11,42 @@ export  default class NewAirplaneForm extends React.Component{
       capacity:" ",
       time_on_lane: " ",
       status: "Free"
-		};
+    };
+
   this.changeState = this.changeState.bind(this);
   this.submit = this.submit.bind(this);
   this.back = this.back.bind(this);
   }
 
-  changeState = (e) => {
+  componentWillMount = () => {
+    this.props.getAirlines();
+    const { airplane } = this.props;
+
+    if (airplane) {
+      const { name, model, capacity, time_on_lane} = airplane;
+
+      this.setState({
+        name: name,
+        model: model,
+        capacity: capacity,
+        time_on_lane: time_on_lane
+      });
+    }
+  }
+
+  changeState = e => {
     const {name, value} = e.target;
+
     this.setState({
       [name]:value
     });
   }
 
-  submit = (e) => {
+  submit = e => {
     e.preventDefault();
+
     const data = {
-      name: this.state.airline,
+      airline: this.state.airline,
       name: this.state.name,
       model: this.state.model,
       capacity: this.state.capacity,
@@ -38,27 +58,12 @@ export  default class NewAirplaneForm extends React.Component{
     this.props.history.push("/airplanes");
   }
 
-  back = (e) => {
+  back = e => {
     e.preventDefault();
     this.props.history.push("/airplanes");
   }
 
-  getAirlines
-
-  componentWillMount() {
-    const { airplane } = this.props;
-
-    if (airplane) {
-      const { name, model, capacity, time_on_lane} = airplane;
-      this.setState({
-      name: name,
-      model: model,
-      capacity: capacity,
-      time_on_lane: time_on_lane
-    });
-    }
-  }
-  render(){
+  render = () => {
     const { name, model, capacity, time_on_lane} = this.state;
 
     return(
@@ -67,9 +72,16 @@ export  default class NewAirplaneForm extends React.Component{
     <h5>Create Airplane</h5>
       <form style={{width:"30rem"}} onSubmit={this.submit}>
         <label>Airline:</label>
-        <select>
-
-        </select><br/>
+       {
+          this.props.airlines.map(airline => {
+            return (
+              <tr key={airline.id}>
+                <th>{airline.id}</th>
+                <th>{airline.name}</th>
+              </tr>
+            );
+          })
+        }
         <label>Name:</label>
         <input type="text" name = "name" onChange={this.changeState} value={name} disabled={false}/><br/>
         <label>Model:</label>

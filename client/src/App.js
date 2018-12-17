@@ -93,7 +93,8 @@ class App extends React.Component {
 							<Route exact path = "/lanes" render={({history})=> this.props.aud === "l_manager" ? <Lanes {...{history}}/> : <Redirect to="/profile"/>} />
 							<Route exact path = "/newlane" render={({history})=> <NewLanesForm {...{history}} />} />
 							<Route exact path = "/lanes/:laneId" render={({match, history})=> <NewLanesForm {...{match, history}} />} />
-							<Route exact path = "/airplanes" render={()=>  <Airplanes />} />
+							<Route exact path = "/airplanes" render={(history)=>  <Airplanes {...{history}} />} />
+              <Route exact path = "/newairplane" render={({history})=> <NewAirplaneForm {...{history}} />} />
 							<Route exact path = "/flights" render ={({history})=> <Flights history={history}/>} />
 							<Route exact path = "/flights/:flightId" render ={({match, history})=> <Flight match={match} history={history}/>} />
 							<Route exact path = "/signup" render ={({history})=> this.props.auth?<Redirect to="/"/>:<SignUpForm history={history}/>} />
