@@ -14,4 +14,7 @@ module.exports["default"] = class SignInPageObject extends BasePageObject{
     signIn(){
         this.click(this.selector.signIn);
     }
+    getHeaderText(){
+        return browser.element(this.selector.header).getText();
+    }
 }

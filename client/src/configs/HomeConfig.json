@@ -6,5 +6,8 @@
     "newFlightButton": "//*[contains(@class, 'link-newflight btn btn-primary')]", "signInButton": "//*[@class='link-signin nav-link']",
     "lastCreatedFlight": "//*[@class='last-created-flight']",
     "profileButton": "//*[@class='link-profile  nav-link']",
-    "lanesButton": "//*[@class='link-signin nav-link']"
+    "lanesButton": "//*[@class='link-signin nav-link']",
+    "signOutButton": "//*[@class='link-signout  nav-link']",
+    "refreshButton":"//*[@class='refresh-btn btn btn-primary']"
+    
 }
